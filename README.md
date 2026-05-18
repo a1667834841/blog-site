@@ -19,7 +19,7 @@ This repository owns the Hugo + PaperMod site shell for `ggball`. It intentional
 3. Build the bootstrap:
 
    ```bash
-   hugo --source /Users/wuwenjing/Documents/blog-site
+   hugo --source .
    ```
 
 ## Base URL
@@ -27,7 +27,7 @@ This repository owns the Hugo + PaperMod site shell for `ggball`. It intentional
 `hugo.yaml` keeps `baseURL` at `/` so the bootstrap is safe across environments. Set the real deployment URL at build time, for example:
 
 ```bash
-hugo --source /Users/wuwenjing/Documents/blog-site --baseURL https://next.ggball.top/
+hugo --source . --baseURL https://next.ggball.top/
 ```
 
 ## Content boundary
