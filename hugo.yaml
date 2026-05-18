@@ -1,4 +1,4 @@
-baseURL: "https://next.ggball.top/"
+baseURL: "/"
 languageCode: "zh-cn"
 title: "ggball"
 theme: "PaperMod"
@@ -31,13 +31,3 @@ params:
     distance: 1000
     threshold: 0.3
     minMatchCharLength: 2
-menu:
-  main:
-    - identifier: "archives"
-      name: "归档"
-      url: "/archives/"
-      weight: 10
-    - identifier: "search"
-      name: "搜索"
-      url: "/search/"
-      weight: 20
