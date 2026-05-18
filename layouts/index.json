@@ -1,0 +1,14 @@
+{{/* Override PaperMod index.json to dedupe by permalink (avoid duplicates in search index). */}}
+{{- $index := slice -}}
+{{- $seen := dict -}}
+{{- range site.RegularPages -}}
+  {{- if and (not .Params.searchHidden) (ne .Layout `archives`) (ne .Layout `search`) -}}
+    {{- $key := .Permalink -}}
+    {{- if not (index $seen $key) -}}
+      {{- $seen = merge $seen (dict $key true) -}}
+      {{- $index = $index | append (dict "title" .Title "content" .Plain "permalink" .Permalink "summary" .Summary) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $index | jsonify -}}
+

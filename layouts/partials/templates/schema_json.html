@@ -1,0 +1,157 @@
+{{- /*
+Override PaperMod's schema JSON-LD partial.
+
+PaperMod's upstream template interpolates string values without JSON quoting
+(e.g. `"name": {{ site.Title }}`), which produces invalid JSON that usually
+goes unnoticed in browsers but breaks `hugo --minify` because the HTML minifier
+tries to parse JSON-LD blocks.
+
+We build the JSON objects as Go template dictionaries/slices and emit them via
+`jsonify` so the output is always valid JSON.
+*/ -}}
+
+{{- if .IsHome -}}
+  {{- $publisherType := (site.Params.schema.publisherType | default "Organization") | title -}}
+  {{- $sameAs := slice -}}
+  {{- if site.Params.schema.sameAs -}}
+    {{- range site.Params.schema.sameAs -}}
+      {{- $sameAs = $sameAs | append (trim . " ") -}}
+    {{- end -}}
+  {{- else -}}
+    {{- range site.Params.SocialIcons -}}
+      {{- $sameAs = $sameAs | append (trim .url " ") -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- $common := dict
+      "@context" "https://schema.org"
+      "@type" $publisherType
+      "name" site.Title
+      "url" site.Home.Permalink
+      "description" (site.Params.description | plainify | truncate 180)
+      "sameAs" $sameAs
+    -}}
+  {{- $imgURL := (site.Params.assets.favicon | default "favicon.ico" | absURL) -}}
+  {{- if (eq site.Params.schema.publisherType "Person") -}}
+    {{- $common = merge $common (dict "image" $imgURL) -}}
+  {{- else -}}
+    {{- $common = merge $common (dict "logo" $imgURL) -}}
+  {{- end -}}
+
+  <script type="application/ld+json">{{ $common | jsonify }}</script>
+
+{{- else if (or .IsPage .IsSection) -}}
+  {{/* BreadcrumbList */}}
+  {{- $url := replace .Parent.Permalink ( printf "%s" site.Home.Permalink) "" -}}
+  {{- $langURL := strings.TrimPrefix ( printf "%s/" .Lang) $url -}}
+  {{- $bcList := (split $langURL "/") -}}
+
+  {{- $items := slice -}}
+  {{- $scratch := newScratch -}}
+  {{- range $index, $element := $bcList -}}
+    {{- $scratch.Add "path" (printf "%s/" $element ) -}}
+    {{- $bcPg := site.GetPage ($scratch.Get "path") -}}
+    {{- if (and ($bcPg) (gt (len $element) 0)) -}}
+      {{- $items = $items | append (dict
+        "@type" "ListItem"
+        "position" (add 1 $index)
+        "name" $bcPg.Name
+        "item" $bcPg.Permalink
+      ) -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $items = $items | append (dict
+    "@type" "ListItem"
+    "position" (len $bcList)
+    "name" .Name
+    "item" .Permalink
+  ) -}}
+
+  {{- $bc := dict
+    "@context" "https://schema.org"
+    "@type" "BreadcrumbList"
+    "itemListElement" $items
+  -}}
+  <script type="application/ld+json">{{ $bc | jsonify }}</script>
+
+  {{- if .IsPage -}}
+    {{- $keywords := slice -}}
+    {{- if .Params.keywords -}}
+      {{- range .Params.keywords -}}
+        {{- $keywords = $keywords | append . -}}
+      {{- end -}}
+    {{- else if .Params.tags -}}
+      {{- range .Params.tags -}}
+        {{- $keywords = $keywords | append . -}}
+      {{- end -}}
+    {{- end -}}
+
+    {{- $publisherType := (site.Params.schema.publisherType | default "Organization") | title -}}
+    {{- $publisher := dict
+      "@type" $publisherType
+      "name" site.Title
+      "logo" (dict
+        "@type" "ImageObject"
+        "url" (site.Params.assets.favicon | default "favicon.ico" | absURL)
+      )
+    -}}
+
+    {{- $authorParam := (.Params.author | default site.Params.author) -}}
+    {{- $author := "" -}}
+    {{- if $authorParam -}}
+      {{- if (or (eq (printf "%T" $authorParam) "[]string") (eq (printf "%T" $authorParam) "[]interface {}")) -}}
+        {{- $authors := slice -}}
+        {{- range $authorParam -}}
+          {{- $authors = $authors | append (dict "@type" "Person" "name" .) -}}
+        {{- end -}}
+        {{- $author = $authors -}}
+      {{- else -}}
+        {{- $author = dict "@type" "Person" "name" $authorParam -}}
+      {{- end -}}
+    {{- end -}}
+
+    {{- $image := "" -}}
+    {{- if .Params.cover.image -}}
+      {{- if (ne .Params.cover.relative true) -}}
+        {{- $image = (.Params.cover.image | absURL) -}}
+      {{- else -}}
+        {{- $image = ((path.Join .RelPermalink .Params.cover.image ) | absURL) -}}
+      {{- end -}}
+    {{- else -}}
+      {{- $images := partial "templates/_funcs/get-page-images" . -}}
+      {{- with index $images 0 -}}
+        {{- $image = .Permalink -}}
+      {{- end -}}
+    {{- end -}}
+
+    {{- $rawDesc := .Summary -}}
+    {{- if gt (len .Description) 0 -}}
+      {{- $rawDesc = .Description -}}
+    {{- end -}}
+    {{- $desc := ($rawDesc | plainify) -}}
+    {{- $posting := dict
+      "@context" "https://schema.org"
+      "@type" "BlogPosting"
+      "headline" (.Title | plainify)
+      "name" (.Title | plainify)
+      "description" $desc
+      "keywords" $keywords
+      "articleBody" (.Content | plainify)
+      "wordCount" .WordCount
+      "inLanguage" (.Language.Lang | default "en-us")
+      "datePublished" .PublishDate
+      "dateModified" .Lastmod
+      "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
+      "publisher" $publisher
+    -}}
+    {{- if ne $image "" -}}
+      {{- $posting = merge $posting (dict "image" $image) -}}
+    {{- end -}}
+    {{- if ne $author "" -}}
+      {{- $posting = merge $posting (dict "author" $author) -}}
+    {{- end -}}
+
+    <script type="application/ld+json">{{ $posting | jsonify }}</script>
+  {{- end -}}
+
+{{- end -}}

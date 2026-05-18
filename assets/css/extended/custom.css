@@ -14,3 +14,31 @@
 #searchResults {
   margin-top: 1rem;
 }
+
+/* Busuanzi counters: match PaperMod footer tone and keep centered. */
+.busuanzi-wrap {
+  margin: 0.35rem auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+  color: var(--secondary);
+  font-size: 0.86rem;
+  line-height: 1.2;
+}
+
+.busuanzi-item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35rem;
+}
+
+.busuanzi-value {
+  color: var(--primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.busuanzi-sep {
+  opacity: 0.6;
+}

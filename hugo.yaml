@@ -1,9 +1,9 @@
 baseURL: "/"
 languageCode: "zh-cn"
-title: "ggball"
+title: "ggball's blog"
 theme: "PaperMod"
 pagination:
-  pagerSize: 10
+  pagerSize: 5
 enableRobotsTXT: true
 buildDrafts: false
 hasCJKLanguage: true
@@ -18,12 +18,31 @@ taxonomies:
   category: "categories"
 params:
   defaultTheme: "auto"
+  # PaperMod homepage only lists "posts" by default. Include all our sections.
+  mainSections:
+    - "posts"
+    - "notes"
+    - "monthly"
+    - "projects"
+  # Show a blog intro box on the homepage instead of featuring the first post.
+  disableSpecial1stPost: true
+  homeInfoParams:
+    Title: "你好，我是 ggball"
+    Content: "这里是ggball 的博客，积跬步以至千里，致敬每个爱学习的你。"
+  socialIcons:
+    - name: "github"
+      url: "https://github.com/a1667834841"
+    - name: "email"
+      url: "ggball0227@gmail.com"
+    - name: "rss"
+      url: "/index.xml"
   ShowReadingTime: true
   ShowShareButtons: false
   ShowPostNavLinks: true
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: true
   ShowToc: true
+  ShowPageNums: true
   cloudflareAnalyticsToken: ""
   fuseOpts:
     isCaseSensitive: false
@@ -32,3 +51,22 @@ params:
     distance: 1000
     threshold: 0.3
     minMatchCharLength: 2
+
+menu:
+  main:
+    - identifier: "search"
+      name: "搜索"
+      url: "/search/"
+      weight: 10
+    - identifier: "archives"
+      name: "归档"
+      url: "/archives/"
+      weight: 20
+    - identifier: "tags"
+      name: "标签"
+      url: "/tags/"
+      weight: 30
+    - identifier: "about"
+      name: "关于"
+      url: "/about/"
+      weight: 40
