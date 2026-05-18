@@ -59,6 +59,20 @@ If you also want the apex root:
 1. Add `ggball.top`
 2. Or add only `www.ggball.top` and create a redirect rule from `ggball.top` to `https://www.ggball.top`
 
+## Included edge optimizations
+
+This repo now ships with:
+
+- `static/_headers`
+  - long cache for hashed assets and images
+  - short cache for RSS and sitemap
+  - security headers
+  - `noindex` for the internal search page
+- `static/_redirects`
+  - permanent redirect from `https://ggball.top/*` to `https://www.ggball.top/:splat`
+
+These files are picked up automatically by Cloudflare Pages during deploy.
+
 ## Local parity check
 
 This roughly matches the Cloudflare build:
@@ -69,4 +83,3 @@ CONTENT_REPO_GIT_URL=https://github.com/a1667834841/blog-content.git \
 SITE_BASE_URL=https://www.ggball.top/ \
 ./scripts/build-cloudflare.sh
 ```
-
