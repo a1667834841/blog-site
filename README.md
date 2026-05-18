@@ -47,3 +47,5 @@ a1667834841/blog-content
 ```
 
 Setup details are documented in [docs/github-pages.md](/Users/wuwenjing/Documents/blog-site/docs/github-pages.md).
+
+Cloudflare custom-domain cutover notes are in [docs/cloudflare-cutover.md](/Users/wuwenjing/Documents/blog-site/docs/cloudflare-cutover.md).

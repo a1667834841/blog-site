@@ -21,6 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       BLOG_CONTENT_REPO: ${{ vars.BLOG_CONTENT_REPO }}
+      SITE_BASE_URL: ${{ vars.SITE_BASE_URL }}
     steps:
       - name: Checkout site repository
         uses: actions/checkout@v5
@@ -59,7 +60,10 @@ jobs:
         run: ./scripts/sync-content.sh
 
       - name: Build site
-        run: hugo --gc --minify --baseURL "${{ steps.pages.outputs.base_url }}"
+        run: |
+          BASE_URL="${SITE_BASE_URL:-${{ steps.pages.outputs.base_url }}}"
+          echo "Using base URL: ${BASE_URL}"
+          hugo --gc --minify --baseURL "${BASE_URL}"
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v4
@@ -76,4 +80,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-

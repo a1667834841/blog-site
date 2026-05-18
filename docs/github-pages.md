@@ -31,19 +31,35 @@ In the `blog-site` GitHub repository:
 
 After that, pushing to `main` or `master` will trigger `.github/workflows/deploy-pages.yml`.
 
-## 4. Optional custom domain
+## 4. Optional base URL override
 
-If you want GitHub Pages to serve a custom domain directly, add a `CNAME` file under `static/`.
+If you plan to use a custom domain, add another repository variable:
 
-Example:
+```text
+SITE_BASE_URL=https://www.ggball.top/
+```
+
+This makes Hugo generate canonical links, RSS links, and sitemap URLs with the final public domain instead of the temporary `github.io` address.
+
+## 5. Custom domain
+
+In the `blog-site` GitHub repository:
+
+1. Open `Settings`
+2. Open `Pages`
+3. Set `Custom domain` to:
 
 ```text
 www.ggball.top
 ```
 
-Then configure the same hostname in the repository `Pages` settings and point DNS to GitHub Pages.
+4. Save
+5. Wait for GitHub Pages to verify the domain
+6. Then enable `Enforce HTTPS`
 
-## 5. Local parity checks
+For GitHub Actions based Pages deployment, the `Custom domain` field in GitHub is the source of truth, so a tracked `CNAME` file is not required.
+
+## 6. Local parity checks
 
 Before pushing:
 
@@ -61,4 +77,3 @@ hugo --gc --minify
 - It runs `./scripts/sync-content.sh`
 - It builds Hugo
 - It uploads `public/` and deploys with GitHub Pages
-
