@@ -24,6 +24,7 @@ params:
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: true
   ShowToc: true
+  cloudflareAnalyticsToken: ""
   fuseOpts:
     isCaseSensitive: false
     shouldSort: true

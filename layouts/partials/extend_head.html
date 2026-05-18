@@ -1,1 +1,5 @@
-{{/* Reserved for head-level injections during later migration tasks. */}}
+{{ with site.Params.cloudflareAnalyticsToken -}}
+  {{- if . -}}
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"{{ . }}"}'></script>
+  {{- end -}}
+{{- end }}

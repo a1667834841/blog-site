@@ -1,0 +1,12 @@
+{{- define "main" -}}
+<main class="main">
+  <header class="page-header">
+    <h1>{{ .Title }}</h1>
+  </header>
+
+  <div class="search-wrap">
+    <input id="searchInput" placeholder="搜索文章" autocomplete="off" />
+    <div id="searchResults"></div>
+  </div>
+</main>
+{{- end -}}
