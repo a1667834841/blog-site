@@ -32,6 +32,6 @@ hugo --source . --baseURL https://next.ggball.top/
 
 ## Content boundary
 
-The `content/` path is intentionally unmanaged in this repository. Task 2+ should attach the separate `blog-content` repository at `content/` before running Hugo, either through a checkout/submodule in local development or equivalent CI wiring during deployment.
+The `content/` path is intentionally unmanaged in this repository and is ignored here. Task 2+ should populate `content/` from the separate `blog-content` repository outside this repo's tracked files, either with a local checkout/worktree copied or synced into place for development, or with equivalent CI wiring during deployment.
 
 Until that content repository is attached, this bootstrap is expected to build with theme scaffolding only.
