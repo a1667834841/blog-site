@@ -66,46 +66,8 @@ Cloudflare Pages normally creates a new deployment when:
 - you push a new commit to the configured production branch
 - you push a new commit to a preview branch
 - you manually retry or redeploy from the Cloudflare dashboard
-- you trigger a deploy hook
 
 For this repo, the standard production trigger is a push to `main`.
-
-## GitHub scheduled redeploy
-
-This repo also ships with:
-
-- `.github/workflows/trigger-cloudflare-pages.yml`
-
-It runs on:
-
-- manual dispatch
-- a daily cron at `02:10 UTC`
-
-The workflow calls a Cloudflare Pages deploy hook, so you can force a fresh Pages build even when there is no new commit.
-
-### Setup
-
-In the Cloudflare Pages project:
-
-1. Open `Settings`
-2. Open `Builds & deployments`
-3. Create a `Deploy hook`
-4. Copy the generated hook URL
-
-In the GitHub `blog-site` repository:
-
-1. Open `Settings`
-2. Open `Secrets and variables`
-3. Open `Actions`
-4. Create a repository secret named:
-
-```text
-CLOUDFLARE_PAGES_DEPLOY_HOOK_URL
-```
-
-5. Paste the deploy hook URL as the secret value
-
-After that, GitHub will trigger Cloudflare Pages automatically on schedule.
 
 ## Included edge optimizations
 
