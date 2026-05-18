@@ -1,0 +1,43 @@
+baseURL: "https://next.ggball.top/"
+languageCode: "zh-cn"
+title: "ggball"
+theme: "PaperMod"
+pagination:
+  pagerSize: 10
+enableRobotsTXT: true
+buildDrafts: false
+hasCJKLanguage: true
+defaultContentLanguage: "zh-cn"
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+taxonomies:
+  tag: "tags"
+  category: "categories"
+params:
+  defaultTheme: "auto"
+  ShowReadingTime: true
+  ShowShareButtons: false
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowToc: true
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.3
+    minMatchCharLength: 2
+menu:
+  main:
+    - identifier: "archives"
+      name: "归档"
+      url: "/archives/"
+      weight: 10
+    - identifier: "search"
+      name: "搜索"
+      url: "/search/"
+      weight: 20
