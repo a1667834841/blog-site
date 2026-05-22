@@ -69,6 +69,25 @@ Cloudflare Pages normally creates a new deployment when:
 
 For this repo, the standard production trigger is a push to `main`.
 
+## Daily content sync trigger
+
+This repo also includes:
+
+- `.github/workflows/sync-content-fingerprint.yml`
+- `.github/content-sync-state.json`
+- `scripts/fingerprint-content.mjs`
+
+The GitHub workflow runs every day at `00:10` Beijing time (`16:10 UTC` on the previous day).
+
+It does not rebuild the site itself. Instead, it:
+
+1. checks out `blog-content`
+2. computes a `sha256` fingerprint across `content/`, `static/`, and `data/`
+3. compares that fingerprint with the last synced value in `.github/content-sync-state.json`
+4. pushes a tiny state-file commit to `blog-site/main` only when content changed
+
+Because Cloudflare Pages is connected to `blog-site` and deploys on pushes to `main`, that tiny commit is enough to trigger a fresh Pages deployment only when the content repository actually changed.
+
 ## Included edge optimizations
 
 This repo now ships with:

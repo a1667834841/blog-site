@@ -1,0 +1,76 @@
+name: Sync Content Fingerprint
+
+on:
+  schedule:
+    - cron: "10 16 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    env:
+      BLOG_CONTENT_REPO: ${{ vars.BLOG_CONTENT_REPO }}
+    steps:
+      - name: Checkout site repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Validate content repository setting
+        run: |
+          if [ -z "${BLOG_CONTENT_REPO}" ]; then
+            echo "Missing repository variable BLOG_CONTENT_REPO."
+            echo "Set it to the public content repo, for example: a1667834841/blog-content"
+            exit 1
+          fi
+
+      - name: Checkout content repository
+        uses: actions/checkout@v5
+        with:
+          repository: ${{ env.BLOG_CONTENT_REPO }}
+          path: blog-content
+          fetch-depth: 1
+
+      - name: Compute content fingerprint
+        id: fingerprint
+        run: |
+          node ./scripts/fingerprint-content.mjs --root "${GITHUB_WORKSPACE}/blog-content" > /tmp/content-fingerprint.json
+          node -e 'const fs=require("fs");const d=JSON.parse(fs.readFileSync("/tmp/content-fingerprint.json","utf8"));process.stdout.write(`fingerprint=${d.fingerprint}\nfileCount=${d.fileCount}\n`);' >> "$GITHUB_OUTPUT"
+
+      - name: Compare and update tracking file
+        id: compare
+        env:
+          SOURCE_REPO: ${{ env.BLOG_CONTENT_REPO }}
+        run: |
+          CONTENT_SHA="$(git -C "${GITHUB_WORKSPACE}/blog-content" rev-parse HEAD)"
+          export CONTENT_SHA
+          CURRENT_FP="$(node -e 'const fs=require("fs");const p=".github/content-sync-state.json"; if(!fs.existsSync(p)){process.stdout.write(""); process.exit(0)} const d=JSON.parse(fs.readFileSync(p,"utf8")); process.stdout.write(d.fingerprint || "");')"
+          NEXT_FP="${{ steps.fingerprint.outputs.fingerprint }}"
+
+          if [ "${CURRENT_FP}" = "${NEXT_FP}" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          node - <<'NODE'
+          const fs = require("fs");
+          const payload = JSON.parse(fs.readFileSync("/tmp/content-fingerprint.json", "utf8"));
+          payload.sourceRepo = process.env.SOURCE_REPO || "";
+          payload.sourceCommit = process.env.CONTENT_SHA || "";
+          payload.updatedAt = new Date().toISOString();
+          fs.writeFileSync(".github/content-sync-state.json", JSON.stringify(payload, null, 2) + "\n");
+          NODE
+
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Commit fingerprint update
+        if: steps.compare.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/content-sync-state.json
+          git commit -m "chore: sync content fingerprint"
+          git push
