@@ -1,9 +1,1511 @@
 {
+  "root": "/home/runner/work/blog-site/blog-site/blog-content",
   "algorithm": "sha256",
-  "fingerprint": "",
-  "fileCount": 0,
-  "sourceRepo": "",
-  "sourceCommit": "",
-  "updatedAt": ""
+  "fingerprint": "5bf2e31d0b134ae9ed51ad4a24578eead0b84ab2268b3d138dfa6e15eb133cd5",
+  "fileCount": 375,
+  "manifest": [
+    {
+      "path": "content/.gitkeep",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "content/about.md",
+      "sha256": "1023e32e6ef540b80212a13aa31120a28cb74cc2edd809c7fc3075643f92cd3e"
+    },
+    {
+      "path": "content/archives.md",
+      "sha256": "32ba0614253911367399c70c2a338cb20dfb18fba92444341b1c9874aca750c3"
+    },
+    {
+      "path": "content/monthly/.gitkeep",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "content/monthly/2023-12.md",
+      "sha256": "fa17bce8c450bfc15f3d1fd506b6311d4dd250671eec4b2cecb4994f148178a2"
+    },
+    {
+      "path": "content/notes/.gitkeep",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "content/notes/分布式/分布式事务/分布式事务概览.md",
+      "sha256": "d0db3282d3bf7fde35110945c9a2726ec0f0a3c22383e4621992e2ef7550dbb0"
+    },
+    {
+      "path": "content/notes/分布式/微服务/远程调用/openfeign超时配置.md",
+      "sha256": "a29091db84cd64fbc1fe2757fa618d14c3c0b4ed4ec3433753b917ebc29add0c"
+    },
+    {
+      "path": "content/notes/基础知识/java8新特性/记录java8中optional的使用.md",
+      "sha256": "2a473f12e16a49d50e375200305a9ad3f176987247c24c8fcdf05b2b5b3179f6"
+    },
+    {
+      "path": "content/notes/基础知识/java8新特性/java8总结思维导图.md",
+      "sha256": "5cdf32e666041388c5228711e75505bf3b7745da332efb3b19224b46fbd70552"
+    },
+    {
+      "path": "content/notes/基础知识/java8新特性/lambda表达式详解.md",
+      "sha256": "3fd600b4cd21acdf52d15080bbef6b355b6d223f6316fdfc75180e747543c7c1"
+    },
+    {
+      "path": "content/notes/基础知识/java8新特性/stream-api-详解.md",
+      "sha256": "9f55cee6a9dedaa68cad1110455359198b34fe729a1cf63268557808e370a949"
+    },
+    {
+      "path": "content/notes/基础知识/java并发编程/多线程的方法介绍与使用.md",
+      "sha256": "c71fdda12c7d77a00ce362414f15097cf9c40fa7ddc4d7056134c95ab6e5f399"
+    },
+    {
+      "path": "content/notes/基础知识/java并发编程/关键字介绍.md",
+      "sha256": "8266d931e4263561ba33a982cb34e2b13e971a20c51064572fde4e0dfb0d7e00"
+    },
+    {
+      "path": "content/notes/基础知识/java并发编程/缓存一致性问题.md",
+      "sha256": "4c4c322f02a2f84c556b3ca100825af793961d1eb9a6258211e4e1a818b82c70"
+    },
+    {
+      "path": "content/notes/基础知识/java并发编程/进程与线程.md",
+      "sha256": "5d9764e3394c61b52ae235ea296ff492e76da791d793386c5b374455fa4046ee"
+    },
+    {
+      "path": "content/notes/基础知识/java并发编程/利用excutors异步执行任务.md",
+      "sha256": "1e616c12107eee86becc483048349ac48e44f3ea42b647507c0808657e4385c0"
+    },
+    {
+      "path": "content/notes/基础知识/java并发编程/什么是多线程并发编程.md",
+      "sha256": "08f858c5a46198128f71c3c13b5c9ac7f87f107e92dd3c5af7b911bcd0d8b66e"
+    },
+    {
+      "path": "content/notes/基础知识/java并发编程/实践-创建多少线程合适.md",
+      "sha256": "876b59ca77025447c3f92255e7f385588a2ebf8733833f2941a3204d3e25e55e"
+    },
+    {
+      "path": "content/notes/基础知识/java并发编程/守护线程与用户线程.md",
+      "sha256": "7546017ad85a901cc61aa68eb8cd334521110f37390a5da1b6f812411570b813"
+    },
+    {
+      "path": "content/notes/基础知识/java并发编程/锁的了解.md",
+      "sha256": "858c6ea9986e98a80f9366a9c6a126981049ab35a608c131c4b9430b2ddb61ad"
+    },
+    {
+      "path": "content/notes/基础知识/java并发编程/锁升级过程.md",
+      "sha256": "bc09173e72df6059370af6b80cac8547162a29b951ed7f72b7d7c5dc00f03c5b"
+    },
+    {
+      "path": "content/notes/基础知识/java并发编程/伪共享.md",
+      "sha256": "9c6775d57749269905b6d16e2eeb99138268f085982e9cde370ffe8f49c0462a"
+    },
+    {
+      "path": "content/notes/基础知识/java并发编程/线程池.md",
+      "sha256": "7bb57bc26e67ae4f668e8496a0d8ced147b49f335f090ba59164b67a75802628"
+    },
+    {
+      "path": "content/notes/基础知识/java并发编程/线程池操作数据库造成死锁.md",
+      "sha256": "d6ecceef6c03142ec5cbe761f204bbf1729c381e290239e2e488e14b230f2885"
+    },
+    {
+      "path": "content/notes/基础知识/java并发编程/线程死锁.md",
+      "sha256": "e2066b50eb346a9ef3acb927ff17d70e491c3e7c9be8e8868b168cdf3ec9d9f5"
+    },
+    {
+      "path": "content/notes/基础知识/java并发编程/线程通信-通知与等待.md",
+      "sha256": "e09038e49a3500a241a961c28fff40ee56fa3fd19b92e40d49251c50a003aa65"
+    },
+    {
+      "path": "content/notes/基础知识/java并发编程/aqs解析.md",
+      "sha256": "1e1dae1d7b0353fb0c73d3503e6fa1fb0529919f9fc29cf51a0201ba7b6e09dc"
+    },
+    {
+      "path": "content/notes/基础知识/java并发编程/io模型.md",
+      "sha256": "d94a6f75931dba7fce269cd9fea50110f43e3fe102f0add4a2d6f08f8e9a9472"
+    },
+    {
+      "path": "content/notes/基础知识/java并发编程/java-浅拷贝和深拷贝的理解和实现方式.md",
+      "sha256": "be3c3d3281e12c1c4503875dc93d797c4fdfa8b2d30387c47f937ff14c1aef0f"
+    },
+    {
+      "path": "content/notes/基础知识/java并发编程/java内存模型jmm.md",
+      "sha256": "44d90dc85e481054139daf9ce23f6ee5fb02908f0dc2c38e04b0d3b1778f71f8"
+    },
+    {
+      "path": "content/notes/基础知识/java并发编程/longadderlongaccumulator类了解.md",
+      "sha256": "2c853f00f4f98bafe8b24ea8642b5823943d0d221b1e5dec799745bf91c9a29a"
+    },
+    {
+      "path": "content/notes/基础知识/java并发编程/threadlocal了解.md",
+      "sha256": "d171ec9103c27a3fe6fa3b93133469300cbbc942ed8207541951440b63543add"
+    },
+    {
+      "path": "content/notes/基础知识/java并发编程/threadlocalrandom原理解析.md",
+      "sha256": "c778a00d4e058941723d730148ebcf2b2beb8a1e270c7efd326d873b8292d7b5"
+    },
+    {
+      "path": "content/notes/基础知识/java并发编程/unsafe类了解.md",
+      "sha256": "5a40c0cfb82dc2cecaceab0515560ad7ea51c3bfaac9eac322e87b899e58521f"
+    },
+    {
+      "path": "content/notes/基础知识/java高级/动态代理.md",
+      "sha256": "fdfd4840fa7586a50fd37f90ae8907df615eb68f1f94a9313d766666404245f9"
+    },
+    {
+      "path": "content/notes/基础知识/java集合/概览.md",
+      "sha256": "c57c6b68bc8b0f44721961febf4348eb63fed3f86ac3cf12f642302dacc568de"
+    },
+    {
+      "path": "content/notes/基础知识/java集合/concurrenthashmap解读.md",
+      "sha256": "fe7ffce5a563046cf7dbfccc21bb55f5372145cd677c06c7d9d970b531c3de8f"
+    },
+    {
+      "path": "content/notes/基础知识/java集合/hashmap解读.md",
+      "sha256": "2d198058fa39b49aa7db90c59e09202b122f00d7fec483c34d3447696e927fb1"
+    },
+    {
+      "path": "content/notes/基础知识/java网络编程/网络协议扫盲.md",
+      "sha256": "1fb4f57074d698dfcfb2cd8a85da00a2653c7bca2086edcb453a9b582c80c703"
+    },
+    {
+      "path": "content/notes/基础知识/java网络编程/dns解析过程.md",
+      "sha256": "351bcef9873dd804c9e1e910ebc16ed168a04688433d5e09fd63268f954c84d0"
+    },
+    {
+      "path": "content/notes/基础知识/java网络编程/netty/使用netty作为http文件服务.md",
+      "sha256": "b7f9b3006f19907ddf4588f5c9c0d421e26e90b3a96edec80f018f038ea33c6c"
+    },
+    {
+      "path": "content/notes/基础知识/java网络编程/netty/io入门了解.md",
+      "sha256": "81e29c5ada854b1df6b8d91e801050f368e91b0006e9755f4986859f1cab62cc"
+    },
+    {
+      "path": "content/notes/基础知识/java网络编程/netty/javanio了解.md",
+      "sha256": "7525a543a0b57265c2ea7cc307df278e2fb046637de6dd77ce9d954e58e3d88a"
+    },
+    {
+      "path": "content/notes/基础知识/java网络编程/netty/netty利用websocket协议开发服务端.md",
+      "sha256": "7fa69d7acf3190dd41d387503a7ef68c3cb31404f0be8556d53aaa1e4b95bec9"
+    },
+    {
+      "path": "content/notes/基础知识/java网络编程/netty/reactor模型了解.md",
+      "sha256": "aee0b4c25d59828a7a9fdc67a3631dccaed72fef7b97f6d351aa0b3e994c4241"
+    },
+    {
+      "path": "content/notes/基础知识/java网络编程/netty/tcp粘包拆包的原因和解决办法.md",
+      "sha256": "66c7e5709afc6fa29ffb7c9cd2790f6bf27f13f16f24fc11694e4d672710cb8b"
+    },
+    {
+      "path": "content/notes/基础知识/java网络编程/websocket网络协议.md",
+      "sha256": "ffe02a2e9c507d6b9d3ee0ccf94de38231409c30a1cff242c6041a2bd822c89a"
+    },
+    {
+      "path": "content/notes/基础知识/javaagent/javaagent初探.md",
+      "sha256": "4fadec171e1b86c40b3a693086402d2d6ac90552b52148fdc6ec94a7c3555904"
+    },
+    {
+      "path": "content/notes/基础知识/jvm调优/05-gc-and-tuning.md",
+      "sha256": "369f8b400181878373b8fbe65259f531253dd5cf3cf0ea6ddd1be1dd796e9440"
+    },
+    {
+      "path": "content/notes/基础知识/jvm调优/类加载器.md",
+      "sha256": "8f82b2ed70be4f38a4827e9710119af7e49f70175801aca9388e78cfa49f97d2"
+    },
+    {
+      "path": "content/notes/基础知识/jvm调优/java对象内存布局.md",
+      "sha256": "7a028876733535953ed70d8d740188c2910c334edd9a7d93638ab00c9d490c95"
+    },
+    {
+      "path": "content/notes/基础知识/jvm调优/java内存模型.md",
+      "sha256": "a1343533cc7d7964c8bdbb23d012121ea4d687e25408938ffd648ebc5fe59115"
+    },
+    {
+      "path": "content/notes/基础知识/jvm调优/java运行时数据区.md",
+      "sha256": "0a74e41cdf1ac6ce70a9f0d40ad34274ec9c1bbc0b01f9713b0a721bd7ad243e"
+    },
+    {
+      "path": "content/notes/基础知识/jvm调优/jvm大纲.md",
+      "sha256": "731eb27e599011835ac68e6deaa5b014ffc68c33215d9a5e8ad57f8bb85816ee"
+    },
+    {
+      "path": "content/notes/基础知识/jvm调优/jvm垃圾收集器和内存分配策略.md",
+      "sha256": "39d7ce842bc3a3ef7397fd5ca56793bd4867e9275efd03639fa212b8e9705ba9"
+    },
+    {
+      "path": "content/notes/基础知识/jvm调优/jvm入门.md",
+      "sha256": "4eed725fd8fb308f6c49af62d7d7c1bfc838bdcb7661365e6305efe4b583e3db"
+    },
+    {
+      "path": "content/notes/基础组件/消息队列/mq本质.md",
+      "sha256": "14fda84b1714a41b07bfbf558022cd50ee069f6173b1b01cac3f49fc1feea61c"
+    },
+    {
+      "path": "content/notes/基础组件/消息队列/rabbitmq.md",
+      "sha256": "1330f0ed745ea23f55443523c8c16c5d1d522a4deef40a67a033713d3c12ca19"
+    },
+    {
+      "path": "content/notes/基础组件/elasticsearch/elasticsearch.md",
+      "sha256": "70e728e94f442bc5136e6776bf9d90465483cc768756cc5ac61ed0293917616d"
+    },
+    {
+      "path": "content/notes/基础组件/mybatis/mybatis-执行器.md",
+      "sha256": "28d27842c66d95a45723af164f502a17123c87bd97e5ff009b9f82ea37fe6751"
+    },
+    {
+      "path": "content/notes/基础组件/mybatis/mybatis的mapper执行过程.md",
+      "sha256": "a61fa53295a96156aab35823a8a8ffbe897bbad46fe8c089314ab204bb1abfb9"
+    },
+    {
+      "path": "content/notes/基础组件/mybatis/mybatis概览.md",
+      "sha256": "51a808f07308e3bbe178716b359b647564f88dc18483e82e189755e3de692836"
+    },
+    {
+      "path": "content/notes/基础组件/mybatis/mybatis核心组件.md",
+      "sha256": "c5552b14b5c244419788f139f224f82f0cd3b8028ede1753d81208a726e00321"
+    },
+    {
+      "path": "content/notes/基础组件/mybatis/mybatis缓存解析.md",
+      "sha256": "61cb853593dc045030266c5baf4d9d7e314f650a09dc445679ddac4fd4d62681"
+    },
+    {
+      "path": "content/notes/基础组件/mybatis/mybatis拦截器执行原理.md",
+      "sha256": "8fd70001cb5485de5d46dd799990adb23908fbf53d278c0c2d6e1eef43a9fcd8"
+    },
+    {
+      "path": "content/notes/基础组件/mybatis/mybatis日志体系.md",
+      "sha256": "69c6c302e1ac0454df8ad92f1f0bcda45aac50aafed3e7048ff15b82d97a9f23"
+    },
+    {
+      "path": "content/notes/基础组件/spring/源码分析/bean的生命周期.md",
+      "sha256": "c9ebed677a05261b48d1c92d4efa77990bd8e1cfcb49d2b9b5b80e648236a77e"
+    },
+    {
+      "path": "content/notes/基础组件/spring/源码分析/spring管理bean之间的协同方式.md",
+      "sha256": "c0a282a3935c38d1f0882a30953f6128def86710c9d2463432b2fd4a4fbef986"
+    },
+    {
+      "path": "content/notes/基础组件/spring/conditional注解.md",
+      "sha256": "9f7374088a73011331a6ff9f5056885db51f1c591d388e32f0b8080ee8099cb1"
+    },
+    {
+      "path": "content/notes/基础组件/spring/ioc.md",
+      "sha256": "b2ff7d86c873f621ad4c570a178e0215cc572d2b968de06879c6e2cad98a7e98"
+    },
+    {
+      "path": "content/notes/基础组件/spring/spring-bean的配置方式.md",
+      "sha256": "b7b6cacab9e61e506329710589a51361afc808f0438642bec4c101437eb02998"
+    },
+    {
+      "path": "content/notes/基础组件/spring/spring的配置信息.md",
+      "sha256": "08e9271119f037a9119ad694f5906804df9c5bc722ded4bbb66fc9ad2c8b099c"
+    },
+    {
+      "path": "content/notes/基础组件/spring/spring的三级缓存如何解决循环依赖.md",
+      "sha256": "13313ae653d1f0b403f89712f04f637f934377460f81fd74230e78bd1c817fef"
+    },
+    {
+      "path": "content/notes/基础组件/spring/spring的refresh方法解析.md",
+      "sha256": "c6ea528b5aae891f1b166a54c7fd8688292cd05fa7bc9cce4aeef78df8afaeb6"
+    },
+    {
+      "path": "content/notes/基础组件/spring/spring模块介绍.md",
+      "sha256": "6293d5b6309845b15aacb79766cfaaa83e2f2583c2a339e64ac8a4abd544a00d"
+    },
+    {
+      "path": "content/notes/基础组件/spring/spring声明式事务失效原因.md",
+      "sha256": "c0832e2c828b54714f15f4efa84e3fd5d88ce98e4c4bd43195fd781a45a9280d"
+    },
+    {
+      "path": "content/notes/基础组件/spring/spring事务实战.md",
+      "sha256": "c03544bcd80f69b375bcf1865367f5c93896b2479cd394391ec6a4c45356ae0c"
+    },
+    {
+      "path": "content/notes/基础组件/spring/spring语法变化.md",
+      "sha256": "9a0c8e47e5a350f411db4f9758960fcbf2b836003cb49bb52fe250027b251f45"
+    },
+    {
+      "path": "content/notes/基础组件/spring/springbean了解.md",
+      "sha256": "9c8f0e5ecbdf92d5b58f1757efdba265e7cc9d958006f3c21ca9c8c5015603f8"
+    },
+    {
+      "path": "content/notes/基础组件/spring/springcache配合redis做缓存.md",
+      "sha256": "d21614665cbfe81accec04cb4076f043172fc731f5645ed0c1dcf0fcb111ca4a"
+    },
+    {
+      "path": "content/notes/基础组件/spring/springioc.md",
+      "sha256": "a245f0247a8026d261070775ab2c237119a71e9132c5cbd4fd81d3af884fa426"
+    },
+    {
+      "path": "content/notes/基础组件/springboot/springboot-深入解析监听器.md",
+      "sha256": "5729a611dedba0be2ae525a957c14e59d4f87ca881d19b122e3383066b74522a"
+    },
+    {
+      "path": "content/notes/基础组件/springboot/springboot-在idea中实现热部署-jrebel实用版.md",
+      "sha256": "2ed8baad2c1cdee66f73531344722063ac88b5dc94c2b98e60629e094796ef49"
+    },
+    {
+      "path": "content/notes/基础组件/springboot/springboot三种系统初始化方式解析.md",
+      "sha256": "b78c83b8737ab7e58422eaa7e5dab0215fbdd6f72b9fe5753c7d941db38ba759"
+    },
+    {
+      "path": "content/notes/基础组件/tomcat如何工作/简单实现web服务器.md",
+      "sha256": "e63d8b2cad0502be9a24725a441fe579a54a8687adbafd0d18ac39da7c66fe56"
+    },
+    {
+      "path": "content/notes/基础组件/tomcat如何工作/建立servlet容器.md",
+      "sha256": "526166f6339f709a2690e3ca1378e4ba1c9ef761fa6bf1efd659b05b8d460f8c"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/不定期加餐-11讲/春节特别加餐-王争如何学习-设计模式之美-专栏.md",
+      "sha256": "76dce43297e37e12c7427abf78c2307f305c3147fec81f3b2be151189d3bef1c"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/不定期加餐-11讲/加餐八-程序员怎么才能让自己走得更高-更远.md",
+      "sha256": "79ffed3cb96b1d4cc7a65582bf0cef85d33d71ee783fec5eb7331a23db10e3be"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/不定期加餐-11讲/加餐二-设计模式-重构-编程规范等相关书籍推荐.md",
+      "sha256": "25fe051cd7ac21f911e5dee855a5c21249b164e10eb1028d93e9a93a3069b30f"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/不定期加餐-11讲/加餐九-作为面试官或候选人如何面试或回答设计模式问题.md",
+      "sha256": "994ae82f32fd1c61d64d5c71fe22ae3ed76a44bdc19a7713f5416c6c54c7536e"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/不定期加餐-11讲/加餐六-什么才是所谓的编程能力如何考察一个人的编程能力.md",
+      "sha256": "90eb5dbda1396434f04b32da48a5e826a3c33ed430e9fd94af14fd92073eea07"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/不定期加餐-11讲/加餐七-基础学科的知识如何转化成实际的技术生产力.md",
+      "sha256": "44a1c4499eaec3f7a5b71813a1fad1acbfd7ca97a7c4c6cb8a808ef4cb7d46d9"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/不定期加餐-11讲/加餐三-聊一聊google是如何做codereview的.md",
+      "sha256": "83344ecb5ebb5ee79fe540807585e1591315724cd642336aa608d620a81437cb"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/不定期加餐-11讲/加餐十-如何接手一坨烂业务代码如何在烂业务代码中成长.md",
+      "sha256": "df24481e3d3a242c7a2df811b01e7afb5a762c0b3d7d439f33806d030533bb51"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/不定期加餐-11讲/加餐四-聊一聊google那些让我快速成长的地方.md",
+      "sha256": "b2e98198c9332c120dda37492276d362725b83bf6494c17dd352914d9cdd0a4c"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/不定期加餐-11讲/加餐五-听一听小争哥对google工程师文化的解读.md",
+      "sha256": "c08b50dbcf015ec9f13d7bbe0a33d57725dd7756b18d68db2793875eb1f4355a"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/不定期加餐-11讲/加餐一-用一篇文章带你了解专栏中用到的所有java语法.md",
+      "sha256": "d68eee9f2cdb53827da598a692fb9fe47975cf156b79f7847de3b95c3344e142"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/结束语-1讲/结束语-聊一聊机遇-方向-能力-努力.md",
+      "sha256": "fe636de2a3f00af44d629b474bcf46b5c27bfe0db625ad85ed5135010959f10d"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/开篇词-1讲/开篇词丨一对一的设计与编码集训让你告别没有成长的烂代码.md",
+      "sha256": "fce5dcb0433a6c2c973911176cfa9b8e7baefb4c5516e4b1d6aac4751fd98c53"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/开源与项目实战开源实战-14讲/开源实战二上从unix开源开发学习应对大型复杂项目开发.md",
+      "sha256": "3270f8758dd3105ce906f6dee3e5c9de38888afed12949eed290662698319622"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/开源与项目实战开源实战-14讲/开源实战二下从unix开源开发学习应对大型复杂项目开发.md",
+      "sha256": "5fb1b1d17f5e90916d2834aff49511b0f35a0666eaa5ddd6ca8ee83dc09b58aa"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/开源与项目实战开源实战-14讲/开源实战二中从unix开源开发学习应对大型复杂项目开发.md",
+      "sha256": "cf5a9f7e3e7e6ac70011812423164346279c93272032c7f2599da1f13e8e6a8f"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/开源与项目实战开源实战-14讲/开源实战三上借googleguava学习发现和开发通用功能模块.md",
+      "sha256": "b4ab4c0ff6d59d1ccc6cd73dc0324fbb5d20912452c9975bab8897b2980c496c"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/开源与项目实战开源实战-14讲/开源实战三下借googleguava学习三大编程范式中的函数式编程.md",
+      "sha256": "a23366d29f9878d94f5ca85141a0bdf15eced0a1a62858ef880ba1c36fa4eced"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/开源与项目实战开源实战-14讲/开源实战三中剖析googleguava中用到的几种设计模式.md",
+      "sha256": "0c56ad90c95abe02c604c2ccc65c2a5fcdb73286b58dc0e2eb17ea779f710105"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/开源与项目实战开源实战-14讲/开源实战四上剖析spring框架中蕴含的经典设计思想或原则.md",
+      "sha256": "12954295fb4a9f8eb7daf2a07358568b5a917912240a6fc8ad77ef2fd6749891"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/开源与项目实战开源实战-14讲/开源实战四下总结spring框架用到的11种设计模式.md",
+      "sha256": "dfec927bc9863c5180c2f74947e3ed0b2386bf00a6c78ee9cb2fdadd2068070b"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/开源与项目实战开源实战-14讲/开源实战四中剖析spring框架中用来支持扩展的两种设计模式.md",
+      "sha256": "dab57fa6fa1afe83f7bd8652a4d1c699b7ac4159f81f644e70d74064c5d1b51d"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/开源与项目实战开源实战-14讲/开源实战五上mybatis如何权衡易用性-性能和灵活性.md",
+      "sha256": "008c48d270db7d9c72ec2f26e1f3581a80b628fc3d856182cac8ea333ceea8f2"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/开源与项目实战开源实战-14讲/开源实战五下总结mybatis框架中用到的10种设计模式.md",
+      "sha256": "68fd772daf64aca2a2b08982feb98407f18e2c65aacf584aef1a05cc40b82b12"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/开源与项目实战开源实战-14讲/开源实战五中如何利用职责链与代理模式实现mybatisplugin.md",
+      "sha256": "1a3931cc1990d6db48454e57ba129dab7ec329e745a5f7eddfc033508544f49e"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/开源与项目实战开源实战-14讲/开源实战一上通过剖析javajdk源码学习灵活应用设计模式.md",
+      "sha256": "49d2469a581139484ccd28e8fdcf2006be6754aab99f011b24f244f18c97f90f"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/开源与项目实战开源实战-14讲/开源实战一下通过剖析javajdk源码学习灵活应用设计模式.md",
+      "sha256": "3f51c1e51904b29afca7f9b69524dfac0a03809b6eef52489fc6cd0e8c5578f6"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/开源与项目实战项目实战-9讲/项目实战二设计实现一个通用的接口幂等框架分析.md",
+      "sha256": "4dcc994cb2d135a96383f81d4c49fcfdce10afc193c3ad126538dbc3f28b8b20"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/开源与项目实战项目实战-9讲/项目实战二设计实现一个通用的接口幂等框架设计.md",
+      "sha256": "d8c35ab91fbee0bd33323314564dba83482c084f01d43065c55720210cbd0e51"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/开源与项目实战项目实战-9讲/项目实战二设计实现一个通用的接口幂等框架实现.md",
+      "sha256": "9f6dc189abac5c840dd04e795ccc1f948506ba0a9d347f98505b96650f84ade6"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/开源与项目实战项目实战-9讲/项目实战三设计实现一个支持自定义规则的灰度发布组件分析.md",
+      "sha256": "1f85cbdc53ea59ae28804f449356f3a6cea6ae309f4343051f952ee49a83e45b"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/开源与项目实战项目实战-9讲/项目实战三设计实现一个支持自定义规则的灰度发布组件设计.md",
+      "sha256": "b4c6e20833e7c3c61cb8dac41801c678997738f95fac93e97d216c451029f377"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/开源与项目实战项目实战-9讲/项目实战三设计实现一个支持自定义规则的灰度发布组件实现.md",
+      "sha256": "8649d740a344673892ecff646136d4fbe21fc0310af877713e897d8a3e1e495a"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/开源与项目实战项目实战-9讲/项目实战一设计实现一个支持各种算法的限流框架分析.md",
+      "sha256": "ede1b9b8555a394effba33da6f8acbf85162c3ec98158e71c457c4109ea6a4cd"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/开源与项目实战项目实战-9讲/项目实战一设计实现一个支持各种算法的限流框架设计.md",
+      "sha256": "290ce32d98cf4f3b08d0c29c435f1eeae190c2f0f5004fba2da9e9c682d1f29a"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/开源与项目实战项目实战-9讲/项目实战一设计实现一个支持各种算法的限流框架实现.md",
+      "sha256": "1f25813fdfe0369c7e259587a88dab8a459e42c0d3abe86df66a77d273b78626"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/开源与项目实战总结课-2讲/如何将设计思想-原则-模式等理论知识应用到项目中.md",
+      "sha256": "ebbade0a9bbb4a478d714178846517cdc7cb2f75a1e2e47b2194d0bc93aaaea3"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/开源与项目实战总结课-2讲/总结回顾在实际软件开发中常用的设计思想-原则和模式.md",
+      "sha256": "95c9d97394947021e0bcb16d04a34457b5d5b0b46e19aeea10c1b47d6abeb152"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计模式学习导读-3讲/从哪些维度评判代码质量的好坏如何具备写出高质量代码的能力.md",
+      "sha256": "fd556e90adcedd4fdb63acb9c5ae5ff92b9afa72e65a1f6fa506876113d8f726"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计模式学习导读-3讲/面向对象-设计原则-设计模式-编程规范-重构这五者有何关系.md",
+      "sha256": "ed7d0ade5bf491e4a364389c99313d765269c2bf2ba3a68e447bb93d2eb6da64"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计模式学习导读-3讲/为什么说每个程序员都要尽早地学习并掌握设计模式相关知识.md",
+      "sha256": "21ecf39348f63fead970829fb9f9829eb9af211c45eb222d53d4c633d8422ff1"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计模式与范式创建型-7讲/单例模式上为什么说支持懒加载的双重检测不比饿汉式更优.md",
+      "sha256": "a4864aa579e0a58085beb59c963f38562dd1acedbe78213a10f7e391f5a50bac"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计模式与范式创建型-7讲/单例模式下如何设计实现一个集群环境下的分布式单例模式.md",
+      "sha256": "80d2b7b970911e16024f0f567a695da9ae76a411132394c60a6d353a1432a7a0"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计模式与范式创建型-7讲/单例模式中我为什么不推荐使用单例模式又有何替代方案.md",
+      "sha256": "39f22f23ab785db260105bd960a975c8f149aa590352ffa4a8c67934b043e082"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计模式与范式创建型-7讲/工厂模式上我为什么说没事不要随便用工厂模式创建对象.md",
+      "sha256": "4d5d27dc5d253665471eed3a7d64454bfb630df94e06739b5c5d1e84eb0e0202"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计模式与范式创建型-7讲/工厂模式下如何设计实现一个dependencyinjection框架.md",
+      "sha256": "d6b66eed1a94c75ce11d4e5edba0df77a99b5bbafb6e1e4219f14c96485b5e32"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计模式与范式创建型-7讲/建造者模式详解构造函数-set方法-建造者模式三种对象创建方式.md",
+      "sha256": "7184c844e9da6c6dcf476c48508daef560ab27a055e1faf25d234d6a18b0abdb"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计模式与范式创建型-7讲/原型模式如何最快速地clone一个hashmap散列表.md",
+      "sha256": "2a6c9af6e0ac1b1b1d8273bd0d6f1aacf70ee2ebe2d057b7421e730d31ed368c"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计模式与范式结构型-8讲/代理模式代理在rpc-缓存-监控等场景中的应用.md",
+      "sha256": "4ebffe5014a2ad4abfe543b0cabcc7ca7f50865c4566f637f3290ab0c160a704"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计模式与范式结构型-8讲/门面模式如何设计合理的接口粒度以兼顾接口的易用性和通用性.md",
+      "sha256": "aef5cfa376b638809fb92f91ba2da117e035a0fdc3de731fd94633d6f71a7e49"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计模式与范式结构型-8讲/桥接模式如何实现支持不同类型和渠道的消息推送系统.md",
+      "sha256": "96cf107085e28f2f1b6d53db7fb3f9e4043ec38d8d3716706d8f84fbef731716"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计模式与范式结构型-8讲/适配器模式代理-适配器-桥接-装饰这四个模式有何区别.md",
+      "sha256": "1bd365833f1ae6c82593101695046351f10cf69d892030b399db3c8f04774bfb"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计模式与范式结构型-8讲/享元模式上如何利用享元模式优化文本编辑器的内存占用.md",
+      "sha256": "b960e4ab71e6a762742d52bd6e20e19504a86fd9279a946e2aaec9e92d77adcc"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计模式与范式结构型-8讲/享元模式下剖析享元模式在javainteger-string中的应用.md",
+      "sha256": "84f1c7898b20c94cc9d6745a41940dd98553a79b6f22d526ed48f2f7ccc5f00e"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计模式与范式结构型-8讲/装饰器模式通过剖析javaio类库源码学习装饰器模式.md",
+      "sha256": "0aab650c051f955e0237b17ebd6c60fe14cd72aa9a193318bac8b3a0fc665454"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计模式与范式结构型-8讲/组合模式如何设计实现支持递归遍历的文件系统目录树结构.md",
+      "sha256": "5d7221acddb4a5ba5d5d354725a761890d3be381a8237d1310c0909d6f579d68"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计模式与范式行为型-18讲/备忘录模式对于大对象的备份和恢复如何优化内存和时间的消耗.md",
+      "sha256": "5213e20202f53121e6e0b0596deaf19a9c9e95e2022bb92dd4ce45ae2acc2464"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计模式与范式行为型-18讲/策略模式上如何避免冗长的if-else-switch分支判断代码.md",
+      "sha256": "05eb0e3bd71da18c50d18a3cb623e8dd04553a654b29e5482219e9d83f4a435c"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计模式与范式行为型-18讲/策略模式下如何实现一个支持给不同大小文件排序的小程序.md",
+      "sha256": "dfb1f3c1c736213a1e2a0b1b6648252915f1db3ba4546b9f775140386a5003f9"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计模式与范式行为型-18讲/迭代器模式上相比直接遍历集合数据使用迭代器有哪些优势.md",
+      "sha256": "458bf765b59247349f421600fec06a9ba7a08bf97658ce9f3bd66f2d2c773622"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计模式与范式行为型-18讲/迭代器模式下如何设计实现一个支持-快照-功能的iterator.md",
+      "sha256": "e1605298c665c95d72f811bc9973685ab439361560602a6c3984cc3757bec583"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计模式与范式行为型-18讲/迭代器模式中遍历集合的同时为什么不能增删集合元素.md",
+      "sha256": "352bd742dd3a92eb270bcc5d4549ec699c39f035c98bb3b096a60c00f95983d0"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计模式与范式行为型-18讲/访问者模式上手把手带你还原访问者模式诞生的思维过程.md",
+      "sha256": "c14d9915829a4532ef745690aadcb4c185283fd7142797fa6e80a09b2df0bea6"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计模式与范式行为型-18讲/访问者模式下为什么支持双分派的语言不需要访问者模式.md",
+      "sha256": "decb3a6bbdae4f9d36455bf6cffe1582e22fdc7b9525441c525983a8e4c4dec8"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计模式与范式行为型-18讲/观察者模式上详解各种应用场景下观察者模式的不同实现方式.md",
+      "sha256": "135fe8c848cdb61ff6470f86e0c2f5de9dd1c61c62ba52bbbcc2c5251913543c"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计模式与范式行为型-18讲/观察者模式下如何实现一个异步非阻塞的eventbus框架.md",
+      "sha256": "944701acaaaba1293107673c8f7e8579b1ff993eeed29dbcf99a88ecf83e46ef"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计模式与范式行为型-18讲/解释器模式如何设计实现一个自定义接口告警规则功能.md",
+      "sha256": "1df8151fdd0b920a62f277ae6dfbd62f2a9aa4a0f0ec0fc551b1316a45aa5947"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计模式与范式行为型-18讲/命令模式如何利用命令模式实现一个手游后端架构.md",
+      "sha256": "47d592b6997b72a0b463a9059aef332c9f58cb7bba43c9f6359fedb8ff33b873"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计模式与范式行为型-18讲/模板模式上剖析模板模式在jdk-servlet-junit等中的应用.md",
+      "sha256": "cfb50226edb191f49862ed2cabe8e284678a8fac21fecadcb08d8718a31c3a81"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计模式与范式行为型-18讲/模板模式下模板模式与callback回调函数有何区别和联系.md",
+      "sha256": "a5a803d0abfe41f6389ac09b54d601bb38ea7b7799e789ad6052a8919c6a7410"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计模式与范式行为型-18讲/职责链模式上如何实现可灵活扩展算法的敏感信息过滤框架.md",
+      "sha256": "36c6b90f04004858109743442e78d5945611e12a3de4fdeb83e93ceae7991696"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计模式与范式行为型-18讲/职责链模式下框架中常用的过滤器-拦截器是如何实现的.md",
+      "sha256": "74c9839e1782a1b43d9bf192803c2688af1535bbfdb19444bf1841e0a7a17974"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计模式与范式行为型-18讲/中介模式什么时候用中介模式什么时候用观察者模式.md",
+      "sha256": "42759a7db4861bf2fd7b9f64b4f71deedead9c36e9a83caf0d2abe2fbfb8a467"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计模式与范式行为型-18讲/状态模式游戏-工作流引擎中常用的状态机是如何实现的.md",
+      "sha256": "9bd09c516486b3cabbefbae96b7678a4af99b53321f0000e7984da7af8835ee6"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计模式与范式总结课-2讲/在实际的项目开发中如何避免过度设计又如何避免设计不足.md",
+      "sha256": "a22ba35ef95e46cd38c5ed166bb22e51e39b2cc205d241956d88457303c64054"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计模式与范式总结课-2讲/总结回顾23种经典设计模式的原理-背后的思想-应用场景等.md",
+      "sha256": "7471503bed6dc753357566415faaa855a0c36d1bf5dca60742085f68d8e1530f"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计原则与思想规范与重构-11讲/理论二为了保证重构不出错有哪些非常能落地的技术手段.md",
+      "sha256": "664ff7c1af4f9ac200b1724944cf89fba5f239430928328d4b836892815c2ef1"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计原则与思想规范与重构-11讲/理论三什么是代码的可测试性如何写出可测试性好的代码.md",
+      "sha256": "4983261758dff7a8c1a91f149d8f3cf3762aa0f387101a70d68413d0e52c3446"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计原则与思想规范与重构-11讲/理论四如何通过封装-抽象-模块化-中间层等解耦代码.md",
+      "sha256": "006e029957caae6cbbb0cafb2ccf3b60421e5db43a8ba0d987f59abf19cebed9"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计原则与思想规范与重构-11讲/理论五让你最快速地改善代码质量的20条编程规范上.md",
+      "sha256": "d9114b4550b38973c23420006efe4d19192a7e48d3402aaefcd0f5779517e165"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计原则与思想规范与重构-11讲/理论五让你最快速地改善代码质量的20条编程规范下.md",
+      "sha256": "e610057709e15de12a576a3d7d2e52d819e6ebcd1954d9adee3c6cdf436e1603"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计原则与思想规范与重构-11讲/理论五让你最快速地改善代码质量的20条编程规范中.md",
+      "sha256": "586907f6aac7828fdd71a06b437fbb2fe58811b8b94ccee75e2f9096dbdb9b2e"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计原则与思想规范与重构-11讲/理论一什么情况下要重构到底重构什么又该如何重构.md",
+      "sha256": "935fce9925f248bf91b318337d8e8857cf549f59031307e937d1cf38c167ac85"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计原则与思想规范与重构-11讲/实战二上程序出错该返回啥null-异常-错误码-空对象.md",
+      "sha256": "823e9fdfe1d52a0c363e4190de9e29d1425b26a00e8b1b8dfc19cc53db52d410"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计原则与思想规范与重构-11讲/实战二下重构id生成器项目中各函数的异常处理代码.md",
+      "sha256": "f0b8d5eac4f0e155839b5a18fd40db3f9799e297c43daac603bee93fb959f4c4"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计原则与思想规范与重构-11讲/实战一上通过一段id生成器代码学习如何发现代码质量问题.md",
+      "sha256": "9018b5698b8d3a81eca840b09949bf0368b646d83f9010464ad86eeb62687e89"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计原则与思想规范与重构-11讲/实战一下手把手带你将id生成器代码从-能用-重构为-好用.md",
+      "sha256": "113cd70824ba1bbfd45134e687b0efaee8fbe04f236491918d3b45813e4cb383"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计原则与思想面向对象-11讲/理论二封装-抽象-继承-多态分别可以解决哪些编程问题.md",
+      "sha256": "8b018a05d2ec52ebe4c379799345ffd34d6b3f0c9c5b8892f73d5b6dcc8ae75f"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计原则与思想面向对象-11讲/理论六为什么基于接口而非实现编程有必要为每个类都定义接口吗.md",
+      "sha256": "c6f42b4b5d417fc7620422b35d96aefef556a8310c05f5491b8bf62610141f12"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计原则与思想面向对象-11讲/理论七为何说要多用组合少用继承如何决定该用组合还是继承.md",
+      "sha256": "7d21c920c74e9af579aff064e408c2ed30b7df08e2d3bff0ec6801a8e4025c0c"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计原则与思想面向对象-11讲/理论三面向对象相比面向过程有哪些优势面向过程真的过时了吗.md",
+      "sha256": "91ebd69892cc40313690162f20ece4cc783eb0f774be571398b1dca626e2f826"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计原则与思想面向对象-11讲/理论四哪些代码设计看似是面向对象实际是面向过程的.md",
+      "sha256": "a768187cee6baeaa2dcc1cad275673efddefeaccab93fcfd56cd632f0df22e0f"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计原则与思想面向对象-11讲/理论五接口vs抽象类的区别如何用普通的类模拟抽象类和接口.md",
+      "sha256": "78959ff76c2b6dea1e1661b1571654370004ca8660be7c01ddd6c8a07ece4ba0"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计原则与思想面向对象-11讲/理论一当谈论面向对象的时候我们到底在谈论什么.md",
+      "sha256": "f05039346a0cba061ead4aacd217d6d2d62cbb0d38b0c0078feb621610bfa976"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计原则与思想面向对象-11讲/实战二上如何对接口鉴权这样一个功能开发做面向对象分析.md",
+      "sha256": "8b76b8d6f2a3784f1c0260e6491c9a533fcf6467689aca673aec056aa52211d7"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计原则与思想面向对象-11讲/实战二下如何利用面向对象设计和编程开发接口鉴权功能.md",
+      "sha256": "4c29eda0df72d785f10e4a62c25eddd6ceeffd2e1f1627eb407be66883759c45"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计原则与思想面向对象-11讲/实战一上业务开发常用的基于贫血模型的mvc架构违背oop吗.md",
+      "sha256": "cc023cc2ce200fd486f8deae62b75eda3e7055733529b88baad9834974e361b5"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计原则与思想面向对象-11讲/实战一下如何利用基于充血模型的ddd开发一个虚拟钱包系统.md",
+      "sha256": "d881d663a445af2c2a7796537e9d73195f9579f226e8504b44695b0cca68710b"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计原则与思想设计原则-12讲/理论八如何用迪米特法则lod实现-高内聚-松耦合.md",
+      "sha256": "32767fff6bda1a344a14d6b286a25315bc5599e064daaf594b74d5eeb4a19fdd"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计原则与思想设计原则-12讲/理论二如何做到-对扩展开放-修改关闭-扩展和修改各指什么.md",
+      "sha256": "45fa40391adb82ab4e8e11f10c3939219dcb78e60aa526f77a1329d1e8f8a0fc"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计原则与思想设计原则-12讲/理论六我为何说kiss-yagni原则看似简单却经常被用错.md",
+      "sha256": "b4249fd8726012ce8ef7eedcfb7811b211c0c21456351b1380cf92641929f630"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计原则与思想设计原则-12讲/理论七重复的代码就一定违背dry吗如何提高代码的复用性.md",
+      "sha256": "6713b605a8a3bcfe2dad49444be6a28877f8ed2ac86eccaec5f481b1b28951e3"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计原则与思想设计原则-12讲/理论三里式替换lsp跟多态有何区别哪些代码违背了lsp.md",
+      "sha256": "0d1261289b4430acf2cde4bba581ec13e1cdebfffd478c9997e99d1423879143"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计原则与思想设计原则-12讲/理论四接口隔离原则有哪三种应用原则中的-接口-该如何理解.md",
+      "sha256": "47795f3596e678c3db074c4f1a11d8421aac8925bb52242b59f6941dd5d1d68a"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计原则与思想设计原则-12讲/理论五控制反转-依赖反转-依赖注入这三者有何区别和联系.md",
+      "sha256": "d6845893bb7bf119a61b518e3fb4600d0fcdae0cb7e7c889e0513bff8ba00263"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计原则与思想设计原则-12讲/理论一对于单一职责原则如何判定某个类的职责是否够-单一.md",
+      "sha256": "071bf22986dce0ae0151c1c5e4253f7064abd31ba49a813befff025890266b6a"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计原则与思想设计原则-12讲/实战二上针对非业务的通用框架开发如何做需求分析和设计.md",
+      "sha256": "88cf814f5b52f9385d948886a21f0c4cfcb31854c481a309a3ed23297b9f00c2"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计原则与思想设计原则-12讲/实战二下如何实现一个支持各种统计规则的性能计数器.md",
+      "sha256": "cfaf8022d36350f7e84ef4cc530f80ef416a3bdc9bcf44e9727561c0ca209696"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计原则与思想设计原则-12讲/实战一上针对业务系统的开发如何做需求分析和设计.md",
+      "sha256": "130ae8291cd81aaf911efddbb4eba621320741b210862efcc5c20fe19bf6486e"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计原则与思想设计原则-12讲/实战一下如何实现一个遵从设计原则的积分兑换系统.md",
+      "sha256": "e1e01754dc97ca9c7fc88440078b4d9341f4a91212b10ff64dfe9d81a3c53d0f"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计原则与思想总结课-3讲/运用学过的设计原则和思想完善之前讲的性能计数器项目上.md",
+      "sha256": "990121636e335aec9a873cfc56d8559e95d688e58644655b46dc836b962865e0"
+    },
+    {
+      "path": "content/notes/极客时间/设计模式之美/设计原则与思想总结课-3讲/运用学过的设计原则和思想完善之前讲的性能计数器项目下.md",
+      "sha256": "8253174867ca6d69666f5c551c5d660eec79c0d493bacffd58e80f32755c4dc6"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/38-通信开销限制redis-cluster规模的关键因素.md",
+      "sha256": "ab29ecbb9983cd25e810e1cce5fdfc91b91dbddf3353372c96bebf5a93c53d11"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/40-redis的下一步基于nvm内存的实践.md",
+      "sha256": "31bc26d1ffdbcf32077058a0108f3aa032725c3b3ab86c3122694afb36e373f2"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/41-第35-40讲课后思考题答案及常见问题答疑.md",
+      "sha256": "f3c899952015c124f4f5c53463b69a02e9db43f35ffdbe1c89eb72460e84c58f"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/波动的响应延迟如何应对变慢的redis上.md",
+      "sha256": "bc0deb6a6031237d81d92c24d9b067abe275934f606640a68ac28675a81087dd"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/波动的响应延迟如何应对变慢的redis下.md",
+      "sha256": "91cc198e446550a0350c9af796eadad9d2da73090ba82ab84d10d163ad714d6e"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/第1-9讲课后思考题答案及常见问题答疑.md",
+      "sha256": "a1e982f5c752b30adc01b97909a2857d7fc5054d0c2b5bdedfcc47198ff72ac5"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/第11-21讲课后思考题答案及常见问题答疑.md",
+      "sha256": "36a3a588c64eba1ed62d79a896d653d13a1bbd771de8c9b5dd974e36c10a9900"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/第23-33讲课后思考题答案及常见问题答疑.md",
+      "sha256": "319bc1dbe11e9cd396424f37187ace5439cda01434909a1fa7dcf07cdcd9228d"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/高性能io模型为什么单线程redis能那么快.md",
+      "sha256": "bc0cde1776fec34d87c08954958e7c7ebeae03cf9e2f8b8cb9fb4abee7166645"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/缓冲区一个可能引发-惨案-的地方.md",
+      "sha256": "13d93c46aae0fd565d0dfcad148ed0566c104a6978836f0287f203e82c23f691"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/缓存被污染了该怎么办.md",
+      "sha256": "2dc6b410964c9e2e78649be79fae931a649e87c7a5c2bee80a2167599c568945"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/缓存异常上如何解决缓存和数据库的数据不一致问题.md",
+      "sha256": "f7ca3d4c4d67a02e2c4deca9c0351ac29104dfdc229e62c1ed9c5d2de85eae9c"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/缓存异常下如何解决缓存雪崩-击穿-穿透难题.md",
+      "sha256": "6a7a1ded191ea6f43d1107d7646d461cac9015904fc9eaf8bedc4056d6928af5"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/基本架构一个键值数据库包含什么.md",
+      "sha256": "ea307a31a2c9265878812c22980560265c85d4285011bd771dc402a1d85afb9b"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/加餐二-kaito我是如何学习redis的.md",
+      "sha256": "d449f450c7cb254b139eaf85359e6f85de2f6af79e0071e63be483937a92031a"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/加餐六-redis的使用规范小建议.md",
+      "sha256": "60d9e42e8362818164de9f3b99070e66a1f4de147b3ab1d33475c0b315cc6b55"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/加餐七-从微博的redis实践中我们可以学到哪些经验.md",
+      "sha256": "34487a8fe827dd2a5b859e43b600e4c5321ef567ef5ca9c9fb6339ababe301f4"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/加餐三-kaito我希望成为在压力中成长的人.md",
+      "sha256": "3b2720cc8243a454423d819dfffe099960b40187ab8980ad950a52d9a8dc3bd2"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/加餐四-redis客户端如何与服务器端交换命令和数据.md",
+      "sha256": "b77ef5f396270ce533d63d651808765e41dfeb403c757cbd2e6b74d7c5a6ca30"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/加餐五-redis有哪些好用的运维工具.md",
+      "sha256": "d2a8397f2882088691f8c7667e0142df38b2b7278e4b3fa32367be6e8294ff9d"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/加餐一-经典的redis学习资料有哪些.md",
+      "sha256": "59e2bd61f54f1e4f9521aef0a62489246833f1fe673ca70d9fe8168d2995176f"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/结束语-从学习redis到向redis学习.md",
+      "sha256": "cba80e40d232a6dd53cf4f3e565957b060bc94cc492d28f405e590ba76de5434"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/开篇词丨这样学redis才能技高一筹.md",
+      "sha256": "971dda1767557599397ae45799fc1f411debd5e9d19204f54c30297a8623c10b"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/脑裂一次奇怪的数据丢失.md",
+      "sha256": "b62416846f60e38510520b8c55bd047cfabddd9d5e156f85b6c8b0e33c9a36a0"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/内存快照宕机后redis如何实现快速恢复.md",
+      "sha256": "77548c2c66660ec186d35460cc8e6fab99b237e7ff6220f6331923668e9843ba"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/旁路缓存redis是如何工作的.md",
+      "sha256": "4b1167c220ad1e42b2f28fb7b6b987595613c20a98499b40c6cbe1f040d3ab3c"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/期中测试题-一套习题测出你的掌握程度.md",
+      "sha256": "20201fb27d8cf8f07fea581c926ddd50723e20b96078ba21bfc7f96b24ea717f"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/期中测试题答案-这些问题你都答对了吗.md",
+      "sha256": "1fbb1186b747aadcf747961e7292df57f0767a804d8a0ce7408aedc745e391f4"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/切片集群数据增多了是该加内存还是加实例.md",
+      "sha256": "bfb596daa75f5cacb6e8d8d2613188e2d3c62b2d797db1b9bce1ce09efd44769"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/如何使用redis实现分布式锁.md",
+      "sha256": "d52a0f43d125971cc47abec3bc3947f740b1fa7fbc6a2fa6db349fabf7db3f75"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/如何在redis中保存时间序列数据.md",
+      "sha256": "6d6f5b11854e0c0535608f457d666664abfd7820eb95efc576a6d3c9be425e8b"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/删除数据后为什么内存占用率还是很高.md",
+      "sha256": "956e07dc51d3d02d6771e44e4fbe1647d5030e73aa78e20642dba0ab3b6fa277"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/哨兵机制主库挂了如何不间断服务.md",
+      "sha256": "c14be50c5a65df75e978125e9878f2d09d730b3cac1b8bba80fd00719c2877af"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/哨兵集群哨兵挂了主从库还能切换吗.md",
+      "sha256": "6c38e8f19c6347ef150c2f7d554e886c8bcf1e487472468a150c56bc5e6f80c3"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/事务机制redis能实现acid属性吗.md",
+      "sha256": "98a54a672f84054557a5af21173a30d3e058e547cea668d8793203cd7decee28"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/数据分布优化如何应对数据倾斜.md",
+      "sha256": "778542fd25fcfec0653c40af51ac343b6401872597e8f62055df2277df75c8ad"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/数据结构快速的redis有哪些慢操作.md",
+      "sha256": "674ca7f293262f9d07f84e591744784e72f83b72906c06aee60abce1a868a485"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/数据同步主从库如何实现数据一致.md",
+      "sha256": "1d79c5f5844c9ebf2745a13de911dfeb49a76337d0d0262459d5aaecf43230a9"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/替换策略缓存满了怎么办.md",
+      "sha256": "af0fccd618bdbd22aabc761c26c6e3e177a40f1cb74282a8c5cfc7618243f2cb"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/万金油-的string为什么不好用了.md",
+      "sha256": "0d63c40ed0e1a6783043e0c3d3c5f8c513a69d595b2a3b2fd2b57487aa9e555b"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/为什么cpu结构也会影响redis的性能.md",
+      "sha256": "aa8ad4fdf574890140f866f74ef56fc5da297a9b89774a4635066dfbe5e1466a"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/无锁的原子操作redis如何应对并发访问.md",
+      "sha256": "8cc1bd1c68c84bc50b2121751206fc6768092bb1805020869431179fe241f938"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/消息队列的考验redis有哪些解决方案.md",
+      "sha256": "8339805975ea86cb780d67b60a886f3fd841f6483393ea88e5c3d1df38e97ba8"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/异步机制如何避免单线程模型的阻塞.md",
+      "sha256": "9136f2cc20a6440c2184f19d633fadc5a0b50cd06b1ac9e38b7797958327fca7"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/有一亿个keys要统计应该用哪种集合.md",
+      "sha256": "2be786837d6d5a3b09f6b3f139ed8a81af94f8134488e485cc5b5588b310dd3b"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/aof日志宕机了redis如何避免数据丢失.md",
+      "sha256": "3f51f7192c38d6cd1edbce20633639546b679234fb2a39f18f59d9bb5623c64b"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/codis-vs-redis-cluster我该选择哪一个集群方案.md",
+      "sha256": "e13f8060aec205a057443adda78af8e0889d334449fa3fc227f493402649d60b"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/geo是什么还可以定义新的数据类型吗.md",
+      "sha256": "f2c9bb0b2215e90228b396595fb042e74a5332122bb0c0c7768e152cda8f4d10"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/pika如何基于ssd实现大容量redis.md",
+      "sha256": "4d6e4da1c071d6b88d64bb28fb3abed6fdc00e389239af790dc3a1b5e0470c6a"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/redis-6-0的新特性多线程-客户端缓存与安全.md",
+      "sha256": "f770503136cf71baa513c7c44c65820949cbe2da70b29f65b0ca00580467c11f"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/redis支撑秒杀场景的关键技术和实践都有哪些.md",
+      "sha256": "090096afb0d04f56850aaa5066df8174580e91b01b03ef3c7d3df7a279a74098"
+    },
+    {
+      "path": "content/notes/极客时间/redis核心技术与实战/redis主从同步与故障切换有哪些坑.md",
+      "sha256": "9c908fe8dc51295c864a76ddc4fd5486784376b6b7e8ed8c6be09ef396d4a504"
+    },
+    {
+      "path": "content/notes/面试/河狸家-2021-4-13.md",
+      "sha256": "39dd2f746601b3fb38abebd681272a8a62faa04b99e73690a99383320bb4069f"
+    },
+    {
+      "path": "content/notes/面试/篱笆墙网络科技公司面试-2021-7-6.md",
+      "sha256": "67b3608e723a9e76c49d6dea4fb4fc05a68556eeec5e232804e6d5de783af317"
+    },
+    {
+      "path": "content/notes/面试/绿城信息科技有限公司-2021-4-7.md",
+      "sha256": "9bee6e694d89bf0b9735a9f1c1f27ac2c4a68e31df77c46ddb0b0ba5808643a9"
+    },
+    {
+      "path": "content/notes/面试/卓锐科技视频面试-2021-4-2.md",
+      "sha256": "68d406cc5f86aec561b64d72df79d056b3ad0ab5021459be338d0ac1e132ce94"
+    },
+    {
+      "path": "content/notes/数据库/mysql/每年每季每月每周的最后一天.md",
+      "sha256": "863e1f4c49e87cb962edf1bfbc88dd863ee5bbdeae62692e9f2938645c43c6d7"
+    },
+    {
+      "path": "content/notes/数据库/mysql/数据库小笔记.md",
+      "sha256": "57e6e3376889d04e7e619e208bfd112d2eb2eca717e060dca2fa665a31beb01c"
+    },
+    {
+      "path": "content/notes/数据库/mysql/重新认识mysql.md",
+      "sha256": "4e8f9bfaa2e0d1acf65a3a75486fb2c0462f60c4a0e455b6bd1ae2cfa470c2d7"
+    },
+    {
+      "path": "content/notes/数据库/mysql/字符集和比较规则.md",
+      "sha256": "9f9d85b8874251a7d2a94aa8a3e1ac1042c78e0124859b737bbefbb6ba0d3cbe"
+    },
+    {
+      "path": "content/notes/数据库/mysql/b-树索引的由来.md",
+      "sha256": "21163c1255d6e0f0f4a3b8a41eba1b972f12d1c7b9a3dd18d55b685f0e44d938"
+    },
+    {
+      "path": "content/notes/数据库/mysql/explain-语句输出的各个列解释.md",
+      "sha256": "1e2de077dab2c39987eb7c6710141ca296955b095976a0ab36f9c157365c6a61"
+    },
+    {
+      "path": "content/notes/数据库/mysql/explain之访问方法.md",
+      "sha256": "834ef0599ac51d1f9d47b2029d1c370f7abc374fbd90f42bf899fc01e3909896"
+    },
+    {
+      "path": "content/notes/数据库/mysql/innodb记录结构.md",
+      "sha256": "200b8b4968477b6f49d2d5fbeb351016924073e0d7061075a0c46cf0e7af2e7e"
+    },
+    {
+      "path": "content/notes/数据库/mysql/innodb数据页结构.md",
+      "sha256": "1d3bb99aeda15952c305ab9b673665d9950654bcb70fbb5cf33c6ae5e366fc98"
+    },
+    {
+      "path": "content/notes/数据库/mysql/mvcc并发管理控制.md",
+      "sha256": "83318daaa0b9ee717c1dd3ff79e3eadd36226ef88856984c2bce76be419446d5"
+    },
+    {
+      "path": "content/notes/数据库/mysql/mysql57全文索引.md",
+      "sha256": "8eb2a38ba4eac40ef72b9472d348332bfa7b182a3287d27b359570b97ee54c70"
+    },
+    {
+      "path": "content/notes/数据库/mysql/mysql导入导出.md",
+      "sha256": "9c245a689e331a56b98e3ae9294d00fa4179114f48fe66fcb213e7127f91b30b"
+    },
+    {
+      "path": "content/notes/数据库/mysql/mysql服务.md",
+      "sha256": "926f8a72f1ba9941b62868692c8b7fc1173b5027d275a074325395b323aa356c"
+    },
+    {
+      "path": "content/notes/数据库/mysql/mysql基本语句.md",
+      "sha256": "33f7b884e0e8ff867c5af0fafa3b2b1bbe1339a024e804b394a21c47cd898942"
+    },
+    {
+      "path": "content/notes/数据库/mysql/mysql思维导图.md",
+      "sha256": "0f92a30d2897ce6b6fe483b15628ca07bc379efb5d02e9d3e8149db7707c131e"
+    },
+    {
+      "path": "content/notes/数据库/mysql/mysql系统配置与启动选项.md",
+      "sha256": "cb56a45ed137dd54e64dc7b05ebc4c38b9f64a26dce881c2adf7e16b2b1e4669"
+    },
+    {
+      "path": "content/notes/数据库/mysql/mysql之事务.md",
+      "sha256": "a5fd302e41e565814bda462893e55203d9b2202a3a59d2927bbca27c848029a1"
+    },
+    {
+      "path": "content/notes/数据库/mysql/mysql之innodb的bufferpool.md",
+      "sha256": "a2784fdaebf90c29929f2e9881eb483ec733307e6a2a6e64ce00b6a03af6c2c9"
+    },
+    {
+      "path": "content/notes/数据库/mysql/mysql之innodb数据目录结构.md",
+      "sha256": "29de03f4b98149080446af6a05c98eadec1a7bd41e7f2a478fff5e1e9161696a"
+    },
+    {
+      "path": "content/notes/数据库/mysql/mysql之sql-mode.md",
+      "sha256": "a2a48fdd4dcf80a5ac460e7adb2c3c5aec7c8b4baaee44df58d1b015e1ed0724"
+    },
+    {
+      "path": "content/notes/数据库/mysql/redo日志上.md",
+      "sha256": "e39fd420c065fb8f3fe3c6031ae8379a977c1a6f3569c0414b9038ae02b083eb"
+    },
+    {
+      "path": "content/notes/数据库/mysql/redo日志下.md",
+      "sha256": "9048f2941662bb69a880b49d249f6d8fde9d46a31f19cfacb2fd2d8b345236f3"
+    },
+    {
+      "path": "content/notes/数据库/mysql/sql函数.md",
+      "sha256": "8b302be1f99cf205b5953610e0c914956c487936022ea21853e08a7ad43a05af"
+    },
+    {
+      "path": "content/notes/数据库/mysql/undo-log了解.md",
+      "sha256": "1a3e89c4bc00fdf7922551f5b41baaef7f187a2e51ea1ee3b26be29a9cd3db84"
+    },
+    {
+      "path": "content/notes/数据库/pg/pg小操作.md",
+      "sha256": "d7874d66578d80274af414ceb9712751f540a68c05df1f0e934e23bfc30ff956"
+    },
+    {
+      "path": "content/notes/数据库/redis/缓存雪崩缓存穿透和缓存击穿.md",
+      "sha256": "d019271de3c9551da162f59edfe250929f1a59cddc1bee28ebe0c2ddf40c22e6"
+    },
+    {
+      "path": "content/notes/数据库/redis/redis持久化机制.md",
+      "sha256": "146ae74e8c2ca46aa71cb7eea76a2dc3eeddbef2ee63911d5033b116bed0e7a1"
+    },
+    {
+      "path": "content/notes/数据库/redis/redis概览.md",
+      "sha256": "99eaf30ed9f993079e98131e7b04adba51a44ed2f0db79817b52d36086b28ba8"
+    },
+    {
+      "path": "content/notes/数据库/redis/redis基本数据结构使用与场景.md",
+      "sha256": "81efd83bfd3cfd0f7e6b5fd88c3f6e240e9954fa8c4bc3d56b4df9086711d870"
+    },
+    {
+      "path": "content/notes/数据库/redis/redis集群机制.md",
+      "sha256": "5081ccc3f0ba5d6be3824165b8721222c8dd2fd6e728df79f07b3478069b893d"
+    },
+    {
+      "path": "content/notes/数据库/redis/redis哨兵机制原理.md",
+      "sha256": "48a8bc32bff55f7475df167283477d98417d986b621c3a29d6ae1e12fc759373"
+    },
+    {
+      "path": "content/notes/数据库/redis/redis淘汰策略机制.md",
+      "sha256": "d8fccee3db30cb0a9d2cf8b672f16ce599087e1ea9e4bcce0f4a2083d4898094"
+    },
+    {
+      "path": "content/notes/数据库/redis/redis消息队列方案.md",
+      "sha256": "fe243373bf31779e4adf071cbc2d084f03830c7288d961fa7ec19d649e3bbc83"
+    },
+    {
+      "path": "content/notes/数据库/redis/redis主从复制搭建.md",
+      "sha256": "8c4b6690428f0eac3a7cf717f1e974d37e7ef8505bfc1d67071cb1562a053391"
+    },
+    {
+      "path": "content/notes/数据库/redis/redis主从复制原理.md",
+      "sha256": "d1d4beea20e74b20a226cc76032ca9d2c1dc3f2fb2679c3178649d728b918e11"
+    },
+    {
+      "path": "content/notes/算法与设计模式/设计模式/观察者模式.md",
+      "sha256": "68f11f378f947426fa76094271a6bd5b00059cc13475739541c3245eac0eba93"
+    },
+    {
+      "path": "content/notes/算法与设计模式/设计模式/规范与重构.md",
+      "sha256": "3feb2f48424ebeda39834f00756fbb47acc98a022dc1a1f7080ea46d985295bf"
+    },
+    {
+      "path": "content/notes/算法与设计模式/设计模式/面向对象设计.md",
+      "sha256": "c6d537e0ef19a68d4226ce6531d546a3e6d5b1615c12933b6e60b9d14150077b"
+    },
+    {
+      "path": "content/notes/算法与设计模式/设计模式/贫血模型与充血模型.md",
+      "sha256": "8c3533b98a6c324c187a77da510b5bb6cde42ed93c71fc87478c34194ccfa228"
+    },
+    {
+      "path": "content/notes/算法与设计模式/设计模式/设计模式大纲.md",
+      "sha256": "9dfe71f1c14e52bdeaffab9a40c8cd4ba3d0021da71814c13497754dcf75ea28"
+    },
+    {
+      "path": "content/notes/算法与设计模式/设计模式/设计模式概览.md",
+      "sha256": "96c337b12207975bb9ae25758638b9f015c4323bb2a28b3c6607da524bc8e150"
+    },
+    {
+      "path": "content/notes/算法与设计模式/设计模式/设计原则.md",
+      "sha256": "3b0c7dfe5e115aa5d49cee824ec79ca38a69db25516d6b42a6ae6d1b7e6051e5"
+    },
+    {
+      "path": "content/notes/算法与设计模式/设计模式/为什么学习设计模式.md",
+      "sha256": "0b8e7bba5cd85e72d86bd0de0e5fcba7726c7fc1337a105884f08c7c920ef0d8"
+    },
+    {
+      "path": "content/notes/疑难杂症/多线程下的事务数据问题.md",
+      "sha256": "4b6bebced671c9bf41dd64f9eb0694cb4dba5c213000d4d863659f493b961812"
+    },
+    {
+      "path": "content/notes/疑难杂症/幂等性解决方案.md",
+      "sha256": "21735b44660006461a4b0e3d34723b555f2dadd9487cc64db6853e07f7397705"
+    },
+    {
+      "path": "content/notes/go学习之旅/编译与打包/打包环境配置.md",
+      "sha256": "a592d76aca8ced8faabb79a8eda00bbab54bea9690eff755e529bbfdc41741f3"
+    },
+    {
+      "path": "content/notes/go学习之旅/基本知识/流程控制语句.md",
+      "sha256": "e96e2f88a5c403c6b8089d9853b7f62a4e0aca9bdab9d7a216e15c5e05d7f58c"
+    },
+    {
+      "path": "content/notes/go学习之旅/基本知识/数组与切片.md",
+      "sha256": "0ccd94423562e91511d427b3db61a2c5955b9e67ac12eb10c020c667ce4c6de8"
+    },
+    {
+      "path": "content/notes/go学习之旅/基本知识/指针.md",
+      "sha256": "ea25074ab83834067bec70c134436e7bb5e9d28745076112c80530b7d74b5fea"
+    },
+    {
+      "path": "content/notes/go学习之旅/玩具/继续教育刷课软件.md",
+      "sha256": "b3c11407c2bf9b865c7b7172524d5a2b2b0e2bad7ecf7434c81ba26030ef8bff"
+    },
+    {
+      "path": "content/notes/linux/防火墙操作.md",
+      "sha256": "1bc41f490ebf186a25aed95fa48f777b4ddd60ce80782fcb24c70a151f390128"
+    },
+    {
+      "path": "content/notes/linux/centos安装jdk9.md",
+      "sha256": "e94552a719e5327e882d5cc89031707573ee99618b96b0ae5b78a0c153efc0d8"
+    },
+    {
+      "path": "content/notes/linux/linux操作命令.md",
+      "sha256": "4254820121e7ca55d94d76724a9cfec94d9dff07a999bd7251f135473f79a8f2"
+    },
+    {
+      "path": "content/notes/linux/linux小笔记.md",
+      "sha256": "74745a2dcc5c8b0bfc8b8038bfd6d43f1456f38aaa87b90cc27183302688709b"
+    },
+    {
+      "path": "content/notes/node/npm介绍.md",
+      "sha256": "ead3397a57b677448ccfaed5e1aa21a0790f52c64072d7ce6a560a4c54e6871a"
+    },
+    {
+      "path": "content/notes/tensorflow/搭建tensorflow环境.md",
+      "sha256": "52ba7e7b09feea81aa47af75626a88d34b8d4251af530b77b3f26d419c5010e9"
+    },
+    {
+      "path": "content/notes/tensorflow/tensorflow知识点.md",
+      "sha256": "84ed8119361f21b9239d629b39d7dcb44bfb0893594ae594fb96232b873a7b41"
+    },
+    {
+      "path": "content/posts/.gitkeep",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "content/posts/部署/mysql/一台linux服务器安装多个mysql服务.md",
+      "sha256": "7cf2bde6dfcfbea6b6c1a6e32e384ae81f6ea29bdeabc3a3f81b081c1d042a09"
+    },
+    {
+      "path": "content/posts/部署/mysql/mysql主从复制.md",
+      "sha256": "0be96dbc4028530d384e6850cfed97afaa18fea25c68504e37781dd65389c4d2"
+    },
+    {
+      "path": "content/posts/操作手册/搭建cloudreve并选择onedrive作为加载策略.md",
+      "sha256": "2e8e2ed7fce883e920583a44545ff05b74439bc7de68608a6d8680a0ea696f03"
+    },
+    {
+      "path": "content/posts/操作手册/服务器管理.md",
+      "sha256": "a1b297a7b0de76cf43f121b717f610022258e316d85dab9985027ae92af63dbe"
+    },
+    {
+      "path": "content/posts/操作手册/个人网站实现微信扫码登录.md",
+      "sha256": "2ca42ebb0eca27c76276461069d955985c54c58da3b6a2e49de054895a386b7b"
+    },
+    {
+      "path": "content/posts/操作手册/利用vercel一键部署自己的chatgpt网站.md",
+      "sha256": "734b0e083355f9c875be3ae71dcf7b5b8ed08c79d78d29dfcfa49e08acee23dc"
+    },
+    {
+      "path": "content/posts/操作手册/网盘.md",
+      "sha256": "91e003061fcd8eda0e7a068d2a458b232a78412d26db419a26d9cf473f158370"
+    },
+    {
+      "path": "content/posts/操作手册/网页调试技巧.md",
+      "sha256": "860cdd3700025bbf29a2984a5b019a90375e2ec1b5e5b12984edda88baec331c"
+    },
+    {
+      "path": "content/posts/操作手册/针对支付宝-当面付实现的个人支付.md",
+      "sha256": "74479922f3310b136459b53eead8f30df75d5f5a402997bb82ed0bd97ece190f"
+    },
+    {
+      "path": "content/posts/操作手册/支付宝支付环境搭建.md",
+      "sha256": "9decd443db0d853ff554edea5e19e1a557d37d13790b3688b3ac33cbd6d44503"
+    },
+    {
+      "path": "content/posts/操作手册/aiide.md",
+      "sha256": "8653a237ecbfe29fe3d682a4db966828976a0eb7d5553aba2448b976e3fdeff0"
+    },
+    {
+      "path": "content/posts/操作手册/centos7搭建mysql57.md",
+      "sha256": "c57672605779802217d8b5b0851a17b8838101c2fcb108e4c5d48800c733f19d"
+    },
+    {
+      "path": "content/posts/操作手册/es640安装.md",
+      "sha256": "5afa88ca18b51ced8ea86c700ca2c7030d24d7e5ef03552566d3b9caf632c587"
+    },
+    {
+      "path": "content/posts/操作手册/esxi创建虚拟机安装centos7.md",
+      "sha256": "9e62e4a8ff5f8b1b07355a89e6d47d48b8764b4148bb8b5e3ac3f196dab20a6e"
+    },
+    {
+      "path": "content/posts/操作手册/frp.md",
+      "sha256": "88684cb11424c5148e79ff4c0bbf4fd82fd950050b14fad59736a355f836a8d2"
+    },
+    {
+      "path": "content/posts/操作手册/gitlab-docker安装.md",
+      "sha256": "e57a326140a9c836e0fc172a427c7bf8de7931163afe7782a774622f9c2f8e25"
+    },
+    {
+      "path": "content/posts/操作手册/metersphere-jenkins插件实现测试计划触发执行.md",
+      "sha256": "43d3999fd2e604f62134653c0e0c7be99a0f779317ca1ad8f3de1b146a8253b9"
+    },
+    {
+      "path": "content/posts/操作手册/nginx.md",
+      "sha256": "20702258f86a2b96cc4186f8e8da5b372a700ca147210cdad5ae57565d4bb843"
+    },
+    {
+      "path": "content/posts/操作手册/ngrok搭建.md",
+      "sha256": "2e5218fa8ce2d51d45d608599028053bbe31757acd1525fe91125822548f2195"
+    },
+    {
+      "path": "content/posts/操作手册/onedrive云盘同步本地文件夹适用于windows.md",
+      "sha256": "eaa8b0e3dca3d52cc39bea28a4f245f288db764caa73893f636b17e2625df4bf"
+    },
+    {
+      "path": "content/posts/操作手册/oneuploader搭建.md",
+      "sha256": "6a19d14ba9419094e3fc237d0779ad35f3768ba86e5fa7ce4032f1e66e99d52f"
+    },
+    {
+      "path": "content/posts/操作手册/python安装.md",
+      "sha256": "55261456681c910a0e639789405681039becf2c138ca09603d3996cce4928c61"
+    },
+    {
+      "path": "content/posts/操作手册/redis.md",
+      "sha256": "33272f512ee2e358ec3349d05044c678abe85110d3eb40436b18e50949eec51a"
+    },
+    {
+      "path": "content/posts/操作手册/skywalking搭建.md",
+      "sha256": "92f2be2a749c8c4be17901695cb71d18e1de05039054356b899728baa66815b1"
+    },
+    {
+      "path": "content/posts/操作手册/skywalking搭配springboot应用.md",
+      "sha256": "22f4d313c89f1a5c12b44e6d1185b60f2fa23ebe5b35c2b6525c87ccb48b6c2d"
+    },
+    {
+      "path": "content/posts/操作手册/sublime操作.md",
+      "sha256": "77a294d1a7eabe97794848f2764d2b1458b3232ceee1059818c1252a3809cc2c"
+    },
+    {
+      "path": "content/posts/操作手册/unblockmusic.md",
+      "sha256": "5293dd3a305f431bb73c98f2431acda275c1b8614a74bed4e6469b02e48dd295"
+    },
+    {
+      "path": "content/posts/操作手册/win10右键新建md文件.md",
+      "sha256": "026314e58ccdf967c5abf1154bb0ea9a168f5d51933559971b2a4ffe72b93f56"
+    },
+    {
+      "path": "content/posts/操作手册/windows安装deep-live-cam教程.md",
+      "sha256": "216c13823ce22ef638639e3e25e3afcd0ecc20ff8616a3d97e72de1f1a74f3bc"
+    },
+    {
+      "path": "content/posts/操作手册/yarn安装.md",
+      "sha256": "cd20ef036532da422a076943b31a6211bfb244ac1750589c5c323028944695c8"
+    },
+    {
+      "path": "content/posts/测试/appium环境搭建教程一.md",
+      "sha256": "1ef4d8099e2a03460083fd09a86147202758ac3acff498e36f5a85f84c098f3b"
+    },
+    {
+      "path": "content/posts/测试/appium实现微信小程序自动化操作二.md",
+      "sha256": "027e2489e9b6210289c5384be7266e643b20a263a1e5cf17633910a781a1cf54"
+    },
+    {
+      "path": "content/posts/测试/mockmvc介绍.md",
+      "sha256": "1ca88eb5453ac57daf93e6a9f437c581e861736c0c42344f74833f12edab66ad"
+    },
+    {
+      "path": "content/posts/工具包/easyexcel自定义合并单元格.md",
+      "sha256": "e90a273743b318dba9b31c0656de9a9f37d61edc8e6c80bd0d2cbcc69d0adc83"
+    },
+    {
+      "path": "content/posts/ai/1688 + 闲鱼自动化选品链路：一次不太完美但跑通了的尝试.md",
+      "sha256": "646ab99c3705848baa2fbfde5f8ea125ca2e442149cd1ce8312085239d4f54fc"
+    },
+    {
+      "path": "content/posts/ai/利用chatgpt做一款题库小程序.md",
+      "sha256": "bfa68a1c67b072665d03b28a9ad3d867d90519ea14cd154f08b551c4d02852e7"
+    },
+    {
+      "path": "content/posts/ai/prompt的设计.md",
+      "sha256": "765662bc94eeeff708fb97a466f6c5bd1aed7ccbde101835f73f48fb13f0a3fc"
+    },
+    {
+      "path": "content/posts/docker/开机自启docker后-开启或关闭自启容器.md",
+      "sha256": "f93b3adf3b43554e62d6a8839c771c1d68719d20ceb7476bec9ba06df0929c61"
+    },
+    {
+      "path": "content/posts/docker/docker使服务器硬盘挤满.md",
+      "sha256": "01faf9efdb7f88c57f7fe76ab89ffb3f5228bc6de04c01371f9eea02c0155861"
+    },
+    {
+      "path": "content/posts/docker/docker相关软件安装.md",
+      "sha256": "5d7dd1d13743fbbe7c3bf2b512e50b5dac6526a34da71d036a731188d4dcc8ca"
+    },
+    {
+      "path": "content/posts/docker/window10防止c盘镜像存放.md",
+      "sha256": "7f09a9323afacb522e8634732b84a9b4b1d4cb6785408ba23af73ec4b53c638a"
+    },
+    {
+      "path": "content/posts/git/解决github提交问题集合.md",
+      "sha256": "624e4640cc4c0896f955cd19cf39003ec01507fec92502c051907b2f8d569757"
+    },
+    {
+      "path": "content/posts/git/git本地上传项目.md",
+      "sha256": "2377131f201b15c07ef893ccba48314fbf9c69a53d3347f6cc5cf3b781b75395"
+    },
+    {
+      "path": "content/posts/git/git问题总结.md",
+      "sha256": "89a8a973003b1dc361f280eca1c9ec358bd19e80609950865e43fee9bcdb254f"
+    },
+    {
+      "path": "content/posts/git/git指令.md",
+      "sha256": "f77c8cfee51f118804dbd2820f5286d23e40194de9c27e83d0e1b946ea1a5f50"
+    },
+    {
+      "path": "content/posts/git/github-action学习总结.md",
+      "sha256": "d4bc4e934e7da14edb9d21cd15dd309e9cef77ef244520be7b4a72c1cb5fb05b"
+    },
+    {
+      "path": "content/posts/git/githubactioncicd实战.md",
+      "sha256": "30d542e3e36015977e662a442684c1e9e83bf962ae8683695c7969dda43aad34"
+    },
+    {
+      "path": "content/posts/maven/build配置.md",
+      "sha256": "30978df7cdeb22a5117daa277a4c629d6f30e738dbcadd05e0475e793cc7d114"
+    },
+    {
+      "path": "content/posts/maven/mvnw简介.md",
+      "sha256": "1bb56d603b341499645897fd209c390ea7e5d37e0592e45b3aef40752fb8608c"
+    },
+    {
+      "path": "content/projects/.gitkeep",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "content/projects/我的简历.md",
+      "sha256": "3cbd9eabf6e4a2491c09ce6063dd80faad6d94aa6dec462daa57027c59706416"
+    },
+    {
+      "path": "content/projects/项目集合.md",
+      "sha256": "cb97dbad5a0fb57514dd7811226e77a4884cf21d394afdb0c6adaf1fc9ccd2c5"
+    },
+    {
+      "path": "content/projects/chatgpt调教教程.md",
+      "sha256": "ec2fbea8da3b7c7581840c10c73056b25d19c0f72a41949f6e13282cc4714eeb"
+    },
+    {
+      "path": "content/projects/xxqg.md",
+      "sha256": "58b7337bcea153e053c7694739c2f4373e365eea79d21af846e9cfbc5c8d9a37"
+    },
+    {
+      "path": "content/search.md",
+      "sha256": "57fb875b29c3cc7cf3f4efeec799fdf081229b9fd2e0377d5d95e4bf92d2bc99"
+    },
+    {
+      "path": "static/images/.gitkeep",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "static/images/Pasted image 20260519214648.png",
+      "sha256": "be323718fc0ef92d9e12660491773b012a9216ed469e5ad32d623301a924665c"
+    },
+    {
+      "path": "static/images/Pasted image 20260519214822.png",
+      "sha256": "fc1acc06019f72a6309d899885d780b7ac3c53c832e92fc0effd277db3c422f5"
+    },
+    {
+      "path": "static/images/Pasted image 20260519215114.png",
+      "sha256": "2469b203cb37a9cf3a541ab078e41f239fa950424cf04289b557da7849b18e35"
+    },
+    {
+      "path": "static/images/Pasted image 20260519215450.png",
+      "sha256": "9c64b6efab4f5dd57bdb5de50899b676fffe0d80bd2e2ee44bbe12349c111ecf"
+    },
+    {
+      "path": "data/site/.gitkeep",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "data/site/migration-compare.json",
+      "sha256": "d98afde1971aae5a3366e180a60f8c0ee9d7414c50edc398b408f0b1348c474d"
+    }
+  ],
+  "sourceRepo": "a1667834841/blog-content",
+  "sourceCommit": "c1f0dadc0e7bf205657e62c66a9262856d42ebaa",
+  "updatedAt": "2026-05-22T18:00:42.420Z"
 }
-
