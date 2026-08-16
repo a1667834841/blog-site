@@ -29,7 +29,7 @@ TocOpen: false
 
 OpenClash虽然已经运行在 PVE里的 ImmortalWrt虚拟机中，但家里的移动设备并不会自动经过它。谁需要代理，谁就在自己的设备上单独配置。
 
-```
+```mermaid
 flowchart TD
     Internet["互联网"] --> IKuai["爱快主路由<br/>192.168.100.1"]
     IKuai --> MainLAN["主局域网<br/>192.168.100.0/24"]
@@ -79,7 +79,7 @@ DNS：192.168.100.3
 
 改造后的拓扑是这样的：
 
-```
+```mermaid
 flowchart TD
     Internet["互联网"] --> IKuai["爱快主路由<br/>192.168.100.1<br/>拨号、DHCP、NAT、端口映射"]
     IKuai <--> MainLAN["主局域网<br/>192.168.100.0/24"]
@@ -198,7 +198,7 @@ http://域名:高位端口
 
 这次我在 Ubuntu服务器上部署了 Nginx Proxy Manager，并使用 Cloudflare完成域名验证和证书申请。新的访问路径变成：
 
-```
+```mermaid
 flowchart LR
     User["外部用户"] --> HTTPS["HTTPS域名<br/>加密访问"]
     HTTPS --> IKuaiMap["爱快<br/>80 / 443端口映射"]
