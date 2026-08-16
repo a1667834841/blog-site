@@ -3,7 +3,7 @@ title: "家庭网络改造记录 全屋代理与HTTPS"
 slug: "家庭网络改造记录-全屋代理与https"
 date: 2026-08-15T22:48:41+08:00
 lastmod: 2026-08-15T22:48:41+08:00
-draft: true
+draft: false
 summary: "记录一次家庭网络改造：通过 ImmortalWrt、OpenClash 和 Nginx Proxy Manager 实现全屋代理、服务器分流和 HTTPS 访问。"
 description: "记录一次家庭网络改造：通过 ImmortalWrt、OpenClash 和 Nginx Proxy Manager 实现全屋代理、服务器分流和 HTTPS 访问。"
 categories:
