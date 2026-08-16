@@ -1,0 +1,120 @@
+---
+title: "spring的三级缓存如何解决循环依赖"
+slug: "spring的三级缓存如何解决循环依赖"
+date: "2023-08-17T12:09:49+08:00"
+lastmod: "2023-08-17T12:09:49+08:00"
+draft: false
+summary: ""
+description: ""
+source:
+  permalink: "/pages/76b7d5/"
+categories:
+  - "基础组件"
+  - "spring"
+tags:
+  - "基础组件"
+  - "spring"
+  - "缓存"
+showToc: true
+TocOpen: false
+---
+## 什么是循环依赖？
+
+### 官方解释
+![spring官方提倡使用构造方法来依赖注入](https://img.ggball.top/picGo/20230815215348.png)
+
+![官方解释](https://img.ggball.top/picGo/20230815215504.png)
+
+虽然官方提倡使用构造方法来依赖注入，但是构造方法解决不了循环依赖，可以使用setter方法来解决。
+
+### 个人理解
+a对象持有b对象的引用，b对象持有a对象的引用。这样说好像察觉不到问题，可以试想下当我们自己创建a对象时,是不是先要调用a对象的构造方法，然后再进行属性的填充，这才是一个完整的a对象,但是当调用对象a的构造方法后，发现需要先拿到完整的b对象，则需要先完成b对象的创建，然后调用b对象的构造方法，b对象进行属性填充时，发现需要a对象，然后无限的循环下去。。。
+
+而这个问题在spring中，a，b对象都会存放到容器中，就会导致a,b对象一直处于创建中的状态，彼此等待对方完整的对象。
+![对象引用](https://img.ggball.top/picGo/20230815213811.png)
+
+### 循环依赖的产生的条件
+
+#### 单例bean的加载顺序
+![单例bean的加载顺序](https://img.ggball.top/picGo/20230820162203.png)
+读取bean的元信息（xml，注解），构建一个map存储 <beanName,BeanDefinition>
+利用beanName和BeanDefinition反射构成一个实例对象，只是调用构造函数，没有填充属性
+，再经过填充属性 构成一个完整的bean对象，最后放入单例bean map中。
+
+但是spring容器可不止一个，如果出现了互相依赖的情况，比如下面
+
+```java
+
+// A 持有b
+public class A {
+    private B b;
+
+}
+
+// B持有a
+public class B {
+    private A a;
+
+}
+```
+
+![20230820170718](https://img.ggball.top/picGo/20230820170718.png)
+
+我们再按照刚才的单例bean的加载顺序看，先加载A，利用A的BeanDefinition信息反射出a对象，然后填充属性，发现需要对象b,然后会去容器中找有没有单例b对象；
+如果没有，则创建b对象，仍然利用B的BeanDefinition反射创建b对象，然后填充属性，发现a对象是需要的属性，再去容器中找a对象，然而a对象并没有实例化完全，存放到单例map中，所以也找不到a对象，所以创建b的过程中也会去创建a，不断地循环往复，最后抛出异常
+
+### 循环依赖造成的问题
+
+## 解决循环依赖的原理
+
+还是上面的例子，在实例化A对象后，及反射之后，会将不完整的对象存放到map中，spring把它叫做三级缓存，这样在b对象填充属性时，可以从三级缓存中获取到a对象从而完成属性填充，完成bean的创建，存放到单例map中。
+
+> 一级缓存 是完整的bean对象 
+> 三级缓存是 反射出来 只是执行了构造方法的对象 并未进行属性填充
+## 结合spring源码，分析spring如何解决循环依赖
+
+```java
+DefaultSingletonBeanRegistry.java
+
+
+	/** Cache of singleton objects: bean name to bean instance. 一级缓存*/
+	private final Map<String, Object> singletonObjects = new ConcurrentHashMap<>(256);
+
+	/** Cache of singleton factories: bean name to ObjectFactory. */
+	private final Map<String, ObjectFactory<?>> singletonFactories = new HashMap<>(16);
+
+	/** Cache of early singleton objects: bean name to bean instance. 三级缓存*/
+	private final Map<String, Object> earlySingletonObjects = new ConcurrentHashMap<>(16);
+
+	@Nullable
+	protected Object getSingleton(String beanName, boolean allowEarlyReference) {
+		// Quick check for existing instance without full singleton lock
+
+        // 首先看单例map(一级缓存) 有没有bean对象
+		Object singletonObject = this.singletonObjects.get(beanName);
+		if (singletonObject == null && isSingletonCurrentlyInCreation(beanName)) {
+
+            // 如果一级缓存没有 那么从三级缓存里面获取
+			singletonObject = this.earlySingletonObjects.get(beanName);
+			if (singletonObject == null && allowEarlyReference) {
+				synchronized (this.singletonObjects) {
+					// Consistent creation of early reference within full singleton lock
+					singletonObject = this.singletonObjects.get(beanName);
+					if (singletonObject == null) {
+						singletonObject = this.earlySingletonObjects.get(beanName);
+						if (singletonObject == null) {
+							ObjectFactory<?> singletonFactory = this.singletonFactories.get(beanName);
+							if (singletonFactory != null) {
+								singletonObject = singletonFactory.getObject();
+								this.earlySingletonObjects.put(beanName, singletonObject);
+								this.singletonFactories.remove(beanName);
+							}
+						}
+					}
+				}
+			}
+		}
+		return singletonObject;
+	}
+```
+

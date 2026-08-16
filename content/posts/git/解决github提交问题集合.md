@@ -1,0 +1,46 @@
+---
+title: "解决github提交问题集合"
+slug: "解决github提交问题集合"
+date: "2022-01-13T16:19:47+08:00"
+lastmod: "2022-01-13T16:19:47+08:00"
+draft: false
+summary: ""
+description: ""
+source:
+  permalink: "/pages/880033/"
+categories:
+  - "工具与部署"
+  - "git"
+tags:
+  - "工具与部署"
+  - "git"
+  - "GitHub"
+showToc: true
+TocOpen: false
+---
+## git提交github超时问题
+```sh
+# 设置代理
+git config --global http.proxy 127.0.0.1:44444
+git config --global http.proxy 127.0.0.1:44444
+# 取消设置代理
+git config --global --unset http.proxy
+git config --global --unset https.proxy
+```
+
+![image-20220113162128872](https://img.ggball.top/picGo/image-20220113162128872.png)
+
+
+## Git报错解决：OpenSSL SSL_read: Connection was reset, errno 10054 错误解决
+
+```sh
+git config --global http.sslVerify "false"
+```
+
+## 解决fatal: unable to access 'XXXX': OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443
+
+```sh
+git config --global --add remote.origin.proxy "ip:port"
+```
+
+

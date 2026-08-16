@@ -1,0 +1,63 @@
+---
+title: "javaNIO了解"
+slug: "javanio了解"
+date: "2022-01-15T21:02:06+08:00"
+lastmod: "2022-01-15T21:02:06+08:00"
+draft: false
+summary: ""
+description: ""
+source:
+  permalink: "/pages/104cd4/"
+categories:
+  - "基础知识"
+  - "java网络编程"
+  - "netty"
+tags:
+  - "java网络编程"
+  - "netty"
+  - "Java"
+showToc: true
+TocOpen: false
+---
+# 流与块 
+I/O 与 NIO 最重要的区别是数据打包和传输的方式，**I/O 以流的方式处理数据**，而 **NIO 以块的方式处理数据**。 面向流的 I/O 一次处理一个字节数据: 一个输入流产生一个字节数据，一个输出流消费一个字节数据。为流式数据创建过滤器非常容易，链接几个过滤器，以便每个过滤器只负责复杂处理机制的一部分。不利的一面是，面向流的 I/O 通常相当慢。 面向块的 I/O 一次处理一个数据块，按块处理数据比按流处理数据要快得多。但是面向块的 I/O 缺少一些面向流的 I/O 所具有的优雅性和简单性。 I/O 包和 NIO 已经很好地集成了，java.io.* 已经以 NIO 为基础重新实现了，所以现在它可以利用 NIO 的一些特性。例如，java.io.* 包中的一些类包含以块的形式读写数据的方法，这使得即使在面向流的系统中，处理速度也会更快。
+
+# nio 组件
+
+## 缓冲区Buffer
+
+概念：Buffer是一个对象，它包含一些要写入或者要读出的数据。
+
+使用途径：在NIO库中，所有数据都是用缓冲区处理的。
+
+具体表现：缓冲区实质上是一个数组。通常它是一个字节数组（ByteBuffer），也可以使用其他种类的数组。最常用的缓冲区是ByteBuffer，一个ByteBuffer提供了一组功能用于操作byte数组。除了ByteBuffer，还有其他的一些缓冲区，事实上，每一种Java基
+本类型（除了Boolean类型）都对应有一种缓冲区。
+
+![image-20220106144000111](https://img.ggball.top/picGo/image-20220106144000111.png)
+
+
+
+## channel（管道）
+
+概念：Channel是一个通道，它就像自来水管一样，网络数据通过Channel读取和写入。通道与流的不同之处在于通道是双向的，流只是在一个方向上移动（一个流必须是InputStream或者OutputStream的子类），而通道可以用于读、写或者二者同时进行。
+
+
+
+
+
+![image-20220106145149908](https://img.ggball.top/picGo/image-20220106145149908.png)
+
+从类图可以看出很乱，书上说Channel可以分为两大类：用于网络读写的SelectableChannel和用于文件操作的FileChannel。	
+
+
+
+
+
+## 多路复用器Selector
+
+作用：Selector会不断地轮询注册在其上的Channel，如果某个Channel上面发生读或者写事件，这个Channel就处于就绪状态，会被Selector轮询出来，然后通过SelectionKey可以获取就绪Channel的集合，进行后续的I/O操作。
+
+优化：一个多路复用器Selector可以同时轮询多个Channel，由于JDK使用了`epoll（）`代替传统的`select`实现，所以它并没有最大连接句柄1024/2048的限制。这也就意味着只需要一个线程负责Selector的轮询，就可以接入成千上万的客户端，这确实是个非常巨大的进步。
+
+
+

@@ -1,0 +1,331 @@
+---
+title: "Bean的生命周期"
+slug: "bean的生命周期"
+date: "2022-03-28T09:07:33+08:00"
+lastmod: "2022-03-28T09:07:33+08:00"
+draft: false
+summary: ""
+description: ""
+source:
+  permalink: "/pages/3f306e/"
+categories:
+  - "基础组件"
+  - "spring"
+  - "md"
+tags:
+  - "基础组件"
+  - "spring"
+  - "md"
+showToc: true
+TocOpen: false
+---
+Bean的生命周期的完全实现需要两个阶段
+1. 容器的启动
+2. bean的实例化过程（涵盖了bean生命周期的大部分）
+
+![容器的完全实现](https://img.ggball.top/picGo/image-20220328091203748.png)
+
+![bean实例化过程](https://img.ggball.top/picGo/20230225164339.png)
+
+## 容器启动阶段
+
+1. 重点是收集到元信息配置信息，即创建bean需要的信息（beanDefinition）
+   通过`BeanDefinitionReader`,读取到`beanDefinition`信息，再通过`beanDefinitionRegistry`,将BeanDefinition注册到其里面
+
+```java
+
+// 这是 PropertiesBeanDefinitionReader 把从properties文件读取到的配置信息，
+// 通过 BeanDefinitionRegistry 注册 BeanDefinition的过程
+			AbstractBeanDefinition bd = BeanDefinitionReaderUtils.createBeanDefinition(
+					parent, className, getBeanClassLoader());
+			bd.setScope(scope); // 作用域 默认singleton
+			bd.setAbstract(isAbstract); // 是否是抽象 默认false 如果是抽象的，容器不会实例化bean，而是将beanDefinition信息作为其子类使用
+			bd.setLazyInit(lazyInit); // 懒加载 默认false 如果是false,容器一启动就会加载bean
+			bd.setConstructorArgumentValues(cas); // 构造参数
+			bd.setPropertyValues(pvs); // 属性信息
+			getRegistry().registerBeanDefinition(beanName, bd); // 注册Beandefinition
+```
+> BeanDefinitionReader 有多种,包括:
+> - PropertiesBeanDefinitionReader 读取Properties配置文件
+> - GroovyBeanDefinitionReader 读取Groovy配置文件
+> - XmlBeanDefinitionReader 读取Xml配置文件
+
+### bean实例化前 对beanDefinition做出自定义修改
+
+`BeanFactoryPostProcessor`实例化bean之前，可以允许修改`beanDefinition`信息，下面是spring默认实现的`BeanFactoryPostProcessor`类
+
+- `PropertyPlaceholderConfigurer`允许我们在XML配置文件中使用占位符（PlaceHolder），并将这些占位符所代表的资源单独配置到简单的properties文件中来加载
+
+- `PropertyOverrideConfigurer`覆盖对象的属性值
+- 我们可以自己实现`BeanFactoryPostProcessor`依赖注入`beanFactory` ，修改`beanDefinition`信息
+
+
+## bean实例化阶段
+
+doCreateBean方法（下面仅对beanFactory容器做解析，applicationContext容器其实大同小异）
+```java
+/**
+	 * Actually create the specified bean. Pre-creation processing has already happened
+	 * at this point, e.g. checking {@code postProcessBeforeInstantiation} callbacks.
+	 * <p>Differentiates between default bean instantiation, use of a
+	 * factory method, and autowiring a constructor.
+	 * @param beanName the name of the bean
+	 * @param mbd the merged bean definition for the bean
+	 * @param args explicit arguments to use for constructor or factory method invocation
+	 * @return a new instance of the bean
+	 * @throws BeanCreationException if the bean could not be created
+	 * @see #instantiateBean
+	 * @see #instantiateUsingFactoryMethod
+	 * @see #autowireConstructor
+	 */
+	protected Object doCreateBean(String beanName, RootBeanDefinition mbd, @Nullable Object[] args)
+			throws BeanCreationException {
+
+		// Instantiate the bean.
+		BeanWrapper instanceWrapper = null;
+		if (mbd.isSingleton()) {
+			instanceWrapper = this.factoryBeanInstanceCache.remove(beanName);
+		}
+		if (instanceWrapper == null) {
+			instanceWrapper = createBeanInstance(beanName, mbd, args);
+		}
+        // 实例化bean
+		Object bean = instanceWrapper.getWrappedInstance();
+		Class<?> beanType = instanceWrapper.getWrappedClass();
+		if (beanType != NullBean.class) {
+			mbd.resolvedTargetType = beanType;
+		}
+
+		// Allow post-processors to modify the merged bean definition.
+		synchronized (mbd.postProcessingLock) {
+			if (!mbd.postProcessed) {
+				try {
+					applyMergedBeanDefinitionPostProcessors(mbd, beanType, beanName);
+				}
+				catch (Throwable ex) {
+					throw new BeanCreationException(mbd.getResourceDescription(), beanName,
+							"Post-processing of merged bean definition failed", ex);
+				}
+				mbd.postProcessed = true;
+			}
+		}
+
+		// Eagerly cache singletons to be able to resolve circular references
+		// even when triggered by lifecycle interfaces like BeanFactoryAware.
+		boolean earlySingletonExposure = (mbd.isSingleton() && this.allowCircularReferences &&
+				isSingletonCurrentlyInCreation(beanName));
+		if (earlySingletonExposure) {
+			if (logger.isTraceEnabled()) {
+				logger.trace("Eagerly caching bean '" + beanName +
+						"' to allow for resolving potential circular references");
+			}
+			addSingletonFactory(beanName, () -> getEarlyBeanReference(beanName, mbd, bean));
+		}
+
+		// Initialize the bean instance.
+      
+		Object exposedObject = bean;
+		try {
+                        // 填充bean对象属性
+			populateBean(beanName, mbd, instanceWrapper);
+                        //  初始化bean
+			exposedObject = initializeBean(beanName, exposedObject, mbd);
+		}
+		catch (Throwable ex) {
+			if (ex instanceof BeanCreationException && beanName.equals(((BeanCreationException) ex).getBeanName())) {
+				throw (BeanCreationException) ex;
+			}
+			else {
+				throw new BeanCreationException(
+						mbd.getResourceDescription(), beanName, "Initialization of bean failed", ex);
+			}
+		}
+
+		if (earlySingletonExposure) {
+			Object earlySingletonReference = getSingleton(beanName, false);
+			if (earlySingletonReference != null) {
+				if (exposedObject == bean) {
+					exposedObject = earlySingletonReference;
+				}
+				else if (!this.allowRawInjectionDespiteWrapping && hasDependentBean(beanName)) {
+					String[] dependentBeans = getDependentBeans(beanName);
+					Set<String> actualDependentBeans = new LinkedHashSet<>(dependentBeans.length);
+					for (String dependentBean : dependentBeans) {
+						if (!removeSingletonIfCreatedForTypeCheckOnly(dependentBean)) {
+							actualDependentBeans.add(dependentBean);
+						}
+					}
+					if (!actualDependentBeans.isEmpty()) {
+						throw new BeanCurrentlyInCreationException(beanName,
+								"Bean with name '" + beanName + "' has been injected into other beans [" +
+								StringUtils.collectionToCommaDelimitedString(actualDependentBeans) +
+								"] in its raw version as part of a circular reference, but has eventually been " +
+								"wrapped. This means that said other beans do not use the final version of the " +
+								"bean. This is often the result of over-eager type matching - consider using " +
+								"'getBeanNamesForType' with the 'allowEagerInit' flag turned off, for example.");
+					}
+				}
+			}
+		}
+
+		// Register bean as disposable.
+		try {
+            // 检查是否实现DisposableBean接口，有的话注册销毁回调方法
+			registerDisposableBeanIfNecessary(beanName, bean, mbd);
+		}
+		catch (BeanDefinitionValidationException ex) {
+			throw new BeanCreationException(
+					mbd.getResourceDescription(), beanName, "Invalid destruction signature", ex);
+		}
+
+		return exposedObject;
+	}
+
+```
+
+1. 首先第一步，调用`createBeanInstance`方法，利用反射调用类的构造方法，实例化bean，返回`beanWrapper`对象,再调用`getWrappedInstance`方法得到实例化的bean，`beanWrapper`对象，实现了`PropertyAccessor`接口,具有获取对象属性的功能，所以可以调用`populateBean`用来实现属性填充。
+
+![20230225155458](https://img.ggball.top/picGo/20230225155458.png)
+
+2. 开始实例化bean之前，会检查bean有没有实现过`Aware`接口，如果有则实现。
+
+> BeanNameAware ，会将该对象实例的bean定义对应的beanName设置到当前对象实例
+> BeanClassLoaderAware 会将对应加载当前bean的Classloader注入当前对象实例
+> BeanFactoryAware 当前对象实例就拥有了一个BeanFactory容器的引用，并且可以对这个容器内允许访问的对象按照需要
+```java
+
+// AbstractAutowireCapableBeanFactory类中的 initializeBean方法
+
+private void invokeAwareMethods(String beanName, Object bean) {
+		if (bean instanceof Aware) {
+
+			// 如果Spring容器检测到当前对象实例实现了该接口，会将该对象实例的bean定义对应的beanName设置到当前对象实例。
+			if (bean instanceof BeanNameAware) {
+				((BeanNameAware) bean).setBeanName(beanName);
+			}
+
+			// 如果容器检测到当前对象实例实现了该接口，会将对应加载当前bean的Classloader注入当前对象实例。
+			// 默认会使用加载org.springframework.util.ClassUtils类的Classloader
+			if (bean instanceof BeanClassLoaderAware) {
+				ClassLoader bcl = getBeanClassLoader();
+				if (bcl != null) {
+					((BeanClassLoaderAware) bean).setBeanClassLoader(bcl);
+				}
+			}
+			if (bean instanceof BeanFactoryAware) {
+				((BeanFactoryAware) bean).setBeanFactory(AbstractAutowireCapableBeanFactory.this);
+			}
+
+			// 以上几个Aware接口只是针对BeanFactory类型的容器而言
+		}
+	}
+```
+
+> 对于ApplicationContext类型容器，会额外实现几个Aware接口
+
+1. BeanPostProcessor阶段 
+
+> BeanPostProcessor的概念容易与BeanFactoryPostProcessor的概念混淆。
+> **但只要记住BeanPostProcessor是存在于对象实例化阶段，而BeanFactoryPostProcessor则是存在于容器启动阶段，这两个概念就比较容易区分了。**
+
+BeanPostProcessor 有两个需要子类实现的方法
+```java
+public interface BeanPostProcessor {
+
+	/**
+	 * 调用bean的init方法之前做的前置处理
+	 */
+	@Nullable
+	default Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+		return bean;
+	}
+
+	/**
+	 * 调用bean的init方法之后做的前置处理
+	 */
+	@Nullable
+	default Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+		return bean;
+	}
+
+}
+```
+
+在initializeBean方法内可以看到BeanPostProcessor的调用顺序
+
+```java
+protected Object initializeBean(String beanName, Object bean, @Nullable RootBeanDefinition mbd) {
+		if (System.getSecurityManager() != null) {
+			AccessController.doPrivileged((PrivilegedAction<Object>) () -> {
+				invokeAwareMethods(beanName, bean);
+				return null;
+			}, getAccessControlContext());
+		}
+		else {
+			// 调用实现了Aware接口的对象方法
+			invokeAwareMethods(beanName, bean);
+		}
+
+		Object wrappedBean = bean;
+		if (mbd == null || !mbd.isSynthetic()) {
+
+			// BeanPostProcessor前置处理
+			wrappedBean = applyBeanPostProcessorsBeforeInitialization(wrappedBean, beanName);
+		}
+
+		try {
+
+			// 调用bean的init方法
+			invokeInitMethods(beanName, wrappedBean, mbd);
+		}
+		catch (Throwable ex) {
+			throw new BeanCreationException(
+					(mbd != null ? mbd.getResourceDescription() : null),
+					beanName, "Invocation of init method failed", ex);
+		}
+		if (mbd == null || !mbd.isSynthetic()) {
+
+			// BeanPostProcessor后置处理
+			wrappedBean = applyBeanPostProcessorsAfterInitialization(wrappedBean, beanName);
+		}
+
+		return wrappedBean;
+	}
+```
+
+> 注意：`applcationContext`容器中实现`BeanPostProcessor`接口的`postProcessBeforeInitialization`中，会对实现了`Aware`接口的`bean`进行`invoke`调用。
+> 这里和`BeanFactory`有些不同，`BeanFactory`是在`BeanPostProcessor`之前实现的
+
+4. InitializingBean和init-method
+
+这两个方法都是在`invokeInitMethods`方法里调用，
+`InitializingBean`接口需要实现`afterPropertiesSet` 方法允许bean实例在设置完所有bean属性后执行其整体配置验证和最终初始化。
+`init-method`, 对于用户来说可以自定义方法的名称，也可以统一设置所有对象的initMethod比较灵活，避免修改代码，耦合性低。
+
+5.  DisposableBean与destroy-method
+
+
+`DisposableBean`接口，子类需要实现`destroy`方法，来销毁对象,只适用于单例对象，不是单例的话，需要交给调用者自己销毁。
+`destroy-method`注册销毁函数，作用和`destroy`方法同理
+
+## 总结
+本文主要讲了bean在BeanFacotry容器的生命周期，applicationContext容器稍微提了几点不同，applicationContext容器增加更多的特性，像事件发布监听，国际化信息支持等。
+bean的生命周期主要涉及到容器的加载和bean的实例化。
+
+容器的加载：
+- 加载资源文件到beanDefinition（元信息）
+- 调用实现了BeanFactoryPostProcessor接口的方法，可以对beanDefinition进行修改。
+
+
+bean的实例化：
+- 利用反射+beanDefinition元信息实例化得到beanWrapper对象
+- populateBean方法填充属性
+- 检验对象是否实现过Aware接口，有则调用其实现
+- 如果对象有实现BeanPostProcessor接口，需要先实现前置方法
+- 调用InitializingBean和init-method方法 如果有实现或标记的话
+- 再调用BeanPostProcessor接口的后置方法
+- 最后查看对象是否实现 DisposableBean与destroy-method 来销毁bean（DisposableBean接口只针对单例bean）
+
+## 资料：
+《spring揭秘》王福强
+

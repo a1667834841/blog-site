@@ -1,0 +1,131 @@
+---
+title: "mysql导入导出"
+slug: "mysql导入导出"
+date: "2021-08-30T19:15:17+08:00"
+lastmod: "2021-08-30T19:15:17+08:00"
+draft: false
+summary: ""
+description: ""
+source:
+  permalink: "/pages/2a6af9/"
+categories:
+  - "工具书"
+  - "数据库"
+  - "mysql"
+tags:
+  - "工具书"
+  - "数据库"
+  - "mysql"
+showToc: true
+TocOpen: false
+---
+## mysqldump 导入导出 
+
+### 到出
+
+```
+mysqldump --column-statistics=0 -uroot -hmsite-server.wonderlandnet.cn -psckj123456 prj_shangye_new_test > C:\Users\DELL\Desktop\md\db\test.sql
+
+-- 线上
+mysqldump --column-statistics=0 -usysa -hrm-bp11j9r390x32c307o.mysql.rds.aliyuncs.com -pSckj@123456 prj_shangye_new > C:\Users\DELL\Desktop\md\db\test_online.sql
+```
+
+解释：
+
+```
+--column-statistics=0 因为新版的mysqldump默认启用了一个新标志，通过- -column-statistics=0来禁用他
+-u用户名
+-h 地址
+-p 密码
+数据库
+> 目标地址
+```
+
+### 导入
+
+```
+mysql -uroot -proot -h127.0.0.1 -P3306 表名<C:\Users\DELL\Desktop\md\db\test.sql
+
+-- 线上
+mysql -uroot -proot -h127.0.0.1 -P3306 shangye_test<C:\Users\DELL\Desktop\md\db\test_online.sql
+```
+
+mysql -uroot -psckj123456 -hmsite-server.wonderlandnet.cn -P3306 prj_shangye_new_dev<C:\Users\DELL\Desktop\md\db\test.sql、
+
+
+-- 备份
+mysqldump --opt --single-transaction  --default-character-set=utf8 -h<host> -u<user> -p<password> --databases db1 db2.. > backup.sql
+例子：
+mysqldump --opt --single-transaction  --default-character-set=utf8 -h 120.26.74.26 -u root -pLvcheng@2o21!  --databases luckystore_uat > D:\documents\数据库备份\uat_bak.sql
+
+-- 恢复
+mysql -h<host> -u<user> -p<password> < backup.sql
+例子：
+mysql -h127.0.0.1 -uroot -proot < D:\documents\数据库备份\uat_bak.sql
+
+
+## 备份/还原数据库
+
+### 备份数据库（在终端执行）
+```sh
+mysqldump [options] [db_name [tbl_name ...]]
+```
+
+
+1.备份单个数据库：         示例：mysqldump -uusername -p yq_1 > /xxx/xxxdb.sql
+
+2.备份多个数据库：          示例：mysqldump -uusername -p --databases db_1 db_2 > db.sql
+
+3.备份整个数据库：          示例：mysqldump -uusername -p --all-databases > /root/db.sql
+
+
+### 还原数据库（登录mysql后执行）
+
+```sql
+mysql -u root -p [dbname] < backup.sql
+```
+
+1.还原单个数据库：          示例：mysql -uusername -p yq_1 < /db.sql
+
+还原时必须要指定要还原的数据库yq_1且须存在(因为单个库备份不备份数据库信息，只备   份数据库中表的信息。)，不存在则须手动创建后，才可进行还原。
+
+2.还原多个数据库：          示例：mysql -uusername -p < db.sql
+
+还原多个数据库时，无需指定要还原哪些数据库，因为备份中备份了数据库信息，有数据库不存在的话会自动创建，存在则将其覆盖。
+
+3.还原整个数据库：         示例：mysql -uusername -p < /db.sql
+
+
+
+
+
+
+## 删除认为多个字段为重复数据，且保留一条
+
+```sql
+-- 根据多个字段认定为重复数据，查询超过重复数大于1的数据
+SELECT orderBillId,commodityBillId,count(*) count FROM `tb_third_nc_order` GROUP BY orderBillId,commodityBillId
+HAVING count > 0
+order by count desc
+
+
+select count(id) from tb_third_nc_order;
+select * from tb_third_nc_order where orderBillId = 'YG202103124096142311679' and commodityBillId = '7120'
+
+-- 删除多个字段认定为重复数据，且保留一条
+delete from tb_third_nc_order where (orderBillId,commodityBillId) in (
+select * from (
+SELECT orderBillId,commodityBillId FROM `tb_third_nc_order` GROUP BY orderBillId,commodityBillId
+HAVING count(*) > 1
+order by count(*) desc ) s1
+)
+and id not in (
+select * from (
+SELECT min(id) id FROM `tb_third_nc_order` where resultType = 0 GROUP BY orderBillId,commodityBillId
+HAVING count(*) > 1
+order by count(*) desc ) s2
+)
+```
+
+
+

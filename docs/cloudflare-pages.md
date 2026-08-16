@@ -1,114 +1,70 @@
-# Cloudflare Pages Deployment
+# Cloudflare Pages 部署说明
 
-This repo can be deployed directly from Cloudflare Pages while still keeping `blog-content` as a separate public repository.
+本仓库已经合并文章内容，Cloudflare Pages 只需要监听 `a1667834841/blog-site`。以后文章变更、图片变更和站点代码变更都会出现在同一个仓库提交中，因此推送到 `main` 后会自动触发部署。
 
-## Recommended model
+## 项目设置
 
-- Connect `a1667834841/blog-site` to a Cloudflare Pages project
-- During build, clone `a1667834841/blog-content`
-- Sync content into the Hugo working tree
-- Build and publish from `public/`
+在 Cloudflare Pages 中使用以下配置：
 
-That keeps the dual-repo structure intact and avoids GitHub Pages custom-domain friction.
+- Production branch：`main`
+- Framework preset：`Hugo`
+- Build command：`./scripts/build-cloudflare.sh`
+- Build output directory：`public`
+- Root directory：留空
 
-## Project settings
+## 环境变量
 
-In Cloudflare Pages, use these values:
-
-- Production branch: `main`
-- Framework preset: `Hugo`
-- Build command: `./scripts/build-cloudflare.sh`
-- Build output directory: `public`
-- Root directory: leave empty
-
-## Environment variables
-
-Add these environment variables to the Pages project:
+建议添加：
 
 ```text
 HUGO_VERSION=0.159.2
-CONTENT_REPO_GIT_URL=https://github.com/a1667834841/blog-content.git
 SITE_BASE_URL=https://www.ggball.top/
 ```
 
-Notes:
+说明：
 
-- `HUGO_VERSION` keeps Cloudflare's Hugo version aligned with local builds.
-- `CONTENT_REPO_GIT_URL` points to the public content repo.
-- `SITE_BASE_URL` makes canonical URLs, RSS, and sitemap use the final domain.
+- `HUGO_VERSION` 用来固定 Cloudflare 的 Hugo 版本，保持本地和线上一致。
+- `SITE_BASE_URL` 用来生成正确的 canonical URL、RSS 和 sitemap 地址。
 
-## Build flow
+不再需要 `CONTENT_REPO_GIT_URL`，也不需要让构建流程克隆 `blog-content`。
 
-`./scripts/build-cloudflare.sh` does the following:
+## 构建流程
 
-1. Clone `blog-content`
-2. Run `./scripts/sync-content.sh`
-3. Run `hugo --gc --minify --baseURL "$SITE_BASE_URL"`
-
-## Custom domain
-
-After the Pages project is deployed successfully:
-
-1. Open the Pages project
-2. Open `Custom domains`
-3. Add `www.ggball.top`
-4. Let Cloudflare create or update the DNS record automatically if prompted
-
-If you also want the apex root:
-
-1. Add `ggball.top`
-2. Or add only `www.ggball.top` and create a redirect rule from `ggball.top` to `https://www.ggball.top`
-
-## When Cloudflare Pages deploys
-
-Cloudflare Pages normally creates a new deployment when:
-
-- you push a new commit to the configured production branch
-- you push a new commit to a preview branch
-- you manually retry or redeploy from the Cloudflare dashboard
-
-For this repo, the standard production trigger is a push to `main`.
-
-## Daily content sync trigger
-
-This repo also includes:
-
-- `.github/workflows/sync-content-fingerprint.yml`
-- `.github/content-sync-state.json`
-- `scripts/fingerprint-content.mjs`
-
-The GitHub workflow runs every day at `00:10` Beijing time (`16:10 UTC` on the previous day).
-
-It does not rebuild the site itself. Instead, it:
-
-1. checks out `blog-content`
-2. computes a `sha256` fingerprint across `content/`, `static/`, and `data/`
-3. compares that fingerprint with the last synced value in `.github/content-sync-state.json`
-4. pushes a tiny state-file commit to `blog-site/main` only when content changed
-
-Because Cloudflare Pages is connected to `blog-site` and deploys on pushes to `main`, that tiny commit is enough to trigger a fresh Pages deployment only when the content repository actually changed.
-
-## Included edge optimizations
-
-This repo now ships with:
-
-- `static/_headers`
-  - long cache for hashed assets and images
-  - short cache for RSS and sitemap
-  - security headers
-  - `noindex` for the internal search page
-- `static/_redirects`
-  - permanent redirect from `https://ggball.top/*` to `https://www.ggball.top/:splat`
-
-These files are picked up automatically by Cloudflare Pages during deploy.
-
-## Local parity check
-
-This roughly matches the Cloudflare build:
+`./scripts/build-cloudflare.sh` 现在只做一件事：
 
 ```bash
-cd /Users/wuwenjing/Documents/blog-site
-CONTENT_REPO_GIT_URL=https://github.com/a1667834841/blog-content.git \
-SITE_BASE_URL=https://www.ggball.top/ \
-./scripts/build-cloudflare.sh
+hugo --gc --minify --baseURL "$SITE_BASE_URL"
+```
+
+如果没有设置 `SITE_BASE_URL`，脚本会回退到 Cloudflare 提供的 `CF_PAGES_URL`，再回退到 `/`。
+
+## 触发部署
+
+Cloudflare Pages 会在以下场景创建新部署：
+
+- 推送新提交到 `main`
+- 推送新提交到预览分支
+- 在 Cloudflare 控制台手动重试或重新部署
+
+新增文章时请直接提交到本仓库的 `content/` 目录，这样 Cloudflare 能看到提交记录。
+
+## 自定义域名
+
+部署成功后：
+
+1. 打开 Pages 项目
+2. 进入 `Custom domains`
+3. 添加 `www.ggball.top`
+4. 按 Cloudflare 提示创建或更新 DNS 记录
+
+如果还需要根域名：
+
+1. 添加 `ggball.top`
+2. 或只保留 `www.ggball.top`，再创建从 `ggball.top` 到 `https://www.ggball.top` 的重定向规则
+
+## 本地一致性检查
+
+```bash
+cd /Users/wuwenjing/codes/web/blog-site
+SITE_BASE_URL=https://www.ggball.top/ ./scripts/build-cloudflare.sh
 ```

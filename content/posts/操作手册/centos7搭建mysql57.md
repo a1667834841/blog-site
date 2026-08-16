@@ -1,0 +1,28 @@
+---
+title: "7"
+slug: "centos7搭建mysql57"
+date: "2021-08-30T19:15:16+08:00"
+lastmod: "2021-08-30T19:15:16+08:00"
+draft: false
+summary: ""
+description: ""
+source:
+  permalink: "/pages/9bf756/"
+categories:
+  - "工具书"
+  - "操作手册"
+tags:
+  - "工具书"
+  - "MySQL"
+  - "Linux"
+showToc: true
+TocOpen: false
+---
+### 搭建教程
+
+https://www.jianshu.com/p/1dab9a4d0d5f
+
+### mysql-server下载过慢问题解决
+
+https://blog.csdn.net/downmoon/article/details/103159231
+

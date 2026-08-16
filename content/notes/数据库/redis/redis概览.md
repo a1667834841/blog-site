@@ -1,0 +1,79 @@
+---
+title: "redis概览"
+slug: "redis概览"
+date: "2023-02-05T15:38:19+08:00"
+lastmod: "2023-02-05T15:38:19+08:00"
+draft: false
+summary: ""
+description: ""
+source:
+  permalink: "/pages/17d4b5/"
+categories:
+  - "数据库"
+  - "redis"
+tags:
+  - "数据库"
+  - "redis"
+showToc: true
+TocOpen: false
+---
+# Redis学习路径
+
+## 掌握数据结构
+
+### [学会基本数据结构用法](https://ggball.top/pages/0d1608/)
+
+#### string
+#### list
+#### hash
+#### set
+#### zset
+#### 思考对应的使用场景
+
+### [特殊数据结构用法](https://pdai.tech/md/db/nosql-redis/db-redis-data-type-special.html)
+#### HyperLogLog
+#### Bitmap
+#### GEO
+#### 思考对应的使用场景
+
+## 使用场景
+### 分布式锁
+
+## 掌握支撑redis实现高可靠，高性能的技术
+### [持久化机制](https://ggball.top/pages/039a2c/#aof%E6%9C%BA%E5%88%B6)
+#### aof
+#### rdb
+#### aof和rdb的比较，以及如何实际应用
+
+### [主从复制机制](https://ggball.top/pages/331160/)
+#### 同步
+#### 命令传播
+#### [主从复制搭建](https://ggball.top/pages/222607/)
+
+### [哨兵机制](https://ggball.top/pages/238765/)
+#### 监控
+#### 决策
+#### 通知
+
+### [切片集群](https://ggball.top/pages/27393e/)（解决单台服务器数据量过多的方案）
+#### 什么是切片集群
+#### 数据如何分配到实例
+#### 客户端发送消息的机制
+
+
+
+## 精通底层实现原理
+### 事件机制
+### 数据结构实现原理
+### 高可靠，高性能的原理
+#### 哨兵集群：分布式系统选举和共识问题
+#### 切片集群：分布式系统问题
+
+
+
+![img](https://kaito-blog-1253469779.cos.ap-beijing.myqcloud.com/2020/09/15996549004998.jpg)
+
+
+
+
+

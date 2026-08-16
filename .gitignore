@@ -1,5 +1,3 @@
 .hugo_build.lock
 public/
-content/
-data/site/
-static/images/
+.DS_Store

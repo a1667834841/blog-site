@@ -1,0 +1,274 @@
+---
+title: "springBean了解"
+slug: "springbean了解"
+date: "2022-04-19T15:35:40+08:00"
+lastmod: "2022-04-19T15:35:40+08:00"
+draft: false
+summary: ""
+description: ""
+source:
+  permalink: "/pages/664365/"
+categories:
+  - "基础组件"
+  - "spring"
+tags:
+  - "基础组件"
+  - "spring"
+showToc: true
+TocOpen: false
+---
+# springBean了解
+## 1. 定义springBean
+## 2. Beandefinition 元信息
+## 3. 命名spring bean 
+## 4. spring bean的别名
+## 5. 注册spring Beandefinition
+
+### 注册BeanDefinition 方式
+
+#### 1. xml
+```Xml
+  <beans>
+        <description>ggBall的bean工厂</description>
+        <import resource="textBean.xml"/>
+        <alias name="veryComplexDomain" alias="vcd"/>
+
+        <bean id="user" class="com.zhu.entity.User" >
+            <constructor-arg index="0">
+                <ref bean="son"/>
+            </constructor-arg>
+        </bean>
+
+        <bean id="son" class="com.zhu.entity.Son">
+            <property name="id" value="1"/>
+            <property name="name" value="小名"/>
+        </bean>
+
+    </beans>
+```
+#### 2. 注解 （@Bean,@Component,@Import）
+```java
+@Configuration
+@Import(User.class)
+public class Config {
+
+    @Bean
+    public User user(){
+        return new User();
+
+    }
+
+    @Bean
+    public Son son() {
+        return new Son();
+    }
+
+}
+```
+#### 3. java Api
+  - BeanDefinitionRegistry#registerBeanDefinition
+
+```java
+/**
+	 * 命名方式 注册BeanDefinition
+	 * registry.registerBeanDefinition(beanName,beanDefinition);
+	 * @param registry
+	 * @param beanName
+	 * @param classBean
+	 */
+	public static void registerBeanDefinition(BeanDefinitionRegistry registry,String beanName,Class classBean) {
+		BeanDefinitionBuilder definitionBuilder = BeanDefinitionBuilder.genericBeanDefinition(classBean);
+
+		definitionBuilder.addPropertyValue("name","xxx")
+				.addPropertyValue("id","1");
+
+		AbstractBeanDefinition beanDefinition = definitionBuilder.getBeanDefinition();
+		registry.registerBeanDefinition(beanName,beanDefinition);
+	}
+```
+  - BeanDefinitionReaderUtils#registerWithGeneratedName
+
+```java
+/**
+	 * 非命名方式 注册BeanDefinition
+	 * BeanDefinitionReaderUtils.registerWithGeneratedName(beanDefinition,registry);
+	 * @param registry
+	 * @param classBean
+	 */
+	public static void registerBeanDefinition(BeanDefinitionRegistry registry,Class classBean) {
+		BeanDefinitionBuilder definitionBuilder = BeanDefinitionBuilder.genericBeanDefinition(classBean);
+
+		definitionBuilder.addPropertyValue("name","xxx_1")
+				.addPropertyValue("id","1");
+
+		AbstractBeanDefinition beanDefinition = definitionBuilder.getBeanDefinition();
+		BeanDefinitionReaderUtils.registerWithGeneratedName(beanDefinition,registry);
+	}
+```
+
+
+
+## 6. 实例化spring bean
+> 我个人理解bean的元信息是Bean初始化时所需要的配置参数。
+
+### 通过构造器
+#### xml配置元信息
+```java
+ <bean id="user" class="com.zhu.entity.User" >
+     <!--这是有参构造器-->
+    <constructor-arg index="0">
+        <ref bean="son"/>
+    </constructor-arg>
+  </bean>
+```
+#### java类配置元信息
+未找到
+
+#### 注解配置元信息
+```java
+// spring实际上扫描类的构造方法，实例化bean
+@Component
+public class Son {
+
+    private Long id;
+    private String name;
+}
+```
+
+### 通过静态工厂方法
+
+#### xml配置
+```java
+@Data
+public class StaticFactoryUser {
+    private Long id;
+    private String name;
+
+    public static StaticFactoryUser createInstance() {
+        return new StaticFactoryUser();
+    }
+}
+```
+
+```xml
+        <!-- 静态工厂实例化bean -->
+        <bean id="staticFactoryUser" class="com.zhu.instantiate_bean.StaticFactoryUser" factory-method="createInstance"></bean>
+```
+
+#### java Api配置
+- 未找到
+
+### 通过实例化工厂方法
+
+#### xml配置
+```java
+public interface UserFactory {
+
+	default StaticFactoryUser createUser() {
+		return StaticFactoryUser.createInstance();
+	}
+
+  public  class InsUserFactory implements UserFactory {
+}
+
+}
+```
+
+```xml
+    <!--实例化工厂方法实例化bean-->
+		<bean id="insUserFactory" class="com.zhu.instantiate_bean.factory.InsUserFactory"></bean>
+		<bean id="noneStaticFactoryUser" factory-bean="insUserFactory" factory-method="createUser"></bean>
+```
+
+#### java Api配置
+- 未找到
+
+### 通过factoryBean实例化bean
+```java
+public class UserFactoryBean implements FactoryBean {
+	@Override
+	public Object getObject() throws Exception {
+		return new User();
+	}
+
+	@Override
+	public Class<?> getObjectType() {
+		return User.class;
+	}
+}
+```
+
+```xml
+<!-- 利用factoryBean实例化bean-->
+<bean id="userFactoryBean" class="com.zhu.instantiate_bean.factory_bean.UserFactoryBean"></bean>
+```
+
+### 通过serviceLoader实例化bean
+1. resource目录下建立META-INF/services目录,再创建文件，文件名使用接口名，里面的内容填写接口实现类的全限定名
+![resource目录下建立services目录](https://img.ggball.top/picGo/![resource目录下建立services目录](httpsimg.ggball.toppicGo20220511185335.png).png)
+2. 大概流程：serviceLoader 会去找`META-INF/services`下文件，找到实现类的全限定名，再利用class.forName("全限定名")得到calss类，再实例化对象。
+```java
+/**
+	 * 利用serviceLoader 实例化bean
+	 */
+	public static void testServiceLoader() {
+		ServiceLoader<UserFactory> serviceLoader = ServiceLoader.load(UserFactory.class);
+		Iterator<UserFactory> iterator = serviceLoader.iterator();
+		while (iterator.hasNext()) {
+			UserFactory userFactory = iterator.next();
+			User user = userFactory.createUser();
+			System.out.println("use ServiceLoader user = " + user);
+		}
+	}
+```
+
+### 通过serviceLoaderBeanFactory 实例化bean
+1. resource目录下建立META-INF/services目录,再创建文件，文件名使用接口名，里面的内容填写接口实现类的全限定名
+![resource目录下建立services目录](https://img.ggball.top/picGo/![resource目录下建立services目录](httpsimg.ggball.toppicGo20220511185335.png).png)
+2. xml配置
+```xml
+	<!-- 利用serviceLoaderBeanFactory 创建 serviceLoader ,再利用serviceLoader 实例化bean-->
+		<bean id="userServiceLoaderFactoryBean" class="org.springframework.beans.factory.serviceloader.ServiceLoaderFactoryBean">
+			<property name="serviceType" value="com.zhu.instantiate_bean.factory.UserFactory"></property>
+		</bean>
+```
+3. 从容器拿到serviceLoader,后面流程和`通过serviceLoader实例化bean`一样的
+```java
+/**
+	 * 利用serviceLoaderBeanFactory 创建 serviceLoader ,再利用serviceLoader 实例化bean
+	 */
+	public static void testServiceFactoryBean() {
+
+		ServiceLoader<UserFactory> serviceLoader = (ServiceLoader<UserFactory>)applicationContext.getBean("userServiceLoaderFactoryBean");
+		Iterator<UserFactory> iterator = serviceLoader.iterator();
+		while (iterator.hasNext()) {
+			UserFactory userFactory = iterator.next();
+			User user = userFactory.createUser();
+			System.out.println("use ServiceFactoryBean user = " + user);
+		}
+	}
+```
+
+### 通过 AutowireCapableBeanFactory 实例化bean
+```java
+	/**
+	 * 通过 AutowireCapableBeanFactory 实例化bean
+	 */
+	public static void testAutowireCapableBeanFactory() {
+		// applicationContext 虽然继承beanFactory 但是想通过applicationContext拿到beanFactory只能get
+		AutowireCapableBeanFactory autowireCapableBeanFactory = applicationContext.getAutowireCapableBeanFactory();
+		InsUserFactory userFactory = autowireCapableBeanFactory.createBean(InsUserFactory.class);
+		User user = userFactory.createUser();
+		System.out.println("use autowireCapableBeanFactory user = " + user);
+	}
+```
+
+
+
+
+## 7. 初始化spring bean
+## 8. 延迟实例化spring bean
+## 9. 销毁spring bean
+## 10. 垃圾回收spring bean
+
+

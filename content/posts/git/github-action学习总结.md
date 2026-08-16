@@ -1,0 +1,234 @@
+---
+title: "github action学习总结"
+slug: "github-action学习总结"
+date: "2022-01-13T17:57:26+08:00"
+lastmod: "2022-01-13T17:57:26+08:00"
+draft: false
+summary: ""
+description: ""
+source:
+  permalink: "/pages/ec40c2/"
+categories:
+  - "工具与部署"
+  - "git"
+tags:
+  - "工具与部署"
+  - "git"
+  - "GitHub Actions"
+  - "GitHub"
+showToc: true
+TocOpen: false
+---
+# github actions总结
+[github actions实验室](https://lab.github.com/githubtraining/github-actions:-writing-javascript-actions)
+
+Github在2019年底开放了内置的CI/CD工具`GithubActions`.这样使用Github托管的代码终于有了不借助外部服务自动化测试打包部署的能力. 同时由于后发优势,`GithubActions`几乎是目前最易用的CI/CD工具.
+GithubActions类似于传统的CI/CD工具,都是使用代码配置脚本,执行器执行脚本,页面管理执行过程的结构.
+
+- 在代码中配置脚本放在根目录的.github/workflow文件夹下,使用yaml格式描述配置.
+- Github默认给每个用户配置3个的执行器,我们也可以自己创建self-host执行器
+- 每个代码仓库的顶部标签页都有专门的actions按钮,进去就是当前仓库的执行过程管理页面.
+
+
+对`GithubActions`的详细描述可以看官方文档本文只是介绍和划重点.
+
+## workflow流程
+
+根据事件触发对应的动作，顺序执行job, job需要在runner（GitHub provides Ubuntu Linux, Microsoft Windows, and macOS runners）上运行
+
+![工作流程概述](https://img.ggball.top/picGo/overview-actions-simple.png)
+
+
+
+
+
+## 组件
+
+| Component           | Description                                                  |
+| ------------------- | ------------------------------------------------------------ |
+| Action              | Individual tasks that you combine as **steps** to create a **job**. **Actions** are the smallest portable building block of a workflow. To use an **action** in a workflow, you **must include it as a step**. |
+| Artifact            | **Artifacts** are the files created when you build and test your code. **Artifacts** might include binary or package files, test results, screenshots, or log files. **Artifacts** can be used by the other **jobs** in the workflow or deployed directly by the **workflow**. |
+| Event               | A specific activity that triggers a **workflow** run.        |
+| Job                 | A defined task made up of **steps**. Each **job** is run in a fresh instance of the **virtual environment**. **Jobs** can run at the same time in parallel or be dependent on the status of a previous **job** and run sequentially. |
+| Runner              | Any machine with the GitHub Actions **runner** application installed. You can use a **runner** hosted by GitHub or host your own **runner**. A **runner** waits for available **jobs**. **Runners** run one **job** at a time reporting the progress, logs, and final result back to GitHub. |
+| Step                | A **step** is a set of tasks performed by a **job**. **Steps** can run **commands** or **actions**. |
+| Virtual Environment | The **virtual environment** of a GitHub-hosted **runner** includes the virtual machine's hardware configuration, operating system, and installed software. |
+| Workflow            | A configurable automated process that you can set up in your repository. **Workflows** are made up of one or more **jobs** and can be scheduled or activated by an **event**. |
+
+
+
+| 组件                | 描述                                                         |
+| ------------------- | ------------------------------------------------------------ |
+| Action              | 一个可以你可以结合像`steps`来创建job。在工作流中，actions是最小，最轻便的模块。如果你想在工作流中使用actions，那么在action中必须要包含像`step`的组件。 |
+| Artifact            | 工件是工作流在编译代码或者测试代码时产生的文件               |
+| Event               | A specific activity that triggers a **workflow** run.        |
+| Job                 | A defined task made up of **steps**. Each **job** is run in a fresh instance of the **virtual environment**. **Jobs** can run at the same time in parallel or be dependent on the status of a previous **job** and run sequentially. |
+| Runner              | Any machine with the GitHub Actions **runner** application installed. You can use a **runner** hosted by GitHub or host your own **runner**. A **runner** waits for available **jobs**. **Runners** run one **job** at a time reporting the progress, logs, and final result back to GitHub. |
+| Step                | A **step** is a set of tasks performed by a **job**. **Steps** can run **commands** or **actions**. |
+| Virtual Environment | The **virtual environment** of a GitHub-hosted **runner** includes the virtual machine's hardware configuration, operating system, and installed software. |
+| Workflow            | A configurable automated process that you can set up in your repository. **Workflows** are made up of one or more **jobs** and can be scheduled or activated by an **event**. |
+
+
+
+## 工作流的流程图
+
+![image-20220113175906949](https://img.ggball.top/picGo/image-20220113175906949.png)
+
+- 代码提交到`github`仓库，
+- 触发`push`事件
+- 工作流开始工作，顺序执行`job`，`job`在`runner`上执行
+- `job`中`step`也是顺序执行的,`step`可以是`actions`或者`command`
+- 工作流完成，会生成一份报告
+
+
+
+## 什么构成了action
+
+| Component                    | Description                                                  |
+| ---------------------------- | ------------------------------------------------------------ |
+| JavaScript source code files | These files contain the logic of your action. This includes any dependencies or custom modules that your main logic may need. |
+| Action metadata file         | This file contains information that the actions source code can use. An example of this is allowing a developer to specify an API key as an input variable for your action to consume. This file MUST be named `action.yml` |
+
+- js源文件代码，**用来执行逻辑，api调用**
+- action元数据文件，**也就是action.yml，用来配置输入输出变量，执行环境**
+
+
+
+以上两个组件在工作流是如何适应的
+
+![image-20220113163014093](https://img.ggball.top/picGo/image-20220113163014093.png)
+
+### **Action metadata file** 规则
+
+- Filename **must** be `action.yml`
+- Required for both Docker container and JavaScript actions
+- Written in YAML syntax
+
+------
+
+
+
+- 文件名必须是 action.yml
+- 是docker容器和js Actions
+- 内容符合`YAML`语法
+
+
+
+### Action metadata file内置参数解释
+
+| Parameter   | Description                                                  | Required |
+| ----------- | ------------------------------------------------------------ | -------- |
+| Name        | The name of your action. Helps visually identify the actions in a job. | ✅        |
+| Description | A summary of what your action does.                          | ✅        |
+| Inputs      | Input parameters allow you to specify data that the action expects to use during runtime. These parameters become environment variables in the runner. | ❌        |
+| Outputs     | Specifies the data that subsequent actions can use later in the workflow after the action that defines these outputs has run. | ❌        |
+| Runs        | The command to run when the action executes.                 | ✅        |
+| Branding    | You can use a color and Feather icon to create a badge to personalize and distinguish your action in GitHub Marketplace. | ❌        |
+
+#### `inputs`的内置参数
+
+To add inputs we need to add the `inputs:` parameter to the `action.yml` file. The `inputs:` parameter has a few parameters of its own.
+
+| Parameter      | Description                                                  | Required                      |
+| -------------- | ------------------------------------------------------------ | ----------------------------- |
+| `description:` | String describing the purpose of the input                   | True                          |
+| `required:`    | Boolean value indicating if the input parameter is required or not | False (Default value is True) |
+| `default:`     | String representing a default value for the input parameter  | False                         |
+
+
+
+#### input参数引用方式
+
+- 在workflow.yml中可以使用`with`引入`inputs`参数
+- 在自定义js中可以利用`@actions/core` 引入`inputs`参数
+
+示例
+
+```yml
+my-workflow.yml
+
+name: "JS Actions"
+
+on: [push]
+
+jobs:
+  action:
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: "hello-action"
+        uses: ./.github/actions/hello-world
+        with:
+          first-greeting: "Learning Lab User"
+```
+
+```js
+main.js
+
+const core = require("@actions/core");
+
+const firstGreeting = core.getInput("first-greeting");
+const secondGreeting = core.getInput("second-greeting");
+const thirdGreeting = core.getInput("third-greeting");
+
+console.log(`Hello ${firstGreeting}`);
+console.log(`Hello ${secondGreeting}`);
+if (thirdGreeting) {
+    console.log(`Hello ${thirdGreeting}`);
+}
+```
+
+
+
+action 可以提供api供外部应用使用，由此介绍什么是api?
+
+举例子
+
+那驾驶员驾驶汽车举例子
+
+汽车组件
+
+- Gas pedal（加速器）
+- Brake pedal（刹车）
+- Steering wheel（方向盘）
+- Gear shift（换挡器）
+
+驾驶员踩下`加速器`，`加速器`就会告诉汽车内部加快转速，驾驶员使用小小的力气转动`方向盘`，汽车内部是使用了成倍的力量来使汽车转向，这里`汽车组件`和汽车内部复杂的结构就构成了`api`,而驾驶员只需要熟练掌握api的使用，就可以轻松驾驶汽车。因为汽车组建的统一，即使不同的厂商生产的汽车，驾驶员也不需要在花费时间去学习新的驾车技术。
+
+
+
+这里涉及到action 调用js代码，去请求接口数据，作为action的输出数据来源，然后最后调用方法，返回数据，从而封装成api
+
+![image-20220115020212909](https://img.ggball.top/picGo/image-20220115020212909.png)
+
+
+
+## 教学包括：
+
+Workflows
+Along the way you learned a little about workflows and how to configure them. You managed to accomplish all these things:
+
+- Define two different event triggers
+- Filter an event trigger to run only when a label is added to a pull request
+- You configured one unique job containing three unique steps within a workflow
+- You learned how to overwrite default action values by defining them in a workflow
+- One of your steps consumed a secret
+- One of your steps consumed the output of a previous step
+- That's quite a bit for a course that doesn't cover workflows!
+
+Action metadata
+
+- You became familiar with over 1/2 of the syntax keywords that can be used in an action.yml file
+- Using inputs: and outputs: allowed you to create more dynamic and reusable metadata files for your actions.
+- You've mow written the metadata for three different actions
+
+## 目前掌握
+
+- 执行逻辑代码
+
+- 设置入参
+
+- 利用action的outputs作为另外的action的入参
+
+

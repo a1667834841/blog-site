@@ -1,0 +1,122 @@
+---
+title: "MVCC并发管理控制"
+slug: "mvcc并发管理控制"
+date: "2022-03-29T09:19:53+08:00"
+lastmod: "2022-03-29T09:19:53+08:00"
+draft: false
+summary: ""
+description: ""
+source:
+  permalink: "/pages/98c577/"
+categories:
+  - "数据库"
+  - "mysql"
+tags:
+  - "数据库"
+  - "mysql"
+  - "并发"
+showToc: true
+TocOpen: false
+---
+# MVCC并发管理控制
+
+## 并发带来的读写问题
+
+因为mysql是cs结构，一台服务端可以对接多个客户端，那必然就会存在多个线程对同一资源（同一条记录之类的）进行**读读，读写，写写**操作。
+
+<font size= 4>脏写：一个事务修改了其他事务未提交的数据。</font>
+![20220329195612](https://img.ggball.top/picGo/20220329195612.png)
+
+<font size= 4> 脏读：一个事务读到了其他事务未提交的数据。</font>
+![20220329200122](https://img.ggball.top/picGo/20220329200122.png)
+
+<font size= 4>不可重复读：A事务先根据一定条件查询记录，然后B事务修改了其中的数据，A事务再次根据相同的条件查询记录，发现和之前的相比数据值变了。（突出修改）</font>
+![20220329200907](https://img.ggball.top/picGo/20220329200907.png)
+
+<font size= 4>幻读：A事务先根据一定条件查询出记录,然后B事务添加或删除些数据,A事务再次根据相同的查询条件查询记录，发现比之前的数据多了或少了。（突出删除和增加）</font>
+![20220329200857](https://img.ggball.top/picGo/20220329200857.png)
+
+## 事务隔离级别解决了什么
+
+为了解决并发读写出现的问题，设计者们就打算损失一些隔离性来避免这些问题
+
+读未提交
+读已提交
+可重复读
+串行化
+
+<font color= red>设立一些隔离级别，隔离级别越低，越严重的问题就越可能发生</font>
+
+![20220329202846](https://img.ggball.top/picGo/20220329202846.png)
+串行化性能损失最严重，因为他保证了线程对同一资源修改，只能串行修改。
+
+### 设置事务隔离级别
+
+```sql
+SET [GLOBAL|SESSION] TRANSACTION ISOLATION LEVEL level;
+```
+
+level有四个
+- READ UNCOMMITTED （读取最新数据）
+- READ COMMITTED  （读取已提交数据，需要用到mvcc）
+- REPEATABLE READ  （不可重复读，需要用到mvcc）
+- SERIALIZABLE （串行化，直接加锁）
+
+
+## MVCC并发管理控制由来
+
+### mysql为什么要需要mvcc
+
+因为并发带来的数据访问问题，解决数据访问问题，同时又要兼顾效率，不能一味的锁住，像RC和RR是需要靠mvcc机制实现的。
+>像提到MVCC就必须要了解下 当前读和快照读的概念了
+> - 当前读：读取最新的数据，可能会对数据产生影响，像 select xxx for update,insert ,delete,update，都会触发当前读，**可重复读使用当前读时，每次都是读取最新的数据，利用mvcc不能保证可重复读的特性，所以mvcc机制就不能用了，需要使用行锁（临建锁=记录锁+间隙锁）保证其可重复读作用。**
+> - 快照读：利用了mvcc机制，读取某个版本数据信息，是的整个事务数据前后是一致的，但无法保证数据是最新的。像一般的 select 用的就是当前读
+
+### 版本链
+
+对于InnoDB数据引擎来说，聚簇索引的每条记录都会有两个隐藏列
+**trx_id:每次一个事务对某条聚簇索引记录进行改动时，都会把该事务的 事务id 赋值给 trx_id 隐藏列**
+**roll_pointer: 回滚指针，指向旧记录（undo log）**
+
+![20220329204008](https://img.ggball.top/picGo/20220329204008.png)
+> 此时事务id为100,和200开始进行更新操作
+
+![20220329204619](https://img.ggball.top/picGo/20220329204619.png)
+每次更新记录，对应记录的undo log就会多一条 像下面这样
+![20220329204757](https://img.ggball.top/picGo/20220329204757.png)
+随着修改次数增多，undo log会被roll_pointers属性连成一个单向链表，<font color= red> 我们把这个链表称之为 版本链 ，版本链的头节点就是当前记录最新的值</font>
+
+### readView（读视图）
+
+- 对于【读未提交】，只需要读最新的记录就好，都不需要用到版本链。
+- 对于【串行化】，因为他的隔离级别最高，直接加锁，是并发变成串行，不会存在并发问题，只是效率变低了，所以也不需要用到版本链。
+- 对【读已提交】，【可重复读】， <font color= red> 都需要保证不能读到其他事务未提交的数据</font>,所以就需要判断下，**版本链上的哪个版本是对当前事务具有可见性，这个就需要readView啦**
+
+#### readView结构
+
+- m_ids: 表示生成readView的时候，当前未提交（活跃）的事务id.
+- min_trx_id: 表示生成readView的时候，未提交的事务中事务id最小的那个。
+- max_trx_id: 表示生成readView的时候，应该分配下一个事务的id。
+- creator_trx_id: 表示生成该 ReadView 的事务的 事务id 。
+
+> 我们前边说过，只有在对表中的记录做改动时（执行INSERT、DELETE、UPDATE这些语句时）才会为事务分配事务id，否则在一个只读事务中的事务id值都默认为0。
+
+#### 根据readView判断版本链上的版本对事务的可见性
+
+1. 如果版本链上的版本的trx_id与readView上的creator_trx_id**相同**，说明当前事务是在访问自己修改过的记录，**具有可见性**。
+2. 如果版本链上的版本的trx_id**小于**readView上的min_trx_id，说明此版本已经提交，**具有可见性**。
+3. 如果版本链上的版本的trx_id**大于**readView上的max_trx_id,说明此版本是发生在readView之后，**不具有可见性**。
+4. 如果被访问版本的 trx_id 属性值在 ReadView 的 **min_trx_id 和 max_trx_id 之间**，那就需要判断一下trx_id 属性值是不是在 m_ids 列表中；
+   - 如果在，说明创建 ReadView 时生成该版本的事务还是活跃的，该版本不可以被访问；
+   - 如果不在，说明创建 ReadView 时生成该版本的事务已经被提交，该版本可以被访问。
+
+#### read Committed与repeatable read的readView生成时机
+
+- 【read committed】**读已提交** 是事务中，每查询一次就生成一次readView
+- 【repeatable read】**可重复读** 是事务中，第一次查询生成readView，之后就不生成了。
+
+**总结一句：看版本链上的版本是否早于readView提交，早于的话，说明已经提交事务，具有可见性，如果晚于的话，说明该版本还是未提交的，不具有可见性。**
+
+**原创不易，麻烦点个赞​再走呗！**
+
+

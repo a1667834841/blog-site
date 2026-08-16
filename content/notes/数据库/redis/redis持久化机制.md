@@ -1,0 +1,253 @@
+---
+title: "redis持久化机制"
+slug: "redis持久化机制"
+date: "2022-10-23T20:19:45+08:00"
+lastmod: "2022-10-23T20:19:45+08:00"
+draft: false
+summary: ""
+description: ""
+source:
+  permalink: "/pages/039a2c/"
+categories:
+  - "数据库"
+  - "redis"
+tags:
+  - "数据库"
+  - "redis"
+showToc: true
+TocOpen: false
+---
+# 为什么有持久化机制背景
+> 通过 redis操作数据时，更多的时候是通过内存和cpu打交道，所以会特别快，但是内存有个缺点就是，一断电内存中的数据就没有了，那redis作者还是想尽可能的不丢失内存中的数据，所以redis也有自己的持久化机制。
+
+
+## aof机制
+
+redis 执行完命令，会将执行成功的命令写入aof日志，当redis宕机后，恢复数据可以通过aof日志重新执行命令即可。
+
+
+## 如何配置AOF？
+
+默认情况下，Redis是没有开启AOF的，可以通过配置redis.conf文件来开启AOF持久化，关于AOF的配置如下：
+
+```conf
+# appendonly参数开启AOF持久化 默认不开启
+appendonly no
+
+# AOF持久化的文件名，默认是appendonly.aof
+appendfilename "appendonly.aof"
+
+# AOF文件的保存位置和RDB文件的位置相同，都是通过dir参数设置的
+dir ./
+
+# 写回策略
+# 每次执行命令保存一次
+# appendfsync always
+# 每秒保存一次
+appendfsync everysec
+# 由操作系统决定何时保存
+# appendfsync no
+
+# aof重写期间是否同步
+no-appendfsync-on-rewrite no
+
+# 重写触发配置
+auto-aof-rewrite-percentage 100
+auto-aof-rewrite-min-size 64mb
+
+# 加载aof出错如何处理
+aof-load-truncated yes
+
+# 文件重写策略
+aof-rewrite-incremental-fsync yes
+```
+
+
+
+
+### aof写回策略
+**因为redis 写aof日志到磁盘具有风险：**
+
+1. 命令执行完，aof日志还没来得及写入磁盘，宕机了，那么这个时间段内的数据不能被恢复。
+
+2. 因为写入aof日志是使用主线程，如果写入磁盘数据变慢，会影响下面的命令操作。
+
+
+
+**所以开发者将aof日志写回磁盘的策略提取出来，方便不同场景来不同使用**
+
+- Always 同步写回：每个写命令执行完，立马同步地将日志写回磁盘；
+- Everysec 每秒写回：每个写命令执行完，只是先把日志写到 AOF 文件的内存缓冲区，每隔一秒把缓冲区中的内容写入磁盘；
+- No 操作系统控制的写回：每个写命令执行完，只是先把日志写到 AOF 文件的内存缓冲区，由操作系统决定何时将缓冲区内容写回磁盘。
+
+> 写回策略视情况而定，如果你的系统要求数据一点也不能丢，对性能没有太高的要求 可以选择 `Always`,如果系统可以接受丢失一点数据，那么最好选择`Everysec`,`No`不推荐，可能会发生自己控制不了的结果。
+
+### aof重写机制
+
+**因为redis aof日志不断地append 会越来越大，影响效率；**
+
+1. 影响插入效率，命令执行的效率；
+2. 使用aof日志恢复的消耗的时间也会变；
+
+**所以有了重写日志机制**
+
+>  大概逻辑：将相同键的操作，移除之前的，保留最新的一条（清除冗余命令）
+
+aof重写时机
+
+- 主从复制RDB文件复制完成（无论是否成功）
+- aof文件超过阈值
+- bgrewriteaof 命令被执行。
+- AOF 重写被设置为待调度执行。
+
+aof 重写过程
+
+一个拷贝，两处日志
+1. 拷贝：主线程fork 子进程，将主线程的内存拷贝一份（这时候只是拷贝数据结构和指针，真正开辟内存空间是在**主线程执行写命令的时候**），操作系统会把主进程的「页表」复制一份给子进程，这个页表记录着虚拟地址和物理地址映射关系，而不会复制物理内存，也就是说，两者的虚拟空间不同，但其对应的物理空间是同一个。
+
+2. 两处日志：主线程执行写操作命令时，会同时写入aof日志的缓存区和新的aof重写日志的缓存区，缓存区的数据都会刷入到各自的磁盘文件中，如果aof重写日志同步完后，重命名然后替换原来的aof文件，当主线程对某一块数据进行操作时，会复制这块数据，子进程的虚拟地址会修改为新的物理地址，复制出来的这块数据给子进程重写使用，达到主子进程不影响。 会发生**写时复制**[写时复制原理](https://segmentfault.com/a/1190000039869422)
+
+![aof 重写过程](https://static001.geekbang.org/resource/image/57/e1/5770a4f81fb0469656fef2b35d354fe1.jpg)
+
+
+**注意上图的不是子线程，而是子进程！**
+
+使用**子进程**，而不是**子线程**是为了减少对资源的竞争
+
+## redis 利用aof还原数据的过程
+1. 建立无网络连接的伪客户端
+2. 读取aof文件一条命令
+3. 伪客户端执行命令
+4. 重复（2,3）直到全部执行完毕
+
+![image-20221020154536842](https://img.ggball.top/img/image-20221020154536842.png?picGo)
+
+
+
+## rdb 机制（快照）
+
+> RDB是Redis用来进行持久化的一种方式，是把当前内存中的数据集快照写入磁盘，也就是 Snapshot 快照（数据库中所有键值对数据）。恢复时是将快照文件直接读到内存里。RDB文件是一个经过压缩的二进制文件，由多个部分组成。
+
+### 触发方式
+
+手动执行命令和自动执行命令
+
+### 如何保存和载入
+
+#### 保存命令
+
+##### SAVE
+
+save命令会阻塞 redis 服务器进程，这时redis会拒绝其他命令，直到save命令结束
+
+![image-20221024180511535](https://img.ggball.top/img/image-20221024180511535.png?picGo)
+
+##### BGSAVE
+
+bgsave命令会fork一个子线程，用来执行保存rdb日志操作，父进程仍然可以执行命令
+
+
+
+#### 自动性间隔保存
+
+redis save策略配置
+
+```
+save 900 1：表示900秒（15分钟）内至少有1个key的值发生变化，则执行
+save 300 10：表示300秒（5分钟）内至少有1个key的值发生变化，则执行
+save 60 10000：表示60秒（1分钟）内至少有10000个key的值发生变化，则执行
+save ""： 该配置将会关闭RDB方式的持久化
+```
+
+redis当中会有saveparams数组 保存下策略，redis 会有一个定时任务（默认100ms）去检查保存条件是否满足，满足则执行bgsave命令
+
+![image-20221024183511013](https://img.ggball.top/img/image-20221024183511013.png?picGo)
+
+
+#### redis 记录rdb快照时，如何不阻塞主线程？
+
+一般我们拍照时，如果有人晃动了，那照片也得重新拍，所以拍照时必要保证被拍照的人静止，也就是内存中的数据不变。
+
+redis保存快照也是这样，先说保存快照的过程：
+
+当进行快照记录时，主线程会fork出子进程，fork会阻塞主线程，子进程和主线程此时共享一块内存空间，主线程可以继续接受命令，执行命令，子进程对内存中的数据进行日志记录，**但是这就会有一个问题，子进程不能对正在修改的数据进行日志记录**（如果数据一直变动，那岂不是每次记录还得校验下每块数据是否有变动，大大降低记录的效率，这感觉有点像java的list集合，遍历时不允许对集合中的数据做删除，添加操作）
+
+> 你可能会想到，可以用 **bgsave 避免阻塞**啊。这里我就要说到一个常见的误区了，避免阻塞和正常处理写操作并不是一回事。此时，主线程的确没有阻塞，可以正常接收请求，但是，为了保证快照完整性，它只能处理读操作，因为不能修改正在执行快照的数据。
+
+redis的作者利用了操作系统提供的COW (copy on write)技术，当主线程对某一块数据进行操作（删改）时，这时主线程会复制一份副本出来，子线程的数据地址修改为新的副本的地址，这样主线程和子进程就会不影响，既主线程可以接受命令，子进程进行日志记录啦。
+
+![image-20221025201511153](https://img.ggball.top/img/image-20221025201511153.png?picGo)
+
+
+#### 载入rdb文件
+
+redis 启动默认会自动载入rdb日志，载入时服务器会一直处于阻塞状态，直到载入完成
+
+![image-20221024180816137](https://img.ggball.top/img/image-20221024180816137.png?picGo)
+
+
+
+##### 载入的优先级
+
+因为一般aof的日志更加全面（更新频率通常比rdb高），所以redis会优先加载aof日志，如果开启aof 优先使用aof日志还原数据库数据
+
+aof关闭时，会采用rdb文件恢复日志
+
+![image-20221024181522203](https://img.ggball.top/img/image-20221024181522203.png?picGo)
+
+
+
+#### bgsave命令和save bgsave bgrewriteaof 命令之间执行的关系
+
+- bgsave 和 save 不能同时执行，因为save会阻塞服务器进程
+
+- bgsave  和 bgsave 也不能同时进行，因为bgsave会fork出子进程，可能会有资源竞争情况
+
+- bgsave 和 bgrewriteaof ，按道理不影响，但是出于性能考虑，不建议出现两个进程大量写操作。
+
+
+
+## 搭建
+docker方式搭建redis（版本为7.0.5）
+
+事先在`/etc/redis/` 放redis.conf文件 可以在[redis.conf文件](https://redis.io/download/?_ga=2.56632298.1980133522.1666695198-1333694959.1666140853)下载
+> 启动忘记指定redis.conf 文件 还得半天没有出现aof日志 因为aof默认是关闭的
+
+```sh
+docker run -p 6379:6379 --name myredis -v /usr/local/docker/redis/redis.conf:/etc/redis/redis.conf -v /usr/local/docker/redis/data:/data -d registory.dongshanxia.top:35000/redis:latest redis-server /etc/redis/redis.conf --appendonly yes
+```
+
+![aof文件](https://img.ggball.top/picGo/20221025194111.png)
+
+查看aof 文件内容
+```sh
+cat appendonly.aof.1.incr.aof
+```
+
+![20221025194852](https://img.ggball.top/picGo/20221025194852.png)
+查看rdb文件内容 打印出来的是十六进制 可以使用[onlinehexeditor](https://www.onlinehexeditor.com/#)转换
+```sh
+od -A x -t x1c -v dump.rdb
+```
+
+![20221025195737](https://img.ggball.top/picGo/20221025195737.png)
+
+[redis开启混合持久化](https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/Redis%20%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E6%88%98/05%20Redis%20%E6%8C%81%E4%B9%85%E5%8C%96%E2%80%94%E2%80%94%E6%B7%B7%E5%90%88%E6%8C%81%E4%B9%85%E5%8C%96.md)
+如果开启，先加载rdb，再加载aof
+
+
+
+## redis和mysql 对比
+
+mysql: 在事务提交时，数据写入缓存池，redo log文件写入磁盘才算事务结束，mysql服务宕机时，会利用redo log 恢复 已提交事务 但是未写入磁盘的数据。**先写日志，再写磁盘**
+
+redis: aof 先执行命令，再写aof日志（好处就是 1.避免错误命令被记录，导致恢复数据有问题，2.不会阻塞命令执行操作）**先写磁盘，再写日志**
+
+
+>引用 《redis设计与实现》
+
+![image-20221020140710803](https://img.ggball.top/img/image-20221020140710803.png?picGo)
+
+
+
+

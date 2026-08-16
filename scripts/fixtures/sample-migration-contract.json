@@ -1,0 +1,158 @@
+{
+  "requiredFrontmatterFields": [
+    "title",
+    "slug",
+    "date",
+    "lastmod",
+    "draft",
+    "summary",
+    "description",
+    "categories",
+    "tags",
+    "showToc",
+    "TocOpen"
+  ],
+  "forbiddenFrontmatterKeys": [
+    "permalink",
+    "article"
+  ],
+  "forbiddenSampleTitles": [
+    "Untitled"
+  ],
+  "forbiddenSampleSlugs": [
+    "untitled"
+  ],
+  "forbiddenBodyCharacters": [
+    "\r"
+  ],
+  "forbiddenBodyMarkers": [
+    "DeepSeek-R1满血版",
+    "思考完成",
+    "好的，用户现在需要介绍CI/CD工具",
+    "data-slate-"
+  ],
+  "sourceFrontmatterFixtures": [
+    {
+      "source": "docs/00.目录页/01.基础组件.md",
+      "expect": {
+        "title": "基础组件",
+        "permalink": "/basic/component",
+        "article": false,
+        "pageComponent.name": "Catalogue",
+        "pageComponent.data.path": "01.知识库/06.基础组件",
+        "pageComponent.data.imgUrl": "/img/web.png",
+        "pageComponent.data.description": "基础组件"
+      }
+    },
+    {
+      "source": "docs/@pages/tagsPage.md",
+      "expect": {
+        "tagsPage": true,
+        "title": "标签",
+        "permalink": "/tags/",
+        "article": false
+      }
+    },
+    {
+      "source": "docs/01.知识库/13.极客时间/146.Redis核心技术与实战/39. Redis 6.0的新特性：多线程、客户端缓存与安全.md",
+      "expect": {
+        "author": "蒋德钧",
+        "article": false
+      },
+      "rawIncludes": [
+        "\r"
+      ]
+    }
+  ],
+  "samples": [
+    {
+      "source": "docs/01.知识库/06.基础组件/08.elasticsearch/00.index.md",
+      "section": "notes",
+      "targetPath": "content/notes/基础组件/elasticsearch/elasticsearch.md",
+      "slug": "elasticsearch",
+      "title": "elasticsearch",
+      "sourcePermalink": "/pages/e01437/",
+      "draft": false
+    },
+    {
+      "source": "docs/01.知识库/13.极客时间/146.Redis核心技术与实战/39. Redis 6.0的新特性：多线程、客户端缓存与安全.md",
+      "section": "notes",
+      "targetPath": "content/notes/极客时间/redis核心技术与实战/redis-6-0的新特性多线程-客户端缓存与安全.md",
+      "slug": "redis-6-0的新特性多线程-客户端缓存与安全",
+      "title": "Redis 6.0的新特性：多线程、客户端缓存与安全",
+      "draft": false
+    },
+    {
+      "source": "docs/01.知识库/01.index.md",
+      "section": "notes",
+      "targetPath": "content/notes/后端知识图谱.md",
+      "slug": "后端知识图谱",
+      "title": "后端知识图谱",
+      "sourcePermalink": "/pages/f9a239/",
+      "draft": false
+    },
+    {
+      "source": "docs/01.知识库/03.linux/02.linux操作命令.md",
+      "section": "notes",
+      "targetPath": "content/notes/linux/linux操作命令.md",
+      "slug": "linux操作命令",
+      "title": "linux操作命令",
+      "sourcePermalink": "/pages/b25bcf/",
+      "draft": false
+    },
+    {
+      "source": "docs/01.知识库/11.疑难杂症/02.幂等性解决方案.md",
+      "section": "notes",
+      "targetPath": "content/notes/疑难杂症/幂等性解决方案.md",
+      "slug": "幂等性解决方案",
+      "title": "幂等性解决方案",
+      "sourcePermalink": "/pages/f19486/",
+      "draft": false
+    },
+    {
+      "source": "docs/02.工具与部署/04.git/04.github action学习总结.md",
+      "section": "posts",
+      "targetPath": "content/posts/git/github-action学习总结.md",
+      "slug": "github-action学习总结",
+      "title": "github action学习总结",
+      "sourcePermalink": "/pages/ec40c2/",
+      "draft": false
+    },
+    {
+      "source": "docs/02.工具与部署/01.操作手册/25.个人网站实现微信扫码登录.md",
+      "section": "posts",
+      "targetPath": "content/posts/操作手册/个人网站实现微信扫码登录.md",
+      "slug": "个人网站实现微信扫码登录",
+      "title": "个人网站实现微信扫码登录",
+      "sourcePermalink": "/pages/f01490/",
+      "draft": false
+    },
+    {
+      "source": "docs/02.工具与部署/07.docker/02.docker相关软件安装.md",
+      "section": "posts",
+      "targetPath": "content/posts/docker/docker相关软件安装.md",
+      "slug": "docker相关软件安装",
+      "title": "docker 安装相关操作",
+      "sourcePermalink": "/pages/401855/",
+      "draft": false
+    },
+    {
+      "source": "docs/04.每月随笔/01.2023-12.md",
+      "section": "monthly",
+      "targetPath": "content/monthly/2023-12.md",
+      "slug": "2023-12",
+      "title": "2023-12",
+      "sourcePermalink": "/pages/d294c6/",
+      "draft": false
+    },
+    {
+      "source": "docs/03.项目.md/01.项目计划.md",
+      "section": "projects",
+      "targetPath": "content/projects/项目计划.md",
+      "slug": "项目计划",
+      "title": "项目计划",
+      "sourcePermalink": "/pages/ea995a/",
+      "draft": false
+    }
+  ]
+}

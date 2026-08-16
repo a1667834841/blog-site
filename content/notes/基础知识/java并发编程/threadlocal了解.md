@@ -1,0 +1,135 @@
+---
+title: "ThreadLocal了解"
+slug: "threadlocal了解"
+date: "2022-04-26T20:12:28+08:00"
+lastmod: "2022-04-26T20:12:28+08:00"
+draft: false
+summary: ""
+description: ""
+source:
+  permalink: "/pages/3fefb0/"
+categories:
+  - "java"
+  - "并发编程"
+tags:
+  - "java并发编程"
+  - "Java"
+  - "并发"
+showToc: true
+TocOpen: false
+---
+# ThreadLocal了解
+## 原理解析
+![20220426201457](https://img.ggball.top/picGo/20220426201457.png)
+
+**通过ThreadLocal获取当前线程保存的值的流程：**
+
+1. 先得到当前线程对象
+2. 再从当前线程获取ThreadLocalMap
+3. 最后传入this(即ThreadLocal)获取对应的值
+
+创建ThreadLocal时，里面的属性并未初始化，只有当第一次set时才会创建容器，且装数据的容器也不是放在ThreadLocal里面的，而是在Thread里面，一个是threadLocals，一个是inheritableThreadLocals，（数据结构都是hashMap）ThreaLocal只负责操作数据，并不负责储存
+
+![image-20220426201313988](https://img.ggball.top/picGo/image-20220426201313988.png)
+
+**threadLocals**：使用ThreadLocal操作（get,set）数据时，数据都是保存在线程的threadLocals中。
+**inheritableThreadLocals**：使用InheritableThreadLocal类操作数据时，数据会保存在inheritableThreadLocals中。
+
+**那既然有一个容器`threadLocals`了，那为什么还要一个`inheritableThreadLocals`呢？**
+
+因为ThreadLocal中只会保存本线程操作过的数据，如果子线程想访问父线程，只通过ThreadLocal是不行的，因为他们只属于这两个线程，对应着两个`threadLocals`。
+所以jdk的开发者们想再在创建一个类似ThreadLocal的类-`InheritableThreadLocal`类 不去操作`threadLocals`,而是操作`inheritableThreadLocals`变量，父线程可以将想要传递的数据放到`inheritableThreadLocals`里面，然后子线程初始化的时候还会检查，父线程的`inheritableThreadLocals`有没有数据，如果有的话，则加入到子线程的`inheritableThreadLocals`中。
+
+**THreadLocal使用案例**
+```java
+ /**
+     * threadLocal 使用
+     * @throws InterruptedException
+     */
+    @Test
+    public void useCaseThreadLocal() throws InterruptedException {
+
+        MyThreadLocal myThreadLocal = new MyThreadLocal();
+
+        Thread thread1 = new Thread(() -> {
+            myThreadLocal.threadLocal.set("thread1 set value");
+            myThreadLocal.print();
+        });
+
+        Thread thread2 = new Thread(() -> {
+            myThreadLocal.threadLocal.set("thread2 set value");
+            myThreadLocal.print();
+        });
+
+        thread1.start();
+        thread2.start();
+
+        thread1.join();
+        thread2.join();
+    }
+```
+
+**利用InheritableThreadLocal实现父线程传递变量给子线程**
+
+```java
+
+    /**
+     * 父线程传递变量到子线程
+     * @throws InterruptedException
+     */
+    @Test
+    public void parentTransferDataToChild() throws InterruptedException {
+
+
+        ThreadLocal<String> threadLocal =  new InheritableThreadLocal<String>();
+        threadLocal.set("parent' data");
+
+
+        Thread thread1 = new Thread(() -> {
+            System.out.println("子线程："+threadLocal.get());
+        });
+
+
+        thread1.start();
+        thread1.join();
+    }
+
+```
+
+# ThreadLocal 内存泄露的原因
+
+
+
+![img](https://segmentfault.com/img/remote/1460000022704088)
+
+首先明白ThreadLocal和TheadLocalMap,Entry的关系
+
+当线程结束时，因为 ThreadLocal标记为WeakReference弱引用，堆里面的ThreadLocal会被下一次GC扫描并回收掉，
+
+但是Entry中的value存在强引用，所以可能会造成内存泄露。
+
+> **当垃圾收集器工作时，无论当前内存是否足够，都会回收掉只被弱引用关联的对象**。
+
+
+
+解决办法：
+
+手动释放资源
+
+```java
+ExecutorService es;
+ThreadLocal tl;
+es.execute(()->{
+  //ThreadLocal 增加变量
+  tl.set(obj);
+  try {
+    // 省略业务逻辑代码
+  }finally {
+    // 手动清理 ThreadLocal 
+    tl.remove();
+  }
+});
+```
+
+
+

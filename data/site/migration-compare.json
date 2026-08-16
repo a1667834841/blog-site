@@ -1,0 +1,48 @@
+{
+  "summary": {
+    "sourceRoot": "/Users/wuwenjing/Documents/blog-source",
+    "totals": {
+      "sourceMarkdown": 371,
+      "contentMarkdown": 365,
+      "sourcePermalinks": 361,
+      "contentSourcePermalinks": 361,
+      "missingPermalinks": 0,
+      "extraPermalinks": 0,
+      "sourceNoPermalink": 1,
+      "contentNoSourcePermalink": 4
+    },
+    "counts": {
+      "source": {
+        "catalogue": 5,
+        "monthly": 1,
+        "notes": 308,
+        "other": 1,
+        "pages": 3,
+        "posts": 48,
+        "projects": 5
+      },
+      "content": {
+        "monthly": 1,
+        "notes": 308,
+        "pages": 3,
+        "posts": 48,
+        "projects": 5
+      }
+    },
+    "samples": {
+      "missingPermalinks": [],
+      "extraPermalinks": [],
+      "sourceNoPermalink": [
+        "docs/01.知识库/13.极客时间/146.Redis核心技术与实战/39. Redis 6.0的新特性：多线程、客户端缓存与安全.md"
+      ],
+      "contentNoSourcePermalink": [
+        "about.md",
+        "archives.md",
+        "notes/极客时间/redis核心技术与实战/redis-6-0的新特性多线程-客户端缓存与安全.md",
+        "search.md"
+      ]
+    }
+  },
+  "missingPermalinks": [],
+  "extraPermalinks": []
+}

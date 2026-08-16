@@ -20,7 +20,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      BLOG_CONTENT_REPO: ${{ vars.BLOG_CONTENT_REPO }}
       SITE_BASE_URL: ${{ vars.SITE_BASE_URL }}
     steps:
       - name: Checkout site repository
@@ -28,14 +27,6 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 0
-
-      - name: Validate content repository setting
-        run: |
-          if [ -z "${BLOG_CONTENT_REPO}" ]; then
-            echo "Missing repository variable BLOG_CONTENT_REPO."
-            echo "Set it to the public content repo, for example: a1667834841/blog-content"
-            exit 1
-          fi
 
       - name: Configure GitHub Pages
         id: pages
@@ -46,18 +37,6 @@ jobs:
         with:
           hugo-version: "0.159.2"
           extended: true
-
-      - name: Checkout content repository
-        uses: actions/checkout@v5
-        with:
-          repository: ${{ env.BLOG_CONTENT_REPO }}
-          path: blog-content
-          fetch-depth: 1
-
-      - name: Sync content into site
-        env:
-          CONTENT_REPO: ${{ github.workspace }}/blog-content
-        run: ./scripts/sync-content.sh
 
       - name: Build site
         run: |

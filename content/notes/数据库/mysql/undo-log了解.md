@@ -1,0 +1,27 @@
+---
+title: "undo log了解"
+slug: "undo-log了解"
+date: "2023-03-12T01:49:51+08:00"
+lastmod: "2023-03-12T01:49:51+08:00"
+draft: false
+summary: ""
+description: ""
+source:
+  permalink: "/pages/57d6fa/"
+categories:
+  - "数据库"
+  - "mysql"
+tags:
+  - "数据库"
+  - "mysql"
+showToc: true
+TocOpen: false
+---
+undo log
+
+用来保证原子性
+
+
+1.redo log通常是物理日志，记录的是数据页的物理修改，而不是某一行或某几行修改成怎样怎样，它用来恢复提交后的物理数据页(恢复数据页，且只能恢复到最后一次提交的位置)。
+2.undo用来回滚行记录到某个版本。undo log一般是逻辑日志，根据每行记录进行记录。
+

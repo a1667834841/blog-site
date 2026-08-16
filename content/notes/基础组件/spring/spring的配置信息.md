@@ -1,0 +1,50 @@
+---
+title: "spring的配置信息"
+slug: "spring的配置信息"
+date: "2022-04-14T20:03:17+08:00"
+lastmod: "2022-04-14T20:03:17+08:00"
+draft: false
+summary: ""
+description: ""
+source:
+  permalink: "/pages/1891b0/"
+categories:
+  - "基础组件"
+  - "spring"
+tags:
+  - "基础组件"
+  - "spring"
+showToc: true
+TocOpen: false
+---
+spring的配置信息
+
+
+
+**当bean注入BeanFactory和ApplicationContext，分析依赖对象的来源，是否是ioc容器内的Bean?**
+
+- 自定义bean
+- 容器内建bean
+- 容器内建依赖
+
+
+
+## spring配置元信息来源
+
+### bean配置
+
+- xml配置
+- javaApi配置
+- properties文件配置
+- java注解配置
+
+### ioc容器配置
+
+- xml配置
+- java注解配置
+- javaApi配置
+
+### 外部属性配置
+
+- javaApi （@Value注解，通过配置外部配置文件，影响bean属性）
+
