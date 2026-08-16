@@ -90,7 +90,7 @@ flowchart TD
     MainLAN <--> RouterB["路由器 B WAN<br/>192.168.100.5<br/>网关与DNS：.3"]
     RouterA --> NetworkA["192.168.5.0/24<br/>家庭移动设备"]
     RouterB --> NetworkB["192.168.6.0/24<br/>家庭移动设备"]
-    Servers -. "Docker / Git / APT<br/>显式代理 192.168.100.3:7893" .-> OpenWrt
+    Servers -.->|Docker / Git / APT<br/>显式代理 192.168.100.3:7893| OpenWrt
 ```
 
 这里有一点很容易画错：`192.168.100.3` 虽然运行在 PVE中，但 PVE并不是它的上级路由器。ImmortalWrt通过 `vmbr0` 接入主局域网，在网络逻辑上和爱快、两台无线路由器、服务器都属于同一个 `192.168.100.0/24` 网段。PVE在这里只负责承载虚拟机和二层转发。
