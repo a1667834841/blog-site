@@ -1,6 +1,6 @@
 {{- .Page.Store.Set "hasMermaid" true -}}
 <pre class="mermaid">{{ .Inner }}</pre>
-<script>
+<script data-cfasync="false">
   if (!window.__blogMermaidInit) {
     window.__blogMermaidInit = true;
     window.addEventListener("DOMContentLoaded", () => {
