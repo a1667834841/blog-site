@@ -47,7 +47,7 @@ SITE_BASE_URL=https://www.ggball.top/ ./scripts/build-cloudflare.sh
 node scripts/new-article.mjs --section posts --title "Redis缓存实践"
 ```
 
-支持的 section：
+支持的 s`ection：
 
 - `posts`
 - `notes`
