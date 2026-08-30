@@ -1,3 +1,12 @@
 .hugo_build.lock
 public/
 .DS_Store
+
+# 本地编辑器配置
+.obsidian/
+
+# Claude 技能指针（符号链接到 .agents/，无需提交）
+.claude/
+
+# API 密钥与本地配置
+.baoyu-skills/.env

@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="t06 d06">
+  <title id="t06">Active cancel</title>
+  <desc id="d06">User actively cancels: before dispatch, after body started, or skipped calls synthesized in agent-loop.</desc>
+  <defs>
+    <filter id="ps" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#000" flood-opacity="0.12"/></filter>
+    <filter id="rg"><feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="2" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="1.5"/></filter>
+    <pattern id="pg" width="64" height="64" patternUnits="userSpaceOnUse">
+      <rect width="64" height="64" fill="#fbf8ef"/>
+      <circle cx="12" cy="18" r="1.2" fill="#d9c8aa" opacity="0.35"/>
+      <circle cx="48" cy="36" r="0.9" fill="#d7c4a7" opacity="0.3"/>
+      <path d="M6 58 C20 50,35 66,59 52" stroke="#e2d5bd" stroke-width="1" fill="none" opacity="0.35"/>
+    </pattern>
+    <style>
+      .bg{fill:url(#pg)}
+      .ln{fill:none;stroke:#171717;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;filter:url(#rg)}
+      .th{fill:none;stroke:#df6d16;stroke-width:7;stroke-linecap:round;stroke-linejoin:round;filter:url(#rg)}
+      .thn{fill:none;stroke:#df6d16;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;filter:url(#rg)}
+      .ds{fill:none;stroke:#171717;stroke-width:3.5;stroke-dasharray:12 12;stroke-linecap:round;filter:url(#rg)}
+      .tg{fill:#d7b98a;stroke:#171717;stroke-width:2.5;filter:url(#ps)}
+      .tg2{fill:#ead6b4;stroke:#171717;stroke-width:2.5;filter:url(#ps)}
+      .bl{fill:#b8d2df;stroke:#171717;stroke-width:2.2;filter:url(#ps)}
+      .wh{fill:#fffdf7;stroke:#171717;stroke-width:2.2;filter:url(#ps)}
+      .sm{font:28px 'Marker Felt','Comic Sans MS','Kaiti SC',cursive;fill:#111}
+      .md{font:38px 'Marker Felt','Comic Sans MS','Kaiti SC',cursive;fill:#111}
+      .lg{font:48px 'Marker Felt','Comic Sans MS','Kaiti SC',cursive;fill:#111}
+      .rt{font:32px 'Marker Felt','Comic Sans MS','Kaiti SC',cursive;fill:#d84a35}
+      .bt{font:30px 'Marker Felt','Comic Sans MS','Kaiti SC',cursive;fill:#227093}
+    </style>
+  </defs>
+  <rect class="bg" width="1600" height="900"/>
+
+  <!-- title -->
+  <path class="bl" d="M80 62 L470 44 L486 142 L62 147 Z"/>
+  <text class="lg" x="120" y="123">主动取消</text>
+
+  <!-- xiaohei pressing stop -->
+  <ellipse cx="280" cy="430" rx="34" ry="36" fill="#161616" filter="url(#rg)"/>
+  <circle cx="264" cy="420" r="7" fill="#fff7de"/>
+  <circle cx="296" cy="420" r="7" fill="#fff7de"/>
+  <path d="M266 448 C278 458,292 458,304 446" stroke="#fff7de" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path class="thn" d="M280 466 v30 M260 496 l20 -10 l20 10" />
+  <path class="thn" d="M312 420 l70 0"/>
+  <circle cx="390" cy="420" r="34" fill="#d84a35" stroke="#111" stroke-width="5"/>
+  <path class="ln" d="M372 402 l36 36 M408 402 l-36 36" stroke="#fff" stroke-width="7"/>
+
+  <!-- tool being stopped -->
+  <path class="tg2" d="M520 300 L760 280 L780 460 L500 480 Z"/>
+  <text class="lg" x="570" y="400">tool</text>
+  <text class="sm" x="575" y="452">已发出请求</text>
+  <path class="thn" d="M430 420 C460 420,478 418,505 412"/>
+
+  <!-- three timings -->
+  <path class="tg" d="M980 170 L1270 152 L1292 292 L955 306 Z"/>
+  <text class="md" x="1010" y="220">① 准备阶段</text>
+  <text class="sm" x="1008" y="272">body 未启动</text>
+  <path class="thn" d="M806 400 C860 330,920 290,982 262"/>
+
+  <path class="tg" d="M980 386 L1270 368 L1292 508 L955 522 Z"/>
+  <text class="md" x="1010" y="436">② dispatch 阶段</text>
+  <text class="sm" x="1008" y="488">body 已启动</text>
+  <path class="thn" d="M785 435 C850 435,920 430,982 440"/>
+
+  <path class="tg" d="M980 600 L1270 582 L1292 722 L955 736 Z"/>
+  <text class="md" x="1010" y="650">③ abort 未启动</text>
+  <text class="sm" x="1008" y="702">agent-loop 补合成</text>
+  <path class="thn" d="M800 472 C860 500,910 550,980 620"/>
+
+  <!-- labels -->
+  <path class="bl" d="M1340 120 L1560 104 L1578 214 L1320 228 Z"/>
+  <text class="md" x="1380" y="178">ABORTED</text>
+
+  <!-- bottom note -->
+  <path class="ds" d="M560 640 L740 660 L730 740 L560 716 Z"/>
+  <text class="sm" x="600" y="690">无法强制取消</text>
+  <path class="bl" d="M1040 780 L1450 762 L1470 848 L1018 862 Z"/>
+  <text class="md" x="1080" y="832">逆操作保证最终一致性</text>
+</svg>

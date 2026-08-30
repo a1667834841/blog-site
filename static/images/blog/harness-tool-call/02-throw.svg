@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="t02 d02">
+  <title id="t02">Tool body throws exception</title>
+  <desc id="d02">Tool body throws, catch normalizes all exceptions into toolErrorResult with isError true.</desc>
+  <defs>
+    <filter id="ps" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#000" flood-opacity="0.12"/></filter>
+    <filter id="rg"><feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="2" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="1.5"/></filter>
+    <pattern id="pg" width="64" height="64" patternUnits="userSpaceOnUse">
+      <rect width="64" height="64" fill="#fbf8ef"/>
+      <circle cx="12" cy="18" r="1.2" fill="#d9c8aa" opacity="0.35"/>
+      <circle cx="48" cy="36" r="0.9" fill="#d7c4a7" opacity="0.3"/>
+      <path d="M6 58 C20 50,35 66,59 52" stroke="#e2d5bd" stroke-width="1" fill="none" opacity="0.35"/>
+    </pattern>
+    <style>
+      .bg{fill:url(#pg)}
+      .ln{fill:none;stroke:#171717;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;filter:url(#rg)}
+      .th{fill:none;stroke:#df6d16;stroke-width:7;stroke-linecap:round;stroke-linejoin:round;filter:url(#rg)}
+      .thn{fill:none;stroke:#df6d16;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;filter:url(#rg)}
+      .ds{fill:none;stroke:#171717;stroke-width:3.5;stroke-dasharray:12 12;stroke-linecap:round;filter:url(#rg)}
+      .tg{fill:#d7b98a;stroke:#171717;stroke-width:2.5;filter:url(#ps)}
+      .tg2{fill:#ead6b4;stroke:#171717;stroke-width:2.5;filter:url(#ps)}
+      .bl{fill:#b8d2df;stroke:#171717;stroke-width:2.2;filter:url(#ps)}
+      .wh{fill:#fffdf7;stroke:#171717;stroke-width:2.2;filter:url(#ps)}
+      .sm{font:28px 'Marker Felt','Comic Sans MS','Kaiti SC',cursive;fill:#111}
+      .md{font:38px 'Marker Felt','Comic Sans MS','Kaiti SC',cursive;fill:#111}
+      .lg{font:48px 'Marker Felt','Comic Sans MS','Kaiti SC',cursive;fill:#111}
+      .rt{font:32px 'Marker Felt','Comic Sans MS','Kaiti SC',cursive;fill:#d84a35}
+      .bt{font:30px 'Marker Felt','Comic Sans MS','Kaiti SC',cursive;fill:#227093}
+    </style>
+  </defs>
+  <rect class="bg" width="1600" height="900"/>
+
+  <!-- title -->
+  <path class="bl" d="M80 62 L470 44 L486 142 L62 147 Z"/>
+  <text class="lg" x="120" y="123">调用失败 · body 抛异常</text>
+
+  <!-- tool machine -->
+  <path class="tg2" d="M260 200 L520 176 L545 396 L235 420 Z"/>
+  <text class="lg" x="310" y="300">tool</text>
+  <text class="sm" x="315" y="352">execute()</text>
+  <!-- smoke -->
+  <path class="ds" d="M330 180 C330 140,320 120,335 92" stroke-width="4"/>
+  <path class="ds" d="M370 172 C375 132,362 110,380 80" stroke-width="4"/>
+  <path class="ds" d="M410 168 C415 130,408 108,422 78" stroke-width="4"/>
+  <circle cx="395" cy="200" r="22" fill="#161616"/>
+  <path class="ln" d="M395 200 v-12 M395 200 l12 8"/>
+
+  <!-- xiaohei catching the throw -->
+  <ellipse cx="860" cy="430" rx="34" ry="36" fill="#161616" filter="url(#rg)"/>
+  <circle cx="844" cy="420" r="7" fill="#fff7de"/>
+  <circle cx="876" cy="420" r="7" fill="#fff7de"/>
+  <path d="M846 448 C858 458,872 458,884 446" stroke="#fff7de" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path class="thn" d="M860 466 v34 M840 498 l20 -10 l20 10" />
+  <!-- open hands catching -->
+  <path class="ln" d="M815 405 C790 390,780 370,778 350" stroke-width="6"/>
+  <path class="ln" d="M905 405 C930 390,940 370,942 350" stroke-width="6"/>
+
+  <!-- thrown error -->
+  <path class="wh" d="M560 300 L760 280 L780 380 L540 395 Z" transform="rotate(-8 660 340)"/>
+  <text class="md" x="588" y="348">异常!</text>
+  <path class="thn" d="M545 340 C600 330,640 340,760 360"/>
+
+  <!-- catch net -->
+  <path class="th" d="M930 420 C970 380,1030 350,1090 340"/>
+  <path class="ln" d="M930 420 C960 480,1010 510,1080 520"/>
+  <path class="ln" d="M1090 340 C1120 390,1110 470,1080 520" stroke-dasharray="10 10"/>
+
+  <!-- result -->
+  <path class="tg" d="M1140 250 L1390 232 L1410 390 L1115 405 Z"/>
+  <text class="lg" x="1170" y="310">toolErrorResult</text>
+  <text class="sm" x="1170" y="360">isError: true</text>
+  <circle cx="1310" cy="290" r="22" fill="#d84a35" stroke="#111" stroke-width="3"/>
+  <text x="1298" y="301" font-size="30" font-family="Marker Felt, Comic Sans MS, cursive" fill="#fff">!</text>
+
+  <!-- arrows -->
+  <path class="thn" d="M540 260 C620 240,700 250,770 285"/>
+  <path class="thn" d="M1092 420 C1120 430,1140 438,1160 444"/>
+
+  <!-- bottom note -->
+  <path class="bl" d="M220 780 L620 762 L640 848 L200 862 Z"/>
+  <text class="md" x="260" y="832">所有异常归一化</text>
+  <path class="bl" d="M960 780 L1380 762 L1400 848 L938 862 Z"/>
+  <text class="md" x="1000" y="832">跳过 post-execute 直接定稿</text>
+</svg>
