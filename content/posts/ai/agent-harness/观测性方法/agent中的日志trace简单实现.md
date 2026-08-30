@@ -12,7 +12,7 @@ tags: []
 showToc: true
 TocOpen: false
 ---
-![Agent trace 简单实现示意图|621](https://img.ggball.top/blog/2026/08/01-flowchart-trace-overview.png)
+![Agent trace 简单实现示意图|621](https://img.ggball.top/blog/2026/08/01-flowchart-trace-overview.webp)
 在 agent 项目当中，引入 trace 还是很重要的。这里说的 trace，就是日志链路。它可以方便我们知道哪里执行得慢、执行了多长时间，也方便排查和优化问题。
 
 如果要简单实现链路追踪，可以在上下文中引用一个 span。span 相当于一个监控组件，里面可以加入锁和它的子 span。这个组件需要有一个开始记录的方法。
@@ -21,7 +21,7 @@ TocOpen: false
 
 
 
-![image.png](https://img.ggball.top/blog/2026/08/20260830134120316.png)
+![image.png](https://img.ggball.top/blog/2026/08/20260830134120316.webp)
 
 比如，我们可以在以下位置进行操作：在 Agent 的不同阶段加入 start span 和 end span 方法。
 
@@ -35,4 +35,4 @@ TocOpen: false
 2. 业务数据记录：不仅能记录时间，还可以在 span 组件里面加上一个 map，用来存上自己想要的数据（比如业务数据）。
 3. 信息打印：最后再实现一个 print 方法，把每个节点的记录信息打印出来。
 
-![](https://img.ggball.top/blog/2026/08/20260830143507528.png)
+![](https://img.ggball.top/blog/2026/08/20260830143507528.webp)

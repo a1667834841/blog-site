@@ -45,6 +45,11 @@ params:
   ShowPageNums: true
   cloudflareAnalyticsToken: ""
   fuseOpts:
+    keys:
+      - title
+      - summary
+      - tags
+      - permalink
     isCaseSensitive: false
     shouldSort: true
     location: 0

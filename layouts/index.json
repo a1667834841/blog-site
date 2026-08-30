@@ -6,7 +6,7 @@
     {{- $key := .Permalink -}}
     {{- if not (index $seen $key) -}}
       {{- $seen = merge $seen (dict $key true) -}}
-      {{- $index = $index | append (dict "title" .Title "content" .Plain "permalink" .Permalink "summary" .Summary) -}}
+      {{- $index = $index | append (dict "title" .Title "permalink" .Permalink "summary" .Summary "tags" (.Params.tags | default (slice))) -}}
     {{- end -}}
   {{- end -}}
 {{- end -}}
