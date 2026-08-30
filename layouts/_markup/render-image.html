@@ -1,0 +1,27 @@
+{{- $u := urls.Parse .Destination -}}
+{{- $src := $u.String -}}
+{{- if not $u.IsAbs -}}
+  {{- $path := strings.TrimPrefix "./" $u.Path }}
+  {{- with or (.PageInner.Resources.Get $path) (resources.Get $path) -}}
+    {{- $src = .RelPermalink -}}
+    {{- with $u.RawQuery -}}
+      {{- $src = printf "%s?%s" $src . -}}
+    {{- end -}}
+    {{- with $u.Fragment -}}
+      {{- $src = printf "%s#%s" $src . -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $firstImage := not (.Page.Store.Get "hasRenderedImage") -}}
+{{- .Page.Store.Set "hasRenderedImage" true -}}
+{{- $attributes := merge .Attributes (dict "alt" .Text "src" $src "title" (.Title | transform.HTMLEscape)) -}}
+<img
+  {{- range $k, $v := $attributes -}}
+    {{- if and $v (ne $k "loading") (ne $k "fetchpriority") (ne $k "decoding") -}}
+      {{- printf " %s=%q" $k $v | safeHTMLAttr -}}
+    {{- end -}}
+  {{- end -}}
+  loading="{{ if $firstImage }}eager{{ else }}lazy{{ end }}"
+  decoding="async"
+  {{- if $firstImage }} fetchpriority="high"{{ end -}}>
+{{- /**/ -}}
