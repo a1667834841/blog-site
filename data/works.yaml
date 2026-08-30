@@ -1,0 +1,12 @@
+# 作品集数据 — 每新增一个作品加一行数组项即可
+# 字段：
+#   name   - 作品名称（必填）
+#   desc   - 一句话描述（必填）
+#   url    - 在线访问地址（可选，外链新窗口打开）
+#   github - GitHub 仓库地址（可选，显示源码链接）
+#   icon   - 图标（emoji 或图片 URL，可选）
+- name: "免费模型雷达"
+  desc: "拿到免费模型的真实测评数据，帮助用户选择最优模型"
+  url: "https://fm.ggball.top/"
+  github: "https://github.com/a1667834841/free-model-radar"
+  icon: "/images/fm-logo.svg"

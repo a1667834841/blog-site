@@ -42,3 +42,85 @@
 .busuanzi-sep {
   opacity: 0.6;
 }
+
+/* ===== Works 作品集卡片 ===== */
+.works-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.works-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 1.4rem;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--entry);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.works-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--tertiary);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.works-card-head {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.works-card-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+img.works-card-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
+  flex-shrink: 0;
+}
+
+.works-card-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.works-card-desc {
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--secondary);
+  flex: 1;
+}
+
+.works-card-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.works-card-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.85rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--code-bg);
+  color: var(--primary);
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.works-card-btn:hover {
+  background: var(--tertiary);
+  border-color: var(--tertiary);
+  color: var(--theme);
+}

@@ -1,0 +1,30 @@
+{{- $works := site.Data.works }}
+{{- if $works }}
+<div class="works-grid">
+    {{- range $works }}
+    <div class="works-card">
+        <div class="works-card-head">
+            {{- if .icon }}
+                {{- if (or (hasPrefix .icon "/") (findRE "://" .icon)) }}
+                <img class="works-card-icon" src="{{ .icon | relURL }}" alt="{{ .name }} icon" loading="lazy" />
+                {{- else }}
+                <span class="works-card-icon">{{ .icon }}</span>
+                {{- end }}
+            {{- end }}
+            <span class="works-card-name">{{ .name }}</span>
+        </div>
+        <p class="works-card-desc">{{ .desc }}</p>
+        <div class="works-card-links">
+            {{- if .url }}
+            <a class="works-card-btn" href="{{ .url }}" target="_blank" rel="noopener noreferrer">访问 →</a>
+            {{- end }}
+            {{- if .github }}
+            <a class="works-card-btn works-card-btn-gh" href="{{ .github }}" target="_blank" rel="noopener noreferrer">
+                GitHub ↗
+            </a>
+            {{- end }}
+        </div>
+    </div>
+    {{- end }}
+</div>
+{{- end }}
